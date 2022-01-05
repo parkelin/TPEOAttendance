@@ -36,19 +36,56 @@ app.get("/auth", authMiddleware, (req, res) => {
 
 app.post('/member', async (req, res) => {
   try {
-      const member = req.body.member;
-      const snapshot = await db.collection('members');
-      
-      const USER = {name: member.name, email: member.email, admin: false};
-      const user_exists = (await snapshot.doc(member.user_id).get()).exists;
-      console.log(user_exists);
-      if(!user_exists){
-        const newSnapshot = await db.collection('members').doc(member.user_id).set(USER);
-        return res.json({msg: "Created a new user", data: USER});
-      }else
-        return res.json({ msg: "User already exists", data: USER});
-      
+    const member = req.body.member;
+    const snapshot = await db.collection('members');
+
+    const USER = { name: member.name, email: member.email, admin: false };
+    const user_exists = (await snapshot.doc(member.user_id).get()).exists;
+    if (!user_exists) {
+      const newSnapshot = await db.collection('members').doc(member.user_id).set(USER);
+      const result = await snapshot.doc(member.user_id).get();
+      return res.json({ msg: "Created a new user", data: result.data() });
+    } else {
+      const result = await snapshot.doc(member.user_id).get();
+      return res.json({ msg: "User already exists", data: result.data() });
+    }
+
   } catch (error) {
-      return res.status(400).send(`User should contain firstName, lastName, email`)
+    return res.status(400).send(`User should contain firstName, lastName, email`)
+  }
+});
+
+app.post('/admin', async (req, res) => {
+  try {
+    const member = req.body.member;
+    const snapshot = await db.collection('members');
+    await snapshot.doc(member.user_id).update({ admin: true });
+    const result = await snapshot.doc(member.user_id).get();
+    return res.json({ msg: "Success", data: result.data() });
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});
+
+app.post('/revokeAdmin', async (req, res) => {
+  try {
+    const member = req.body.member;
+    const snapshot = await db.collection('members');
+    await snapshot.doc(member.user_id).update({ admin: false });
+    const result = await snapshot.doc(member.user_id).get();
+    return res.json({ msg: "Success", data: result.data() });
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});
+
+app.get('/authAdmin', async (req, res) => {
+  try {
+    const member = req.body.member;
+    const snapshot = await db.collection('members');
+    const result = await snapshot.doc(member.user_id).get();
+    return res.json({ msg: "Success", data: result.data() });
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
   }
 });

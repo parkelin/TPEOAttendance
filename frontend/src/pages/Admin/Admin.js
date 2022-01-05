@@ -36,8 +36,10 @@ export default function Home() {
                 });
                 // Get Name from JWT Token
                 const resp = await res.json();
-                if (resp.data.admin) {
-                    history.push("/admin");
+                if (!resp.data.admin) {
+                    history.push("/");
+                } else {
+                    setAdmin(true);
                 }
                 setName(decode.name);
                 setUser(jwtDecode(localStorage.getItem("@token")));
@@ -45,9 +47,9 @@ export default function Home() {
         }
         loadCredentials();
     }, []);
-    async function changeAdminStatus() {
+    async function revokeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
-        const res = await fetch("http://localhost:5000/admin", {
+        const res = await fetch("http://localhost:5000/revokeAdmin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,26 +57,37 @@ export default function Home() {
             },
             body: JSON.stringify({ member: decode }),
         });
-        history.push("/admin");
+        console.log("called");
+        history.push("/");
     }
+
     async function logOut() {
         localStorage.clear();
         setUser(null);
         setName("");
         history.push("/login");
     }
-    const [user, setUser] = useState(null);
     const [name, setName] = useState("");
-    return (
-        <Fragment>
-            <h1>Hey {name}</h1>
-            <button onClick={changeAdminStatus} className="button">
-                Become admin
-            </button>
-            <button onClick={logOut} className="button">
-                Log Out
-            </button>
-        </Fragment>
+    const [user, setUser] = useState(null);
+    const [admin, setAdmin] = useState(false);
+    if (admin) {
+        return (
+            <Fragment>
+                <h1>Hello Admin {name}</h1>
+                <button onClick={revokeAdminStatus} className="button">
+                    Revoke Admin
+                </button>
+                <button onClick={logOut} className="button">
+                    Log Out
+                </button>
+            </Fragment>
 
-    );
+        );
+    } else {
+        return (
+            <Fragment>
+                <h1>Verifying Admin Status...</h1>
+            </Fragment>
+        )
+    }
 }

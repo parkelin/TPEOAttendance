@@ -31,7 +31,7 @@
    return (
      <div>
        <button onClick={googleLogin} className="button">
-         GOOGLE
+         Log In
        </button>
      </div>
    );
