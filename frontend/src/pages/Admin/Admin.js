@@ -43,6 +43,14 @@ export default function Home() {
                 }
                 setName(decode.name);
                 setUser(jwtDecode(localStorage.getItem("@token")));
+                const members_list = await fetch("http://localhost:5000/members_list", {
+                    method: "GET",
+                    headers: {
+                        authorization: "Bearer " + localStorage.getItem("@token"),
+                    },
+                });
+                const members_list_result = await members_list.json();
+                setMembers(members_list_result.data);
             }
         }
         loadCredentials();
@@ -67,6 +75,7 @@ export default function Home() {
         setName("");
         history.push("/login");
     }
+    const [members, setMembers] = useState([]);
     const [name, setName] = useState("");
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
@@ -74,6 +83,12 @@ export default function Home() {
         return (
             <Fragment>
                 <h1>Hello Admin {name}</h1>
+                <br></br><br></br>
+                <h3>List of TPEO Members</h3>
+                <br></br>
+                <ul id="todoList">
+                    {members.map((member, index) => <li key={index}>Name: {member.name} &emsp; Admin: {member.admin.toString()}</li>)}
+                </ul>
                 <button onClick={revokeAdminStatus} className="button">
                     Revoke Admin
                 </button>

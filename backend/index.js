@@ -89,3 +89,14 @@ app.get('/authAdmin', async (req, res) => {
     return res.status(400).send(`User does not exist`)
   }
 });
+
+app.get('/members_list', async (req, res) => {
+  try {
+    const snapshot = await db.collection('members').get();
+    const members = [];
+    snapshot.docs.forEach(doc => members.push(doc.data()));
+    return res.json({ msg: "Success", data: members});
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});

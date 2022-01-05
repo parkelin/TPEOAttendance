@@ -57,6 +57,7 @@ export default function Home() {
         });
         history.push("/admin");
     }
+
     async function logOut() {
         localStorage.clear();
         setUser(null);
@@ -69,7 +70,7 @@ export default function Home() {
         <Fragment>
             <h1>Hey {name}</h1>
             <button onClick={changeAdminStatus} className="button">
-                Become admin
+                Become Admin
             </button>
             <button onClick={logOut} className="button">
                 Log Out
