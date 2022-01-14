@@ -8,3 +8,5 @@ export default function Header() {
     </div>
   );
 }
+
+//No header needed according to figma
