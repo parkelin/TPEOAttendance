@@ -1,11 +1,16 @@
 .header-container {
-  background-color: #ed7a11;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  padding-left: 24px;
-  color: white;
   width: 100%;
-  height: 150px;
-  box-shadow: grey 0px 0px 6px 0px;
+  height: 97px;
+  left: 602px;
+  padding-top: 191px;
+
+  font-family: Inter;
+  font-size: 65px;
+
+  text-align: center;
+
+  color: #000000;
 }
