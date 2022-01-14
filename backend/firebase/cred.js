@@ -6,3 +6,4 @@ firebase.initializeApp({
 });
 
 module.exports = firebase;
+
