@@ -95,8 +95,23 @@ app.get('/members_list', async (req, res) => {
     const snapshot = await db.collection('members').get();
     const members = [];
     snapshot.docs.forEach(doc => members.push(doc.data()));
-    return res.json({ msg: "Success", data: members});
+    return res.json({ msg: "Success", data: members });
   } catch (error) {
     return res.status(400).send(`User does not exist`)
+  }
+});
+
+app.post('/meeting', async (req, res) => {
+  try {
+    const meeting = req.body;
+    const snapshot = await db.collection('meetings');
+    const id = uuid.v1();
+    const MEETING = { name: meeting.name, start: meeting.start, end: meeting.end};
+    const newSnapshot = await db.collection('meetings').doc(id).set(MEETING);
+    const result = await snapshot.doc(id).get();
+    return res.json({ msg: "Created a new meeting", data: result.data() });
+
+  } catch (error) {
+    return res.status(400).send(`User should contain firstName, lastName, email`)
   }
 });

@@ -2,6 +2,9 @@ import "./style.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
+import DateTime from "../../components/DateTime/DateTime.js";
+import { FormControl } from 'react-bootstrap';
+import moment from "moment";
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
 
@@ -75,10 +78,33 @@ export default function Home() {
         setName("");
         history.push("/login");
     }
+
+    async function submitMeeting() {
+        console.log(meetingName);
+        console.log(startDate);
+        console.log(endDate);
+        const res = await fetch("http://localhost:5000/meeting", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + localStorage.getItem("@token"),
+            },
+            body: JSON.stringify({name: meetingName, start: startDate, end: endDate}),
+        });
+        setMeetingName("");
+    }
+    async function setMeetingTime(start, end) {
+        console.log("called");
+        setStartDate(start);
+        setEndDate(end);
+    }
     const [members, setMembers] = useState([]);
     const [name, setName] = useState("");
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
+    const [meetingName, setMeetingName] = useState("");
+    const [startDate, setStartDate] = useState(moment());
+    const [endDate, setEndDate] = useState(moment());
     if (admin) {
         return (
             <Fragment>
@@ -86,9 +112,24 @@ export default function Home() {
                 <br></br><br></br>
                 <h3>List of TPEO Members</h3>
                 <br></br>
-                <ul id="todoList">
+                <ul id="Admin">
                     {members.map((member, index) => <li key={index}>Name: {member.name} &emsp; Admin: {member.admin.toString()}</li>)}
                 </ul>
+                <h3>Input meeting:</h3>
+                <FormControl
+                    id="formControlsTextB"
+                    type="text"
+                    label="Text"
+                    placeholder="Meeting name"
+                    value={meetingName}
+                    onChange={e => setMeetingName(e.target.value)}
+                />
+                <DateTime onChange={e =>
+                    setMeetingTime(e.target.start,e.target.end)
+                } />
+                <button onClick={submitMeeting} className="button">
+                    Submit Meeting
+                </button>
                 <button onClick={revokeAdminStatus} className="button">
                     Revoke Admin
                 </button>
