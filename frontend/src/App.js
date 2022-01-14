@@ -9,7 +9,6 @@ import Admin from "./pages/Admin/Admin.js";
 export default function App() {
   return (
     <div className="global-container">
-      <Header />
       <div className="content-container">
         <Switch>
           {/* The Switch decides which component to show based on the current URL.*/}

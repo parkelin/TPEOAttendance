@@ -115,3 +115,14 @@ app.post('/meeting', async (req, res) => {
     return res.status(400).send(`User should contain firstName, lastName, email`)
   }
 });
+
+app.get('/meetings_list', async (req, res) => {
+  try {
+    const snapshot = await db.collection('meetings').get();
+    const meetings = [];
+    snapshot.docs.forEach(doc => meetings.push(doc.data()));
+    return res.json({ msg: "Success", data: meetings});
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});

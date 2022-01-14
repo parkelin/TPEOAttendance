@@ -54,6 +54,14 @@ export default function Home() {
                 });
                 const members_list_result = await members_list.json();
                 setMembers(members_list_result.data);
+                const meetings_list = await fetch("http://localhost:5000/meetings_list", {
+                    method: "GET",
+                    headers: {
+                        authorization: "Bearer " + localStorage.getItem("@token"),
+                    },
+                });
+                const meetings_list_result = await meetings_list.json();
+                setMeetings(meetings_list_result.data);
             }
         }
         loadCredentials();
@@ -99,6 +107,7 @@ export default function Home() {
         setEndDate(end);
     }
     const [members, setMembers] = useState([]);
+    const [meetings, setMeetings] = useState([]);
     const [name, setName] = useState("");
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
@@ -114,6 +123,12 @@ export default function Home() {
                 <br></br>
                 <ul id="Admin">
                     {members.map((member, index) => <li key={index}>Name: {member.name} &emsp; Admin: {member.admin.toString()}</li>)}
+                </ul>
+                <br></br><br></br>
+                <h3>List of TPEO Meetings</h3>
+                <br></br>
+                <ul id="Meetings">
+                    {meetings.map((meeting, index) => <li key={index}>Name: {meeting.name} &emsp; Start: {meeting.start.toString()} &emsp; End: {meeting.end.toString()}</li>)}
                 </ul>
                 <h3>Input meeting:</h3>
                 <FormControl
