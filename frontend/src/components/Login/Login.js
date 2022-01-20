@@ -4,6 +4,7 @@
  import React from "react";
  import { useHistory } from "react-router-dom";
  import { auth, firebase } from "../Firebase/firebase";
+ import "./style.css";
  
  export default function LoginLink() {
    const history = useHistory();
@@ -30,6 +31,7 @@
    }
    return (
      <div>
+       <h2 id="header">Log in</h2>
        <button onClick={googleLogin} className="button">
          LOG IN
        </button>

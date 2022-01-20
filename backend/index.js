@@ -1,4 +1,3 @@
-
 //create backend, do npm init
 //init makes the package.json
 //npm install installs the dependencies
@@ -106,7 +105,7 @@ app.post('/meeting', async (req, res) => {
     const meeting = req.body;
     const snapshot = await db.collection('meetings');
     const id = uuid.v1();
-    const MEETING = { name: meeting.name, start: meeting.start, end: meeting.end};
+    const MEETING = { name: meeting.name, start: meeting.start, end: meeting.end, fStart: dateFormat(meeting.start), fEnd: dateFormat(meeting.end), day: getFormattedDate(meeting.start), type: meeting.type, id: id };
     const newSnapshot = await db.collection('meetings').doc(id).set(MEETING);
     const result = await snapshot.doc(id).get();
     return res.json({ msg: "Created a new meeting", data: result.data() });
@@ -121,7 +120,45 @@ app.get('/meetings_list', async (req, res) => {
     const snapshot = await db.collection('meetings').get();
     const meetings = [];
     snapshot.docs.forEach(doc => meetings.push(doc.data()));
-    return res.json({ msg: "Success", data: meetings});
+    return res.json({ msg: "Success", data: meetings });
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});
+
+function dateFormat(date) {
+  let formatter = Intl.DateTimeFormat(
+    "default", // a locale name; "default" chooses automatically
+    {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric"
+    }
+  );
+
+
+  return formatter.format(Date.parse(date));
+}
+
+function getFormattedDate(d) {
+  var date = new Date(Date.parse(d));
+  var dd = String(date.getDate()).padStart(2, '0');
+  var mm = String(date.getMonth() + 1).padStart(2, '0');
+  var yyyy = date.getFullYear();
+  return mm + '/' + dd + '/' + yyyy;
+}
+
+app.delete('/delete_meetings', async (req, res) => {
+  try {
+    const snapshot = await db.collection('meetings');
+    for (const meetingID of req.body.meetings) {
+      await snapshot.doc(meetingID.toString()).delete().then(() => { console.log("successfully deleted! ") })
+        .catch((error) => { console.log("Error removing document:", error) });
+    }
+    return res.json({ msg: "Success", data: snapshot });
   } catch (error) {
     return res.status(400).send(`User does not exist`)
   }

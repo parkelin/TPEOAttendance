@@ -6,6 +6,7 @@ import Header from "./components/Header/Header.js";
 import Home from "./pages/Home/Home.js";
 import Login from "./pages/Login/Login.js";
 import Admin from "./pages/Admin/Admin.js";
+import AdminMeetings from "./pages/Admin/Meetings.js";
 export default function App() {
   return (
     <div className="global-container">
@@ -20,6 +21,9 @@ export default function App() {
           </Route>
           <Route exact path="/admin">
               <Admin/>
+          </Route>
+          <Route exact path="/admin/meetings">
+              <AdminMeetings/>
           </Route>
         </Switch>
       </div>

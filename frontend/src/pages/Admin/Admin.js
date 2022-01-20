@@ -3,8 +3,13 @@ import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import DateTime from "../../components/DateTime/DateTime.js";
+import DateTimePicker from 'react-datetime-picker';
+import DurationPicker from 'react-duration-picker';
 import { FormControl } from 'react-bootstrap';
+import Modal from 'react-modal';
 import moment from "moment";
+//import ApiCalendar from 'react-google-calendar-api';
+//import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
 
@@ -42,6 +47,7 @@ export default function Home() {
                 if (!resp.data.admin) {
                     history.push("/");
                 } else {
+
                     setAdmin(true);
                 }
                 setName(decode.name);
@@ -76,7 +82,6 @@ export default function Home() {
             },
             body: JSON.stringify({ member: decode }),
         });
-        console.log("called");
         history.push("/");
     }
 
@@ -86,34 +91,20 @@ export default function Home() {
         setName("");
         history.push("/login");
     }
-
-    async function submitMeeting() {
-        console.log(meetingName);
-        console.log(startDate);
-        console.log(endDate);
-        const res = await fetch("http://localhost:5000/meeting", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: "Bearer " + localStorage.getItem("@token"),
-            },
-            body: JSON.stringify({name: meetingName, start: startDate, end: endDate}),
-        });
-        setMeetingName("");
+    async function meetingsPage() {
+        history.push("/admin/meetings");
     }
-    async function setMeetingTime(start, end) {
-        console.log("called");
-        setStartDate(start);
-        setEndDate(end);
-    }
+    
     const [members, setMembers] = useState([]);
     const [meetings, setMeetings] = useState([]);
     const [name, setName] = useState("");
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
     const [meetingName, setMeetingName] = useState("");
-    const [startDate, setStartDate] = useState(moment());
-    const [endDate, setEndDate] = useState(moment());
+    const [meetingTime, setMeetingTime] = useState(new Date());
+    const [meetingDuration, setMeetingDuration] = useState({ hours: 1, minutes: 0, seconds: 0 });
+    const [meetingType, setMeetingType] = useState("General");
+    const [modalIsOpen, setIsOpen] = useState(false);
     if (admin) {
         return (
             <Fragment>
@@ -124,32 +115,14 @@ export default function Home() {
                 <ul id="Admin">
                     {members.map((member, index) => <li key={index}>Name: {member.name} &emsp; Admin: {member.admin.toString()}</li>)}
                 </ul>
-                <br></br><br></br>
-                <h3>List of TPEO Meetings</h3>
-                <br></br>
-                <ul id="Meetings">
-                    {meetings.map((meeting, index) => <li key={index}>Name: {meeting.name} &emsp; Start: {meeting.start.toString()} &emsp; End: {meeting.end.toString()}</li>)}
-                </ul>
-                <h3>Input meeting:</h3>
-                <FormControl
-                    id="formControlsTextB"
-                    type="text"
-                    label="Text"
-                    placeholder="Meeting name"
-                    value={meetingName}
-                    onChange={e => setMeetingName(e.target.value)}
-                />
-                <DateTime onChange={e =>
-                    setMeetingTime(e.target.start,e.target.end)
-                } />
-                <button onClick={submitMeeting} className="button">
-                    Submit Meeting
-                </button>
                 <button onClick={revokeAdminStatus} className="button">
                     Revoke Admin
                 </button>
                 <button onClick={logOut} className="button">
                     Log Out
+                </button>
+                <button onClick={meetingsPage} className="button">
+                    Meetings Page
                 </button>
             </Fragment>
 
