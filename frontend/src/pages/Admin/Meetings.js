@@ -72,6 +72,7 @@ export default function Home() {
                 });
                 const meetings_list_result = await meetings_list.json();
                 setMeetings(meetings_list_result.data);
+                
             }
         }
         loadCredentials();
@@ -156,6 +157,12 @@ export default function Home() {
     const [meetingDuration, setMeetingDuration] = useState({ hours: 1, minutes: 0, seconds: 0 });
     const [meetingType, setMeetingType] = useState("General");
     const [meetingSelection, setMeetingSelection] = useState([]);
+    const [sortModel, setSortModel] = useState([
+        {
+          field: 'day',
+          sort: 'desc',
+        },
+      ]);
     if (admin) {
         return (
             <Fragment>
@@ -200,7 +207,7 @@ export default function Home() {
                 </button>
                 <h3>List of TPEO Meetings</h3>
                 <br></br>
-                <div style={{ height: 400, width: '100%' }}>
+                <div style={{ height: 400, width: "170%"}}>
                     <DataGrid
                         rows={meetings}
                         columns={columns}
@@ -209,18 +216,14 @@ export default function Home() {
                             setMeetingSelection(newSelectionModel);
                         }}
                         selectionModel={meetingSelection}
-                        sortModel={[
-                            { field: 'day', sort: 'asc' },
-                          ]}
+                        sortModel={sortModel}
+                        onSortModelChange={(model) => setSortModel(model)}
 
                     />
                 </div>
                 <button onClick={deleteMeetings} className="button">
                     Delete Meetings
                 </button>
-                {/* <ul id="Meetings">
-                    {meetings.map((meeting, index) => <li key={index}>Name: {meeting.name} &emsp; Start: {dateFormat(meeting.start)} &emsp; End: {dateFormat(meeting.end)}</li>)}
-                </ul> */}
 
                 <button onClick={revokeAdminStatus} className="button">
                     Revoke Admin

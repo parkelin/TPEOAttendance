@@ -1,6 +1,7 @@
 import "./style.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
+import Collapse from "../../components/Collapse/Collapse.js";
 import Login from "../../components/Login/Login.js";
 import DateTime from "../../components/DateTime/DateTime.js";
 import DateTimePicker from 'react-datetime-picker';
@@ -68,6 +69,7 @@ export default function Home() {
                 });
                 const meetings_list_result = await meetings_list.json();
                 setMeetings(meetings_list_result.data);
+                
             }
         }
         loadCredentials();
@@ -94,17 +96,12 @@ export default function Home() {
     async function meetingsPage() {
         history.push("/admin/meetings");
     }
-    
+
     const [members, setMembers] = useState([]);
     const [meetings, setMeetings] = useState([]);
     const [name, setName] = useState("");
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
-    const [meetingName, setMeetingName] = useState("");
-    const [meetingTime, setMeetingTime] = useState(new Date());
-    const [meetingDuration, setMeetingDuration] = useState({ hours: 1, minutes: 0, seconds: 0 });
-    const [meetingType, setMeetingType] = useState("General");
-    const [modalIsOpen, setIsOpen] = useState(false);
     if (admin) {
         return (
             <Fragment>
@@ -112,9 +109,9 @@ export default function Home() {
                 <br></br><br></br>
                 <h3>List of TPEO Members</h3>
                 <br></br>
-                <ul id="Admin">
-                    {members.map((member, index) => <li key={index}>Name: {member.name} &emsp; Admin: {member.admin.toString()}</li>)}
-                </ul>
+                {meetings.length > 0 && <ul>
+                    {members.map((member, index) => <Collapse key={index} name={member.name} id={member.id} meetings={meetings}/>)}
+                </ul>}
                 <button onClick={revokeAdminStatus} className="button">
                     Revoke Admin
                 </button>
