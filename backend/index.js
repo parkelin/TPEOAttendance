@@ -176,8 +176,23 @@ app.post('/attendance_list', async (req, res) => {
         attendance_list.push("Absent");
       }
     });
-    console.log(attendance_list);
     return res.json({ msg: "Success", data: attendance_list});
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});
+
+app.post('/signin', async (req, res) => {
+  console.log(req.body.late);
+  try {
+    const member = req.body.member;
+    const snapshot = await db.collection('members');
+    const id = req.body.meeting.id;
+    const lateJSON = {};
+    lateJSON[id] = req.body.late?"Tardy":"Present";
+    await snapshot.doc(member.user_id).update(lateJSON);
+    const result = await snapshot.doc(member.user_id).get();
+    return res.json({ msg: "Success", data: result.data() });
   } catch (error) {
     return res.status(400).send(`User does not exist`)
   }

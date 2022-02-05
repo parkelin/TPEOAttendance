@@ -207,7 +207,7 @@ export default function Home() {
                 </button>
                 <h3>List of TPEO Meetings</h3>
                 <br></br>
-                <div style={{ height: 400, width: "170%"}}>
+                <div style={{ height: 400, width: "100%"}}>
                     <DataGrid
                         rows={meetings}
                         columns={columns}
