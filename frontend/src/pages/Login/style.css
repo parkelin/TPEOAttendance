@@ -14,13 +14,12 @@
 }
 
 .button {
-  background-color: black;
-  color: white; 
-  font-family: Inter;
+  color: grey;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500px;
-  font-size: 30px;
+  font-size: 25px;
   font-style: normal;
-  margin-top: 200px;
+  margin-top: 220px;
 }
 
 .signup-link {

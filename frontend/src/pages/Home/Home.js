@@ -2,6 +2,8 @@ import "./style.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
+import image1 from '../Home/accent1.png'
+import image2 from '../Home/accent2.png'
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
 
@@ -68,14 +70,12 @@ export default function Home() {
     const [name, setName] = useState("");
     return (
         <Fragment>
-            <h1>Hey {name}</h1>
-            <button onClick={changeAdminStatus} className="button">
-                Become Admin
-            </button>
-            <button onClick={logOut} className="button">
-                Log Out
+            <img src={image1}></img>
+            <img src={image2} class="rightImg"></img>
+            <h1>Log In{name}</h1>
+            <button onClick={Login} className="button">
+                Continue with Google
             </button>
         </Fragment>
-
     );
 }
