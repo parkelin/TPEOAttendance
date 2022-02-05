@@ -1,9 +1,9 @@
 import "./style.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import Login from "../../components/Login/Login.js";
-import image1 from '../Home/accent1.png'
-import image2 from '../Home/accent2.png'
+import LoginLink from "../../components/Login/Login.js";
+import image1 from './accent1.png';
+import image2 from './accent2.png';
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
 
@@ -73,7 +73,7 @@ export default function Home() {
             <img src={image1}></img>
             <img src={image2} class="rightImg"></img>
             <h1>Log In{name}</h1>
-            <button onClick={Login} className="button">
+            <button onClick={googleLogin} className="button">
                 Continue with Google
             </button>
         </Fragment>
