@@ -31,9 +31,8 @@
    }
    return (
      <div>
-       <h2 id="header">Log in</h2>
        <button onClick={googleLogin} className="button">
-         LOG IN
+         Continue With Google
        </button>
      </div>
    );

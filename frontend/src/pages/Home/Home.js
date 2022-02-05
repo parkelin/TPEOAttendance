@@ -249,6 +249,5 @@ export default function Home() {
                 Log Out
             </button>
         </Fragment>
-
     );
 }
