@@ -105,7 +105,7 @@ export default function Home() {
     if (admin) {
         return (
             <Fragment>
-                <h1>Hello Admin {name}</h1>
+                <h2>Welcome {name}</h2>
                 <br></br><br></br>
                 <h3>List of TPEO Members</h3>
                 <br></br>

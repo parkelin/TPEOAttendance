@@ -83,6 +83,25 @@ export default function Home() {
         loadCredentials();
     }, []);
 
+    function renderAttendance(params) {
+        let color = 'black';
+        let backgroundColor = 'black';
+        if(params.value=="Present"){
+            color = "#6EC47F";
+            backgroundColor = "#CBE9D1";
+        }else if(params.value=="Absent"){
+            color = "#bb4244";
+            backgroundColor = "#efcece";
+        }else if(params.value=="Excused"){
+            color = "#64A9F7";
+            backgroundColor = "#C5E0FF";
+        }else{
+            color = "#EF7357";
+            backgroundColor = "#FDEAE5";
+        }
+        return <button id="button" style={{fontFamily: "Poppins,sans-serif", fontWeight: 600, color: color, backgroundColor: backgroundColor, border: "none", padding: "3px", borderRadius: "10px"}}>{params.value}</button>;
+    }
+
     async function meetingsList() {
         const meetings_list = await fetch("http://localhost:5000/meetings_list", {
             method: "GET",
@@ -213,7 +232,7 @@ export default function Home() {
         { field: 'name', headerName: 'Meeting Name', width: 130 },
         { field: 'day', headerName: 'Day', width: 130 },
         { field: 'type', headerName: 'Meeting Type', width: 130 },
-        { field: 'attendance', headerName: 'Attendance', width: 130 },
+        { field: 'attendance', headerName: 'Attendance', width: 130, renderCell: renderAttendance},
     ];
     const [sortModel, setSortModel] = useState([
         {

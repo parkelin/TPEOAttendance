@@ -1,6 +1,7 @@
 import React from 'react';
 import Collapsible from "@kunukn/react-collapse";
 import "./collapsible.scss";
+import "./style.css";
 import cx from "classnames";
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState, Fragment } from "react";
@@ -19,28 +20,88 @@ export default function Collapse(props) {
             });
             const attendance_list_result = await attendance_list.json();
             const temp = [];
+            const tempMap = new Map();
             for (let i = 0; i < props.meetings.length; i++) {
                 const attendance = attendance_list_result.data[i];
                 var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
                 tempJ["attendance"] = attendance;
 
                 temp.push(tempJ);
+                tempMap.set(props.meetings[i], attendance);
             }
-            setAttendance(attendance_list_result.data);
+            setAttendance(tempMap);
             setMeetings(temp);
         }
 
         getAttendance();
     }, []);
+
+    async function updateAttendance(value, id, api, field) {
+        const res = await fetch("http://localhost:5000/update_attendance", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + localStorage.getItem("@token"),
+            },
+            body: JSON.stringify({ member: props.id, id: id, status: value }),
+        });
+        const attendance_list_result = await res.json();
+        const temp = [];
+        const tempMap = new Map();
+        for (let i = 0; i < props.meetings.length; i++) {
+            const attendance = attendance_list_result.data[i];
+            var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
+            tempJ["attendance"] = attendance;
+
+            temp.push(tempJ);
+            tempMap.set(props.meetings[i], attendance);
+        }
+        const isValid = await api.commitCellChange({ id, field });
+        if (isValid) {
+            api.setCellMode(id, field, 'view');
+        }
+        setAttendance(tempMap);
+        setMeetings(temp);
+    }
+    function renderAttendance(params) {
+        let color = 'black';
+        let backgroundColor = 'black';
+        if(params.value=="Present"){
+            color = "#6EC47F";
+            backgroundColor = "#CBE9D1";
+        }else if(params.value=="Absent"){
+            color = "#bb4244";
+            backgroundColor = "#efcece";
+        }else if(params.value=="Excused"){
+            color = "#64A9F7";
+            backgroundColor = "#C5E0FF";
+        }else{
+            color = "#EF7357";
+            backgroundColor = "#FDEAE5";
+        }
+        return <button id="button" style={{fontFamily: "Poppins,sans-serif", fontWeight: 600, color: color, backgroundColor: backgroundColor, border: "none", padding: "3px", borderRadius: "10px"}}>{params.value}</button>;
+    }
+
+    function editAttendance(props) {
+        const { id, value, api, field } = props;
+
+        return <select defaultValue={value} onChange={(e) => updateAttendance(e.target.value, id, api, field)}>
+            <option defaultValue="Absent">Absent</option>
+            <option defaultValue="Late">Late</option>
+            <option defaultValue="Present">Present</option>
+            <option defaultValue="Excused">Excused</option>
+        </select>;
+    }
+
     const [meetings, setMeetings] = useState([]);
-    const [attendance, setAttendance] = useState([]);
+    const [attendance, setAttendance] = useState(new Map());
     const [isOpen, setIsOpen] = useState(false);
     const [meetingSelection, setMeetingSelection] = useState([]);
     const columns = [
         { field: 'name', headerName: 'Meeting Name', width: 130 },
         { field: 'day', headerName: 'Day', width: 130 },
         { field: 'type', headerName: 'Meeting Type', width: 130 },
-        { field: 'attendance', headerName: 'Attendance', width: 130 },
+        { field: 'attendance', headerName: 'Attendance', width: 130, renderEditCell: editAttendance, renderCell: renderAttendance, editable: true },
     ];
     const [sortModel, setSortModel] = useState([
         {
@@ -48,6 +109,8 @@ export default function Collapse(props) {
             sort: 'desc',
         },
     ]);
+
+
     return <div className="collapsible">
         <button
             className={cx("collapsible__toggle", {
@@ -79,15 +142,13 @@ export default function Collapse(props) {
                             autoHeight
                             rows={meetings}
                             columns={columns}
-                            checkboxSelection
                             onSelectionModelChange={(newSelectionModel) => {
                                 setMeetingSelection(newSelectionModel);
                             }}
                             selectionModel={meetingSelection}
                             sortModel={sortModel}
                             onSortModelChange={(model) => setSortModel(model)}
-
-
+                            sx={{fontFamily:"Poppins,sans-serif", fontWeight: 200}}
                         />
                     </div>
                 </div>

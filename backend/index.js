@@ -183,16 +183,41 @@ app.post('/attendance_list', async (req, res) => {
 });
 
 app.post('/signin', async (req, res) => {
-  console.log(req.body.late);
   try {
     const member = req.body.member;
     const snapshot = await db.collection('members');
     const id = req.body.meeting.id;
     const lateJSON = {};
-    lateJSON[id] = req.body.late?"Tardy":"Present";
+    lateJSON[id] = req.body.late?"Late":"Present";
     await snapshot.doc(member.user_id).update(lateJSON);
     const result = await snapshot.doc(member.user_id).get();
     return res.json({ msg: "Success", data: result.data() });
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});
+
+app.post('/update_attendance', async (req, res) => {
+  try {
+    const member = req.body.member;
+    
+    const snapshot = await db.collection('members');
+    const id = req.body.id;
+    const status = req.body.status;
+    const attendanceJSON = {};
+    attendanceJSON[id] = status;
+    await snapshot.doc(member).update(attendanceJSON);
+    const result = await snapshot.doc(member).get();
+    const meetings = await db.collection('meetings').get();
+    const attendance_list = [];
+    meetings.docs.forEach(doc => {
+      if(result.data().hasOwnProperty(doc.id)){
+        attendance_list.push(result.data()[doc.id]);
+      }else{
+        attendance_list.push("Absent");
+      }
+    });
+    return res.json({ msg: "Success", data: attendance_list});
   } catch (error) {
     return res.status(400).send(`User does not exist`)
   }
