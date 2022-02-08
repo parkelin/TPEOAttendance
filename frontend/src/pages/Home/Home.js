@@ -20,7 +20,6 @@ export default function Home() {
                 });
                 // Get Status
                 const status = await request.status;
-                console.log(status);
                 // If token is invalid, push to login
                 if (status != 200) {
                     history.push("/login");
@@ -43,6 +42,7 @@ export default function Home() {
                 setName(decode.name);
                 setUser(jwtDecode(localStorage.getItem("@token")));
                 setUserInfo(resp.data);
+                setMemberType(resp.data.type);
                 const meetings_list = await fetch("http://localhost:5000/meetings_list", {
                     method: "GET",
                     headers: {
@@ -62,21 +62,35 @@ export default function Home() {
                 });
                 const attendance_list_result = await attendance_list.json();
                 const temp = [];
+                const attendanceList = [];
                 let tempScore = 0;
+                let tempRoleScore = 0;
                 for (let i = 0; i < meetings_list_result.data.length; i++) {
-                    const attendance = attendance_list_result.data[i];
+                    const attendance = attendance_list_result.data[i][0];
+                    const type = attendance_list_result.data[i][1];
                     var tempJ = JSON.parse(JSON.stringify(meetings_list_result.data[i]));
                     tempJ["attendance"] = attendance;
                     if (attendance == 'Late') {
-                        tempScore += 0.5;
+                        if (type == resp.data.type) {
+                            tempRoleScore += 0.5;
+                        } else if(type == "General") {
+                            tempScore += 0.5;
+                        }
                     } else if (attendance == 'Absent') {
-                        tempScore += 1;
+                        if (type == resp.data.type) {
+                            tempRoleScore += 1;
+                        } else if(type == "General"){
+                            tempScore += 1;
+                        }
                     }
+                    attendanceList.push(attendance);
                     temp.push(tempJ);
                 }
-                setScore(tempScore);
-                setAttendance(attendance_list_result.data);
+                setGeneralScore(tempScore);
+                setRoleScore(tempRoleScore);
+                setAttendance(attendanceList);
                 setMeetingsWithAttendance(temp);
+                setLoaded(true);
             }
         }
 
@@ -86,20 +100,20 @@ export default function Home() {
     function renderAttendance(params) {
         let color = 'black';
         let backgroundColor = 'black';
-        if(params.value=="Present"){
+        if (params.value == "Present") {
             color = "#6EC47F";
             backgroundColor = "#CBE9D1";
-        }else if(params.value=="Absent"){
-            color = "#bb4244";
-            backgroundColor = "#efcece";
-        }else if(params.value=="Excused"){
-            color = "#64A9F7";
-            backgroundColor = "#C5E0FF";
-        }else{
+        } else if (params.value == "Absent") {
             color = "#EF7357";
             backgroundColor = "#FDEAE5";
+        } else if (params.value == "Excused") {
+            color = "#64A9F7";
+            backgroundColor = "#C5E0FF";
+        } else {
+            color = "#D39800";
+            backgroundColor = "#FCEFCC";
         }
-        return <button id="button" style={{fontFamily: "Poppins,sans-serif", fontWeight: 600, color: color, backgroundColor: backgroundColor, border: "none", padding: "3px", borderRadius: "10px"}}>{params.value}</button>;
+        return <button id="button" style={{ fontFamily: "Poppins,sans-serif", fontWeight: 600, color: color, backgroundColor: backgroundColor, border: "none", padding: "3px", borderRadius: "10px" }}>{params.value}</button>;
     }
 
     async function meetingsList() {
@@ -161,9 +175,7 @@ export default function Home() {
         history.push("/login");
     }
 
-    async function getAttendance() {
-        console.log("CALLED");
-        console.log(meetings.length);
+    async function getAttendance(mType) {
         const decode = jwtDecode(localStorage.getItem("@token"));
         const attendance_list = await fetch("http://localhost:5000/attendance_list", {
             method: "POST",
@@ -175,20 +187,33 @@ export default function Home() {
         });
         const attendance_list_result = await attendance_list.json();
         const temp = [];
+        const attendanceList = [];
         let tempScore = 0;
+        let tempRoleScore = 0;
         for (let i = 0; i < meetings.length; i++) {
-            const attendance = attendance_list_result.data[i];
+            const attendance = attendance_list_result.data[i][0];
+            const type = attendance_list_result.data[i][1];
             var tempJ = JSON.parse(JSON.stringify(meetings[i]));
             tempJ["attendance"] = attendance;
             if (attendance == 'Late') {
-                tempScore += 0.5;
+                if (type == mType) {
+                    tempRoleScore += 0.5;
+                } else if(type == "General"){
+                    tempScore += 0.5;
+                }
             } else if (attendance == 'Absent') {
-                tempScore += 1;
+                if (type == mType) {
+                    tempRoleScore += 1;
+                } else if(type == "General") {
+                    tempScore += 1;
+                }
             }
+            attendanceList.push(attendance);
             temp.push(tempJ);
         }
-        setScore(tempScore);
-        setAttendance(attendance_list_result.data);
+        setGeneralScore(tempScore);
+        setRoleScore(tempRoleScore);
+        setAttendance(attendanceList);
         setMeetingsWithAttendance(temp);
     }
     async function user_info() {
@@ -204,7 +229,7 @@ export default function Home() {
         // Get Name from JWT Token
         const resp = await res.json();
         setUserInfo(resp.data);
-        getAttendance();
+        getAttendance(memberType);
     }
     async function signIn(meeting) {
         const decode = jwtDecode(localStorage.getItem("@token"));
@@ -219,20 +244,38 @@ export default function Home() {
         });
         user_info();
     }
+    async function changeMemberType(type) {
+        setMemberType(type);
+        const res = await fetch("http://localhost:5000/member_type", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + localStorage.getItem("@token"),
+            },
+            body: JSON.stringify({ member: user, type: type }),
+        });
+        
+        
+        getAttendance(type);
+    }
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const [name, setName] = useState("");
     const [date, setDate] = useState(Math.round(Date.now() / 1000));
     const [meetings, setMeetings] = useState([]);
     const [meetingsWithAttendance, setMeetingsWithAttendance] = useState([]);
-    const [score, setScore] = useState(0);
+    const [generalScore, setGeneralScore] = useState(0);
+    const [roleScore, setRoleScore] = useState(0);
     const [attendance, setAttendance] = useState([]);
     const [meetingSelection, setMeetingSelection] = useState([]);
+    const [memberType, setMemberType] = useState("Member");
+    const [loaded, setLoaded] = useState(false);
+
     const columns = [
         { field: 'name', headerName: 'Meeting Name', width: 130 },
         { field: 'day', headerName: 'Day', width: 130 },
         { field: 'type', headerName: 'Meeting Type', width: 130 },
-        { field: 'attendance', headerName: 'Attendance', width: 130, renderCell: renderAttendance},
+        { field: 'attendance', headerName: 'Attendance', width: 130, renderCell: renderAttendance },
     ];
     const [sortModel, setSortModel] = useState([
         {
@@ -240,17 +283,21 @@ export default function Home() {
             sort: 'desc',
         },
     ]);
-    return (
+    return !loaded ? null : (
         <Fragment>
             <h1>Hey {name}</h1>
-            <button onClick={changeAdminStatus} className="button">
-                Become Admin
-            </button>
+            <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
+                <option defaultValue="Design">Design</option>
+                <option defaultValue="Engineering">Engineering</option>
+                <option defaultValue="Product">Product</option>
+            </select>
             <ul>
                 {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
             </ul>
-            <h1>Score: {score}</h1>
-            {(score >= 4) ? (score >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
+            <h1>General Score: {generalScore}</h1>
+            {(generalScore >= 4) ? (generalScore >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
+            {memberType != "Member" && <h1>{memberType} Score: {roleScore}</h1>}
+            {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
             <div style={{ height: 600, width: "100%" }}>
                 <DataGrid
                     rows={meetingsWithAttendance}
@@ -264,6 +311,9 @@ export default function Home() {
                     onSortModelChange={(model) => setSortModel(model)}
                 />
             </div>
+            <button onClick={changeAdminStatus} className="button">
+                Become Admin
+            </button>
             <button onClick={logOut} className="button">
                 Log Out
             </button>

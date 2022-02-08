@@ -31,7 +31,6 @@ export default function Home() {
                 });
                 // Get Status
                 const status = await request.status;
-                console.log(status);
                 // If token is invalid, push to login
                 if (status != 200) {
                     history.push("/login");
@@ -72,7 +71,7 @@ export default function Home() {
                 });
                 const meetings_list_result = await meetings_list.json();
                 setMeetings(meetings_list_result.data);
-                
+                setLoaded(true);
             }
         }
         loadCredentials();
@@ -141,7 +140,7 @@ export default function Home() {
     }
     const columns = [
         { field: 'name', headerName: 'Meeting Name', width: 130 },
-        { field: 'day', headerName: 'Day', width: 130},
+        { field: 'day', headerName: 'Day', width: 130 },
         { field: 'fStart', headerName: 'Start Date', width: 200 },
         { field: 'fEnd', headerName: 'End Date', width: 200 },
         { field: 'type', headerName: 'Meeting Type', width: 130 },
@@ -155,59 +154,82 @@ export default function Home() {
     const [meetingName, setMeetingName] = useState("");
     const [meetingTime, setMeetingTime] = useState(new Date());
     const [meetingDuration, setMeetingDuration] = useState({ hours: 1, minutes: 0, seconds: 0 });
-    const [meetingType, setMeetingType] = useState("General");
+    const [meetingType, setMeetingType] = useState("Member");
     const [meetingSelection, setMeetingSelection] = useState([]);
+    const [loaded, setLoaded] = useState(false);
     const [sortModel, setSortModel] = useState([
         {
-          field: 'day',
-          sort: 'desc',
+            field: 'day',
+            sort: 'desc',
         },
-      ]);
-    if (admin) {
+    ]);
+    if (admin && loaded) {
         return (
             <Fragment>
-                <h1>Hello Admin {name}</h1>
+                <h1>Welcome {name}</h1>
                 <br></br><br></br>
                 <h3>Input meeting:</h3>
-                <FormControl
-                    id="formControlsTextB"
-                    type="text"
-                    label="Text"
-                    placeholder="Meeting name"
-                    value={meetingName}
-                    onChange={e => setMeetingName(e.target.value)}
-                />
-                <br></br>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DateTimePicker
-                        renderInput={(props) => <TextField {...props} />}
-                        label="Date and Time"
-                        value={meetingTime}
-                        onChange={(newMeetingTime) => {
-                            setMeetingTime(newMeetingTime);
-                        }}
+                <div>
+                    <FormControl
+                        id="formControlsTextB"
+                        type="text"
+                        label="Text"
+                        placeholder="Meeting name"
+                        value={meetingName}
+                        onChange={e => setMeetingName(e.target.value)}
                     />
-                </LocalizationProvider>
-                <h3>Input duration:</h3>
-                {<DurationPicker
-                    
-                    onChange={e => setMeetingDuration(e)}
-                    initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
-                    maxHours={24}
+                    <br></br>
+                    <br></br>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DateTimePicker
+                            renderInput={(props) => <TextField {...props} />}
+                            label="Date and Time"
+                            value={meetingTime}
+                            onChange={(newMeetingTime) => {
+                                setMeetingTime(newMeetingTime);
+                            }}
+                        />
+                    </LocalizationProvider>
+                    <br></br>
+                    <h3>Input duration:</h3>
+                    {<DurationPicker
 
-                />}
-                <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
-                    <option defaultValue="General">General</option>
-                    <option defaultValue="Design">Design</option>
-                    <option defaultValue="Engineering">Engineering</option>
-                    <option defaultValue="Product">Product</option>
-                </select>
+                        onChange={e => setMeetingDuration(e)}
+                        initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
+                        maxHours={24}
+
+                    />}
+                    <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
+                        <option defaultValue="General">General</option>
+                        <option defaultValue="Design">Design</option>
+                        <option defaultValue="Engineering">Engineering</option>
+                        <option defaultValue="Product">Product</option>
+                    </select>
+                </div>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <button onClick={submitMeeting} className="button">
                     Submit Meeting
                 </button>
                 <h3>List of TPEO Meetings</h3>
                 <br></br>
-                <div style={{ height: 400, width: "100%"}}>
+                <div style={{ height: 400, width: "100%" }}>
                     <DataGrid
                         rows={meetings}
                         columns={columns}
@@ -221,6 +243,12 @@ export default function Home() {
 
                     />
                 </div>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <button onClick={deleteMeetings} className="button">
                     Delete Meetings
                 </button>
@@ -238,10 +266,6 @@ export default function Home() {
 
         );
     } else {
-        return (
-            <Fragment>
-                <h1>Verifying Admin Status...</h1>
-            </Fragment>
-        )
+        return null;
     }
 }
