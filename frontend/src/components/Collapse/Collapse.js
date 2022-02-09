@@ -22,7 +22,7 @@ export default function Collapse(props) {
             const temp = [];
             const tempMap = new Map();
             for (let i = 0; i < props.meetings.length; i++) {
-                const attendance = attendance_list_result.data[i];
+                const attendance = attendance_list_result.data[i][0];
                 var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
                 tempJ["attendance"] = attendance;
 
@@ -70,14 +70,14 @@ export default function Collapse(props) {
             color = "#6EC47F";
             backgroundColor = "#CBE9D1";
         }else if(params.value=="Absent"){
-            color = "#bb4244";
-            backgroundColor = "#efcece";
+            color = "#EF7357";
+            backgroundColor = "#FDEAE5";
         }else if(params.value=="Excused"){
             color = "#64A9F7";
             backgroundColor = "#C5E0FF";
         }else{
-            color = "#EF7357";
-            backgroundColor = "#FDEAE5";
+            color = "#D39800";
+            backgroundColor = "#FCEFCC";
         }
         return <button id="button" style={{fontFamily: "Poppins,sans-serif", fontWeight: 600, color: color, backgroundColor: backgroundColor, border: "none", padding: "3px", borderRadius: "10px"}}>{params.value}</button>;
     }

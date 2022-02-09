@@ -28,7 +28,6 @@ export default function Home() {
                 });
                 // Get Status
                 const status = await request.status;
-                console.log(status);
                 // If token is invalid, push to login
                 if (status != 200) {
                     history.push("/login");
@@ -69,7 +68,7 @@ export default function Home() {
                 });
                 const meetings_list_result = await meetings_list.json();
                 setMeetings(meetings_list_result.data);
-                
+                setLoaded(true);
             }
         }
         loadCredentials();
@@ -102,7 +101,8 @@ export default function Home() {
     const [name, setName] = useState("");
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
-    if (admin) {
+    const [loaded, setLoaded] = useState(false);
+    if (admin && loaded) {
         return (
             <Fragment>
                 <h2>Welcome {name}</h2>
@@ -124,11 +124,7 @@ export default function Home() {
             </Fragment>
 
         );
-    } else {
-        return (
-            <Fragment>
-                <h1>Verifying Admin Status...</h1>
-            </Fragment>
-        )
+    }else{
+        return null;
     }
 }

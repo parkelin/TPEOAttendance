@@ -38,7 +38,7 @@ app.post('/member', async (req, res) => {
     const member = req.body.member;
     const snapshot = await db.collection('members');
 
-    const USER = { name: member.name, email: member.email, admin: false, id: member.user_id};
+    const USER = { name: member.name, email: member.email, admin: false, id: member.user_id, type: "Member"};
     const user_exists = (await snapshot.doc(member.user_id).get()).exists;
     if (!user_exists) {
       const newSnapshot = await db.collection('members').doc(member.user_id).set(USER);
@@ -170,12 +170,17 @@ app.post('/attendance_list', async (req, res) => {
     const member = await db.collection('members').doc(req.body.id).get();
     const attendance_list = [];
     meetings.docs.forEach(doc => {
+      console.log(doc.data()['type']);
       if(member.data().hasOwnProperty(doc.id)){
-        attendance_list.push(member.data()[doc.id]);
+        console.log("works");
+        console.log([member.data()[doc.id],doc.data()['type']]);
+        attendance_list.push([member.data()[doc.id],doc.data()['type']]);
+        console.log("does");
       }else{
-        attendance_list.push("Absent");
+        attendance_list.push(["Absent",doc.data()['type']]);
       }
     });
+    console.log(attendance_list);
     return res.json({ msg: "Success", data: attendance_list});
   } catch (error) {
     return res.status(400).send(`User does not exist`)
@@ -218,6 +223,18 @@ app.post('/update_attendance', async (req, res) => {
       }
     });
     return res.json({ msg: "Success", data: attendance_list});
+  } catch (error) {
+    return res.status(400).send(`User does not exist`)
+  }
+});
+
+app.post('/member_type', async (req, res) => {
+  try {
+    const member = req.body.member;
+    const snapshot = await db.collection('members');
+    await snapshot.doc(member.user_id).update({type: req.body.type});
+    const result = await snapshot.doc(member.user_id).get();
+    return res.json({ msg: "Success", data: result.data() });
   } catch (error) {
     return res.status(400).send(`User does not exist`)
   }
