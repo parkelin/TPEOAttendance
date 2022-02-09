@@ -246,7 +246,7 @@ export default function Home() {
     }
     async function changeMemberType(type) {
         setMemberType(type);
-        const res = await fetch("http://localhost:5000/member_type", {
+        const res = await fetch("http://localhost:5500/member_type", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
