@@ -10,7 +10,7 @@ export default function Collapse(props) {
     useEffect(() => {
         async function getAttendance() {
             setMeetings(props.meetings);
-            const attendance_list = await fetch("http://localhost:5000/attendance_list", {
+            const attendance_list = await fetch("http://localhost:5500/attendance_list", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export default function Collapse(props) {
     }, []);
 
     async function updateAttendance(value, id, api, field) {
-        const res = await fetch("http://localhost:5000/update_attendance", {
+        const res = await fetch("http://localhost:5500/update_attendance", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

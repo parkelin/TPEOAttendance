@@ -21,7 +21,7 @@ export default function Home() {
             if (!localStorage.getItem("@token")) {
                 history.push("/login");
             } else {
-                const request = await fetch("http://localhost:5000/auth", {
+                const request = await fetch("http://localhost:5500/auth", {
                     headers: {
                         authorization: "Bearer " + localStorage.getItem("@token"),
                     },
@@ -34,7 +34,7 @@ export default function Home() {
                 }
 
                 const decode = jwtDecode(localStorage.getItem("@token"));
-                const res = await fetch("http://localhost:5000/member", {
+                const res = await fetch("http://localhost:5500/member", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export default function Home() {
                 }
                 setName(decode.name);
                 setUser(jwtDecode(localStorage.getItem("@token")));
-                const members_list = await fetch("http://localhost:5000/members_list", {
+                const members_list = await fetch("http://localhost:5500/members_list", {
                     method: "GET",
                     headers: {
                         authorization: "Bearer " + localStorage.getItem("@token"),
@@ -60,7 +60,7 @@ export default function Home() {
                 });
                 const members_list_result = await members_list.json();
                 setMembers(members_list_result.data);
-                const meetings_list = await fetch("http://localhost:5000/meetings_list", {
+                const meetings_list = await fetch("http://localhost:5500/meetings_list", {
                     method: "GET",
                     headers: {
                         authorization: "Bearer " + localStorage.getItem("@token"),
@@ -75,7 +75,7 @@ export default function Home() {
     }, []);
     async function revokeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
-        const res = await fetch("http://localhost:5000/revokeAdmin", {
+        const res = await fetch("http://localhost:5500/revokeAdmin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
