@@ -1,14 +1,17 @@
 import "./style.css";
 import { Fragment, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Header() {
+  const history = useHistory();
+  async function meetingsPage(){
+    
+  }
   return (
     <><><Fragment>
       <div className="heading">
         <h1 className="title-text">Check-In</h1>
       </div>
-
-      //buttons
       <button onClick={meetingsPage} className="generalBtn">
         General Meeting
       </button>
@@ -42,7 +45,7 @@ export default function Header() {
       </button>
     </Fragment>
 
-      <button onClick={} className="continueBtn">
+      <button onClick={meetingsPage} className="continueBtn">
         CONTINUE
       </button></><div>Check In</div><div>
       <p>

@@ -2,10 +2,10 @@ import "./style.css";
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header.js";
 import Home from "./pages/Home/Home.js";
 import Login from "./pages/GoogleSignIn/GoogleSignIn.js";
 import Admin from "./pages/Admin/Admin.js";
+import CheckIn from "./pages/CheckIn/CheckIn.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
 export default function App() {
   return (
@@ -25,6 +25,10 @@ export default function App() {
           <Route exact path="/admin/meetings">
               <AdminMeetings/>
           </Route>
+          <Route exact path="/checkin">
+              <CheckIn/>
+          </Route>
+          
         </Switch>
       </div>
     </div>
