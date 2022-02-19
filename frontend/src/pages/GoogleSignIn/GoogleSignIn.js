@@ -5,11 +5,17 @@ import LoginLink from "../../components/Login/Login.js";
 const { default: jwtDecode } = require("jwt-decode");
 export default function GoogleSignIn() {
     return(<div>
-            <img src={image1} className="leftImg"></img>
-            <img src={image2} className="rightImg"></img>
+        <head>
+        <style>
+              @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
+        </head>
 
-            <h1>Log In</h1>
-            <LoginLink></LoginLink>
-            </div>
+        <img src={image1} className="leftImg"></img>
+        <img src={image2} className="rightImg"></img>
+
+        <h1>Log In</h1>
+         <LoginLink></LoginLink>
+        </div>
     );
 }
