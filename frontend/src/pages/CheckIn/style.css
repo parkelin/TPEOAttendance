@@ -1,0 +1,155 @@
+.generalButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.generalButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.designButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.designButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.productButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.productButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.engineeringButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.engineeringButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}

@@ -55,6 +55,8 @@
     border-radius: 10px;
     border-color: white;
     box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
+
+    display: flex;
   }
   
   h1 {
@@ -63,25 +65,13 @@
     font-weight: 520;
     line-height: 164px;
     font-size: 100px;
+
     display: flex;
     align-items: center;
     text-align: center;
-    padding-left: 500px;
+    padding-left: 700px;
     padding-right: 100px;
     padding-top: 300px;
     font-size: 100px;
     color: #000000;
-  }
-
-  img {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-  }
-
-  .rightImg {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    margin-left: 1098px;
   }
