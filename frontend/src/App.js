@@ -7,6 +7,7 @@ import Login from "./pages/GoogleSignIn/GoogleSignIn.js";
 import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
+
 export default function App() {
   return (
     <div className="global-container">

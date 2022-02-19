@@ -1,115 +1,155 @@
-.generalBtn {
-    position: relative;
+.generalButton {
+    display: flex;
     width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 389px;
-    
-    background: #F2F2F2;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
     border-radius: 46px;
-}
-
-.designBtn {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 389px;
-    
-    background: #F2F2F2;
-    border-radius: 46px;
-}
-
-.productBtn {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 389px;
-    
-    background: #F2F2F2;
-    border-radius: 46px;
-}
-
-.engBtn {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 389px;
-
-    background: #F2F2F2;
-    border-radius: 46px;
-}
-
-.generalBtnClick {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 277px;
-    
-    background: #000000;
-    border-radius: 46px;
-}
-
-.designBtnClick {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 277px;
-    
-    background: #000000;
-    border-radius: 46px;
-}
-
-.productBtnClick {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 277px;
-    
-    background: #000000;
-    border-radius: 46px;
-}
-
-.engBtnClick {
-    position: relative;
-    width: 619px;
-    height: 92px;
-    left: 446px;
-    top: 277px;
-    
-    background: #000000;
-    border-radius: 46px;
-}
-
-.continueBtn {
-    position: relative;
-    left: -1.64%;
-    right: -1.38%;
-    top: -12.9%;
-    bottom: -11.54%;
 
     font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
     font-style: normal;
-    font-weight: 500;
-    font-size: 37.2169px;
-    line-height: 56px;
-    /* identical to box height */
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
 
+.generalButton:hover {
     display: flex;
-    align-items: center;
-    text-align: center;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
 
-    color: #FFFFFF;
+    justify-content: center;
 
-    /* black box */
-    position: relative;
-    width: 343px;
-    height: 92px;
-    left: 1169px;
-    top: 0px;
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.designButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.designButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.productButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.productButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.engineeringButton {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+
+.engineeringButton:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
 }

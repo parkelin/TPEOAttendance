@@ -7,50 +7,34 @@ export default function Header() {
   async function meetingsPage(){
     
   }
+  
   return (
     <><><Fragment>
+      <head>
+        <style>
+              @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
+      </head>
+
       <div className="heading">
-        <h1 className="title-text">Check-In</h1>
+        <h1 className="title-text"></h1>
       </div>
-      <button onClick={meetingsPage} className="generalBtn">
+      <button onClick={meetingsPage} className="generalButton">
         General Meeting
       </button>
 
-      <button onClick={meetingsPage} className="generalBtnClick">
-        General Meeting
-      </button>
-
-      <button onClick={meetingsPage} className="designBtn">
+      <button onClick={meetingsPage} className="designButton">
         Design Meeting
       </button>
 
-      <button onClick={meetingsPage} className="designBtnClick">
-        Design Meeting
-      </button>
-
-      <button onClick={meetingsPage} className="productBtn">
+      <button onClick={meetingsPage} className="productButton">
         Product Meeting
       </button>
 
-      <button onClick={meetingsPage} className="productBtnClick">
-        Product Meeting
-      </button>
-
-      <button onClick={meetingsPage} className="engBtn">
+      <button onClick={meetingsPage} className="engineeringButton">
         Engineering Meeting
       </button>
-
-      <button onClick={meetingsPage} className="engBtnClick">
-        Engineering Meeting
-      </button>
-    </Fragment>
-
-      <button onClick={meetingsPage} className="continueBtn">
-        CONTINUE
-      </button></><div>Check In</div><div>
-      <p>
-        Enter your passcode in the box below. This is a specialized key generated only for this meeting.
-      </p>
+    </Fragment></><div>
       </div></>
   );
 }
