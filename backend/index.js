@@ -105,7 +105,7 @@ app.post('/meeting', async (req, res) => {
     const meeting = req.body;
     const snapshot = await db.collection('meetings');
     const id = uuid.v1();
-    const MEETING = { name: meeting.name, start: meeting.start, end: meeting.end, fStart: dateFormat(meeting.start), fEnd: dateFormat(meeting.end), day: getFormattedDate(meeting.start), type: meeting.type, id: id };
+    const MEETING = { name: meeting.name, password: meeting.password, start: meeting.start, end: meeting.end, fStart: dateFormat(meeting.start), fEnd: dateFormat(meeting.end), day: getFormattedDate(meeting.start), type: meeting.type, id: id };
     const newSnapshot = await db.collection('meetings').doc(id).set(MEETING);
     const result = await snapshot.doc(id).get();
     return res.json({ msg: "Created a new meeting", data: result.data() });

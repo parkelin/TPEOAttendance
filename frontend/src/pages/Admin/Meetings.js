@@ -110,6 +110,10 @@ export default function Home() {
         history.push("/admin");
     }
     async function submitMeeting() {
+        if (meetingName == "" || password == "") {
+            setSubmissionError(true);
+            return;
+        }
         const startDate = meetingTime;
         const endDate = new Date(startDate.getTime());
         endDate.setHours(startDate.getHours() + meetingDuration.hours);
@@ -121,8 +125,9 @@ export default function Home() {
                 "Content-Type": "application/json",
                 authorization: "Bearer " + localStorage.getItem("@token"),
             },
-            body: JSON.stringify({ name: meetingName, start: startDate, end: endDate, type: meetingType }),
+            body: JSON.stringify({ name: meetingName, start: startDate, end: endDate, type: meetingType, password: password }),
         });
+        setSubmissionError(false);
         meetingsList();
     }
 
@@ -143,7 +148,8 @@ export default function Home() {
         { field: 'day', headerName: 'Day', width: 130 },
         { field: 'fStart', headerName: 'Start Date', width: 200 },
         { field: 'fEnd', headerName: 'End Date', width: 200 },
-        { field: 'type', headerName: 'Meeting Type', width: 130 },
+        { field: 'type', headerName: 'Type', width: 130 },
+        { field: 'password', headerName: "Password", width: 130 },
     ];
 
     const [members, setMembers] = useState([]);
@@ -152,11 +158,13 @@ export default function Home() {
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
     const [meetingName, setMeetingName] = useState("");
+    const [password, setPassword] = useState("");
     const [meetingTime, setMeetingTime] = useState(new Date());
     const [meetingDuration, setMeetingDuration] = useState({ hours: 1, minutes: 0, seconds: 0 });
     const [meetingType, setMeetingType] = useState("General");
     const [meetingSelection, setMeetingSelection] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [submissionError, setSubmissionError] = useState(false);
     const [sortModel, setSortModel] = useState([
         {
             field: 'day',
@@ -214,6 +222,14 @@ export default function Home() {
                             <option defaultValue="Engineering">Engineering</option>
                             <option defaultValue="Product">Product</option>
                         </select>
+                        <FormControl
+                            id="formControlsTextB"
+                            type="text"
+                            label="Text"
+                            placeholder="Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
                         <button onClick={submitMeeting} className="button">
                             Submit Meeting
                         </button>
@@ -239,7 +255,10 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-
+                {submissionError && <div className="alert">
+                    <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
+                    Meeting name and Password can't be blank
+                </div>}
             </Fragment>
 
         );
