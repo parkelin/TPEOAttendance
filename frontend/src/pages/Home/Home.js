@@ -253,10 +253,13 @@ export default function Home() {
             },
             body: JSON.stringify({ member: user, type: type }),
         });
-        
-        
+
         getAttendance(type);
     }
+    async function checkInPage() {
+        history.push("/checkin")
+    }
+
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const [name, setName] = useState("");
@@ -316,6 +319,7 @@ export default function Home() {
             <button onClick={logOut} className="button">
                 Log Out
             </button>
+            <button onClick={checkInPage} className="button">Check In Page</button>
         </Fragment>
     );
 }
