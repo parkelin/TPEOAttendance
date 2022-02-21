@@ -5,7 +5,6 @@ import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
-
     const history = useHistory();
     useEffect(() => {
         async function loadCredentials() {
@@ -285,7 +284,7 @@ export default function Home() {
     ]);
     return !loaded ? null : (
         <Fragment>
-            <h1>Hey {name}</h1>
+            <h2>Hey {name}</h2>
             <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
                 <option defaultValue="Design">Design</option>
                 <option defaultValue="Engineering">Engineering</option>
@@ -294,10 +293,10 @@ export default function Home() {
             <ul>
                 {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
             </ul>
-            <h1>General Score: {generalScore}</h1>
-            {(generalScore >= 4) ? (generalScore >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
-            {memberType != "Member" && <h1>{memberType} Score: {roleScore}</h1>}
-            {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
+            <h2>General Score: {generalScore}</h2>
+            {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+            {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
+            {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
             <div style={{ height: 600, width: "100%" }}>
                 <DataGrid
                     rows={meetingsWithAttendance}

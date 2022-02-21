@@ -2,3 +2,48 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+.previous {
+  text-decoration: none;
+  font-size: 30px;
+  padding-right: 8px;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  border-width: 0px;
+  float: left;
+}
+
+.header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-style: bold;
+  float: left;
+}
+
+#row {
+  flex-direction: row;
+}
+.header {
+  padding-top: 20px;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+
+.float-container {
+  padding: 20px;
+}
+
+.float-child.left {
+  margin-right: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+}
+
+.header-right {
+  float: right;
+}

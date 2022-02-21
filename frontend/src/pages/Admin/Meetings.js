@@ -166,102 +166,80 @@ export default function Home() {
     if (admin && loaded) {
         return (
             <Fragment>
-                <h1>Welcome {name}</h1>
+                <div className="header">
+                    <button onClick={mainPage} className="previous">&larr;
+                    </button>
+                    <h2>Create Meeting</h2>
+                    <button onClick={logOut} className="header-right button">
+                        Log Out
+                    </button>
+                </div>
                 <br></br><br></br>
-                <h3>Input meeting:</h3>
-                <div>
-                    <FormControl
-                        id="formControlsTextB"
-                        type="text"
-                        label="Text"
-                        placeholder="Meeting name"
-                        value={meetingName}
-                        onChange={e => setMeetingName(e.target.value)}
-                    />
-                    <br></br>
-                    <br></br>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
-                            renderInput={(props) => <TextField {...props} />}
-                            label="Date and Time"
-                            value={meetingTime}
-                            onChange={(newMeetingTime) => {
-                                setMeetingTime(newMeetingTime);
-                            }}
+
+                <div className="float-container">
+                    <div className="float-child green">
+                        <h3>Input meeting:</h3>
+                        <FormControl
+                            id="formControlsTextB"
+                            type="text"
+                            label="Text"
+                            placeholder="Meeting name"
+                            value={meetingName}
+                            onChange={e => setMeetingName(e.target.value)}
                         />
-                    </LocalizationProvider>
-                    <br></br>
-                    <h3>Input duration:</h3>
-                    {<DurationPicker
+                        <br></br>
+                        <br></br>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DateTimePicker
+                                renderInput={(props) => <TextField {...props} />}
+                                label="Date and Time"
+                                value={meetingTime}
+                                onChange={(newMeetingTime) => {
+                                    setMeetingTime(newMeetingTime);
+                                }}
+                            />
+                        </LocalizationProvider>
+                        <br></br>
+                        <h3>Input duration:</h3>
+                        {<DurationPicker
 
-                        onChange={e => setMeetingDuration(e)}
-                        initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
-                        maxHours={24}
+                            onChange={e => setMeetingDuration(e)}
+                            initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
+                            maxHours={24}
 
-                    />}
-                    <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
-                        <option defaultValue="General">General</option>
-                        <option defaultValue="Design">Design</option>
-                        <option defaultValue="Engineering">Engineering</option>
-                        <option defaultValue="Product">Product</option>
-                    </select>
+                        />}
+                        <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
+                            <option defaultValue="General">General</option>
+                            <option defaultValue="Design">Design</option>
+                            <option defaultValue="Engineering">Engineering</option>
+                            <option defaultValue="Product">Product</option>
+                        </select>
+                        <button onClick={submitMeeting} className="button">
+                            Submit Meeting
+                        </button>
+                    </div>
+                    <div className="float-child">
+                        <h3>List of TPEO Meetings</h3>
+                        <div style={{ height: 400, width: "100%" }}>
+                            <DataGrid
+                                rows={meetings}
+                                columns={columns}
+                                checkboxSelection
+                                onSelectionModelChange={(newSelectionModel) => {
+                                    setMeetingSelection(newSelectionModel);
+                                }}
+                                selectionModel={meetingSelection}
+                                sortModel={sortModel}
+                                onSortModelChange={(model) => setSortModel(model)}
+
+                            />
+                            {meetingSelection.length != 0 && <button onClick={deleteMeetings} className="button">
+                                Delete Meetings
+                            </button>}
+                        </div>
+                    </div>
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <button onClick={submitMeeting} className="button">
-                    Submit Meeting
-                </button>
-                <h3>List of TPEO Meetings</h3>
-                <br></br>
-                <div style={{ height: 400, width: "100%" }}>
-                    <DataGrid
-                        rows={meetings}
-                        columns={columns}
-                        checkboxSelection
-                        onSelectionModelChange={(newSelectionModel) => {
-                            setMeetingSelection(newSelectionModel);
-                        }}
-                        selectionModel={meetingSelection}
-                        sortModel={sortModel}
-                        onSortModelChange={(model) => setSortModel(model)}
 
-                    />
-                </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <button onClick={deleteMeetings} className="button">
-                    Delete Meetings
-                </button>
-
-                <button onClick={revokeAdminStatus} className="button">
-                    Revoke Admin
-                </button>
-                <button onClick={logOut} className="button">
-                    Log Out
-                </button>
-                <button onClick={mainPage} className="button">
-                    Main Page
-                </button>
             </Fragment>
 
         );
