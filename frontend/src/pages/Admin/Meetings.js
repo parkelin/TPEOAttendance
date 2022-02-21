@@ -154,7 +154,7 @@ export default function Home() {
     const [meetingName, setMeetingName] = useState("");
     const [meetingTime, setMeetingTime] = useState(new Date());
     const [meetingDuration, setMeetingDuration] = useState({ hours: 1, minutes: 0, seconds: 0 });
-    const [meetingType, setMeetingType] = useState("Member");
+    const [meetingType, setMeetingType] = useState("General");
     const [meetingSelection, setMeetingSelection] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [sortModel, setSortModel] = useState([

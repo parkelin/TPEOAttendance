@@ -1,39 +1,191 @@
 import "./style.css";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-
-export default function Header() {
+const { default: jwtDecode } = require("jwt-decode");
+export default function CheckIn() {
   const history = useHistory();
-  async function meetingsPage(){
-    
-  }
-  
-  return (
-    <><><Fragment>
-      <head>
-        <style>
-              @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-        </style>
-      </head>
+  useEffect(() => {
+    async function loadCredentials() {
+      // If the token doesn't exist, do not log in
+      if (!localStorage.getItem("@token")) {
+        history.push("/login");
+      } else {
+        const request = await fetch("http://localhost:5500/auth", {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("@token"),
+          },
+        });
+        // Get Status
+        const status = await request.status;
+        // If token is invalid, push to login
+        if (status != 200) {
+          history.push("/login");
+        }
 
+        const decode = jwtDecode(localStorage.getItem("@token"));
+        const res = await fetch("http://localhost:5500/member", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + localStorage.getItem("@token"),
+          },
+          body: JSON.stringify({ member: decode }),
+        });
+        // Get Name from JWT Token
+        const resp = await res.json();
+        if (resp.data.admin) {
+          history.push("/admin");
+        }
+        setUser(jwtDecode(localStorage.getItem("@token")));
+        setUserInfo(resp.data);
+        const meetings_list = await fetch("http://localhost:5500/meetings_list", {
+          method: "GET",
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("@token"),
+          },
+        });
+        const meetings_list_result = await meetings_list.json();
+        for (let i = 0; i < meetings_list_result.data.length; i++) {
+          const meeting = meetings_list_result.data[i];
+          if (!resp.data.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) {
+            if (meeting.type == "General") {
+              setGeneral(meeting);
+            } else if (meeting.type == "Engineering") {
+              setEngineering(meeting);
+            } else if (meeting.type == "Design") {
+              setDesign(meeting);
+            } else if (meeting.type == "Product") {
+              setProduct(meeting);
+            }
+          }
+          //Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)s;
+        }
+        setMeetings(meetings_list_result.data);
+        setLoaded(true);
+      }
+    }
+    loadCredentials();
+  }, []);
+
+  async function user_info() {
+    const decode = jwtDecode(localStorage.getItem("@token"));
+    const res = await fetch("http://localhost:5500/member", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("@token"),
+      },
+      body: JSON.stringify({ member: decode }),
+    });
+    // Get Name from JWT Token
+    const resp = await res.json();
+    setUserInfo(resp.data);
+  }
+
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    // Remember the latest callback.
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+
+
+  useInterval(() => {
+    // Your custom logic here
+    setDate(Math.round(Date.now() / 1000));
+  }, 1000);
+
+  async function signIn(type) {
+    let meeting = null;
+    if (type == "General") {
+      meeting = general;
+    } else if (type == "Engineering") {
+      meeting = engineering;
+    } else if (type == "Design") {
+      meeting = design;
+    } else if (type == "Product") {
+      meeting = product;
+    }
+    if (meeting == null)
+      return;
+    const decode = jwtDecode(localStorage.getItem("@token"));
+    const late = date - Math.round(Date.parse(meeting.start) / 1000) > 600;
+    const res = await fetch("http://localhost:5500/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("@token"),
+      },
+      body: JSON.stringify({ member: decode, late: late, meeting: meeting }),
+    });
+    user_info();
+    if (type == "General") {
+      setGeneral(null);
+    } else if (type == "Engineering") {
+      setEngineering(null);
+    } else if (type == "Design") {
+      setDesign(null);
+    } else if (type == "Product") {
+      setProduct(null);
+    }
+  }
+
+  const [general, setGeneral] = useState(null);
+  const [engineering, setEngineering] = useState(null);
+  const [design, setDesign] = useState(null);
+  const [product, setProduct] = useState(null);
+  const [date, setDate] = useState(Math.round(Date.now() / 1000));
+  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+  const [meetings, setMeetings] = useState([]);
+  return !loaded ? null : (
+    <><><Fragment>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+      </style>
+      {/* <div className="header">
+        <button onClick={() => history.push("")} className="previous">&larr;
+        </button>
+        <h2>Check In</h2>
+      </div> */}
       <div className="heading">
         <h1 className="title-text"></h1>
       </div>
-      <button onClick={meetingsPage} className="generalButton">
+
+      <button onClick={() => signIn("General")} className={(general != null && !userInfo.hasOwnProperty(general.id) && date >= Math.round(Date.parse(general.start) / 1000) && date < Math.round(Date.parse(general.end) / 1000))?"available":"unavailable"}>
         General Meeting
       </button>
 
-      <button onClick={meetingsPage} className="designButton">
+      <button onClick={() => signIn("Design")} className={(design != null && !userInfo.hasOwnProperty(design.id) && date >= Math.round(Date.parse(design.start) / 1000) && date < Math.round(Date.parse(design.end) / 1000))?"available":"unavailable"}>
         Design Meeting
       </button>
 
-      <button onClick={meetingsPage} className="productButton">
+      <button onClick={() => signIn("Product")} className={(product != null && !userInfo.hasOwnProperty(product.id) && date >= Math.round(Date.parse(product.start) / 1000) && date < Math.round(Date.parse(product.end) / 1000))?"available":"unavailable"}>
         Product Meeting
       </button>
 
-      <button onClick={meetingsPage} className="engineeringButton">
+      <button onClick={() => signIn("Engineering")} className={(engineering != null && !userInfo.hasOwnProperty(engineering.id) && date >= Math.round(Date.parse(engineering.start) / 1000) && date < Math.round(Date.parse(engineering.end) / 1000))?"available":"unavailable"}>
         Engineering Meeting
       </button>
+      <ul>
+        {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
+      </ul>
+      <button onClick={() => history.push("checkin/password")}>Password Screen</button>
     </Fragment></><div>
       </div></>
   );

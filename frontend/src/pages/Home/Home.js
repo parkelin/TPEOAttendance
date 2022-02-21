@@ -126,33 +126,6 @@ export default function Home() {
         setMeetings(meetings_list_result.data);
     }
 
-    function useInterval(callback, delay) {
-        const savedCallback = useRef();
-
-        // Remember the latest callback.
-        useEffect(() => {
-            savedCallback.current = callback;
-        }, [callback]);
-
-        // Set up the interval.
-        useEffect(() => {
-            function tick() {
-                savedCallback.current();
-            }
-            if (delay !== null) {
-                let id = setInterval(tick, delay);
-                return () => clearInterval(id);
-            }
-        }, [delay]);
-    }
-
-
-
-    useInterval(() => {
-        // Your custom logic here
-        setDate(Math.round(Date.now() / 1000));
-    }, 1000);
-
 
     async function changeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
@@ -230,19 +203,7 @@ export default function Home() {
         setUserInfo(resp.data);
         getAttendance(memberType);
     }
-    async function signIn(meeting) {
-        const decode = jwtDecode(localStorage.getItem("@token"));
-        const late = date - Math.round(Date.parse(meeting.start) / 1000) > 600;
-        const res = await fetch("http://localhost:5500/signin", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: "Bearer " + localStorage.getItem("@token"),
-            },
-            body: JSON.stringify({ member: decode, late: late, meeting: meeting }),
-        });
-        user_info();
-    }
+    
     async function changeMemberType(type) {
         setMemberType(type);
         const res = await fetch("http://localhost:5500/member_type", {
@@ -263,7 +224,6 @@ export default function Home() {
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const [name, setName] = useState("");
-    const [date, setDate] = useState(Math.round(Date.now() / 1000));
     const [meetings, setMeetings] = useState([]);
     const [meetingsWithAttendance, setMeetingsWithAttendance] = useState([]);
     const [generalScore, setGeneralScore] = useState(0);
@@ -293,9 +253,6 @@ export default function Home() {
                 <option defaultValue="Engineering">Engineering</option>
                 <option defaultValue="Product">Product</option>
             </select>
-            <ul>
-                {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
-            </ul>
             <h2>General Score: {generalScore}</h2>
             {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
             {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
