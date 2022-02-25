@@ -39,3 +39,41 @@
     font-size: 100px;
     color: #000000;
   }
+
+  button.available {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: white;
+    border-color: BLACK;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: BLACK;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
+button.available:hover {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+
+    background-color: black;
+    border-radius: 46px;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+}
