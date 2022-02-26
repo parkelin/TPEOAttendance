@@ -5,7 +5,6 @@ import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
-
     const history = useHistory();
     useEffect(() => {
         async function loadCredentials() {
@@ -73,13 +72,13 @@ export default function Home() {
                     if (attendance == 'Late') {
                         if (type == resp.data.type) {
                             tempRoleScore += 0.5;
-                        } else if(type == "General") {
+                        } else if (type == "General") {
                             tempScore += 0.5;
                         }
                     } else if (attendance == 'Absent') {
                         if (type == resp.data.type) {
                             tempRoleScore += 1;
-                        } else if(type == "General"){
+                        } else if (type == "General") {
                             tempScore += 1;
                         }
                     }
@@ -127,33 +126,6 @@ export default function Home() {
         setMeetings(meetings_list_result.data);
     }
 
-    function useInterval(callback, delay) {
-        const savedCallback = useRef();
-
-        // Remember the latest callback.
-        useEffect(() => {
-            savedCallback.current = callback;
-        }, [callback]);
-
-        // Set up the interval.
-        useEffect(() => {
-            function tick() {
-                savedCallback.current();
-            }
-            if (delay !== null) {
-                let id = setInterval(tick, delay);
-                return () => clearInterval(id);
-            }
-        }, [delay]);
-    }
-
-
-
-    useInterval(() => {
-        // Your custom logic here
-        setDate(Math.round(Date.now() / 1000));
-    }, 1000);
-
 
     async function changeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
@@ -198,13 +170,13 @@ export default function Home() {
             if (attendance == 'Late') {
                 if (type == mType) {
                     tempRoleScore += 0.5;
-                } else if(type == "General"){
+                } else if (type == "General") {
                     tempScore += 0.5;
                 }
             } else if (attendance == 'Absent') {
                 if (type == mType) {
                     tempRoleScore += 1;
-                } else if(type == "General") {
+                } else if (type == "General") {
                     tempScore += 1;
                 }
             }
@@ -231,19 +203,7 @@ export default function Home() {
         setUserInfo(resp.data);
         getAttendance(memberType);
     }
-    async function signIn(meeting) {
-        const decode = jwtDecode(localStorage.getItem("@token"));
-        const late = date - Math.round(Date.parse(meeting.start) / 1000) > 600;
-        const res = await fetch("http://localhost:5500/signin", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: "Bearer " + localStorage.getItem("@token"),
-            },
-            body: JSON.stringify({ member: decode, late: late, meeting: meeting }),
-        });
-        user_info();
-    }
+
     async function changeMemberType(type) {
         setMemberType(type);
         const res = await fetch("http://localhost:5500/member_type", {
@@ -264,7 +224,6 @@ export default function Home() {
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const [name, setName] = useState("");
-    const [date, setDate] = useState(Math.round(Date.now() / 1000));
     const [meetings, setMeetings] = useState([]);
     const [meetingsWithAttendance, setMeetingsWithAttendance] = useState([]);
     const [generalScore, setGeneralScore] = useState(0);
@@ -287,40 +246,57 @@ export default function Home() {
         },
     ]);
     return !loaded ? null : (
-        <Fragment>
-            <h1>Hey {name}</h1>
-            <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
-                <option defaultValue="Design">Design</option>
-                <option defaultValue="Engineering">Engineering</option>
-                <option defaultValue="Product">Product</option>
-            </select>
-            <ul>
-                {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
-            </ul>
-            <h1>General Score: {generalScore}</h1>
-            {(generalScore >= 4) ? (generalScore >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
-            {memberType != "Member" && <h1>{memberType} Score: {roleScore}</h1>}
-            {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h1>Terminated</h1> : <h1>Probation</h1> : <h1>Good Standing</h1>}
-            <div style={{ height: 600, width: "100%" }}>
-                <DataGrid
-                    rows={meetingsWithAttendance}
-                    columns={columns}
-                    checkboxSelection
-                    onSelectionModelChange={(newSelectionModel) => {
-                        setMeetingSelection(newSelectionModel);
-                    }}
-                    selectionModel={meetingSelection}
-                    sortModel={sortModel}
-                    onSortModelChange={(model) => setSortModel(model)}
-                />
+        memberType == "Member" ? <Fragment>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            </style>
+            <div className="heading">
+                <h1 className="title-text"></h1>
             </div>
-            <button onClick={changeAdminStatus} className="button">
-                Become Admin
+            <button onClick={() => changeMemberType("Design")} className="available">
+                Design
             </button>
-            <button onClick={logOut} className="button">
-                Log Out
+
+            <button onClick={() => changeMemberType("Product")} className="available">
+                Product
             </button>
-            <button onClick={checkInPage} className="button">Check In Page</button>
-        </Fragment>
+
+            <button onClick={() => changeMemberType("Engineering")} className="available">
+                Engineering
+            </button>
+        </Fragment> :
+            <Fragment>
+                <h2>Hey {name}</h2>
+                <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
+                    <option defaultValue="Design">Design</option>
+                    <option defaultValue="Product">Product</option>
+                    <option defaultValue="Engineering">Engineering</option>
+                </select>
+                <h2>General Score: {generalScore}</h2>
+                {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+                {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
+                {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+                <div style={{ height: 600, width: "100%" }}>
+                    <DataGrid
+                        rows={meetingsWithAttendance}
+                        columns={columns}
+                        checkboxSelection
+                        onSelectionModelChange={(newSelectionModel) => {
+                            setMeetingSelection(newSelectionModel);
+                        }}
+                        selectionModel={meetingSelection}
+                        sortModel={sortModel}
+                        onSortModelChange={(model) => setSortModel(model)}
+                    />
+                </div>
+                <button onClick={changeAdminStatus} className="button">
+                    Become Admin
+                </button>
+                <button onClick={logOut} className="button">
+                    Log Out
+                </button>
+                <button onClick={checkInPage} className="button">Check In Page</button>
+                <button onClick={() => setMemberType("Member")}>Press</button>
+            </Fragment>
     );
 }

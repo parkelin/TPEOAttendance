@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home.js";
 import Login from "./pages/GoogleSignIn/GoogleSignIn.js";
 import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
+import Password from "./pages/CheckIn/Password.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
 
 export default function App() {
@@ -29,7 +30,9 @@ export default function App() {
           <Route exact path="/checkin">
               <CheckIn/>
           </Route>
-          
+          <Route exact path="/checkin/password">
+              <Password/>
+          </Route>
         </Switch>
       </div>
     </div>

@@ -110,11 +110,8 @@ export default function Home() {
                 <h3>List of TPEO Members</h3>
                 <br></br>
                 {meetings.length > 0 && <ul>
-                    {members.map((member, index) => <Collapse key={index} name={member.name} id={member.id} meetings={meetings}/>)}
+                    {members.map((member, index) => <Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings}/>)}
                 </ul>}
-                <button onClick={revokeAdminStatus} className="button">
-                    Revoke Admin
-                </button>
                 <button onClick={logOut} className="button">
                     Log Out
                 </button>

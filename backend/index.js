@@ -105,7 +105,7 @@ app.post('/meeting', async (req, res) => {
     const meeting = req.body;
     const snapshot = await db.collection('meetings');
     const id = uuid.v1();
-    const MEETING = { name: meeting.name, start: meeting.start, end: meeting.end, fStart: dateFormat(meeting.start), fEnd: dateFormat(meeting.end), day: getFormattedDate(meeting.start), type: meeting.type, id: id };
+    const MEETING = { name: meeting.name, password: meeting.password, start: meeting.start, end: meeting.end, fStart: dateFormat(meeting.start), fEnd: dateFormat(meeting.end), day: getFormattedDate(meeting.start), type: meeting.type, id: id };
     const newSnapshot = await db.collection('meetings').doc(id).set(MEETING);
     const result = await snapshot.doc(id).get();
     return res.json({ msg: "Created a new meeting", data: result.data() });
@@ -170,17 +170,12 @@ app.post('/attendance_list', async (req, res) => {
     const member = await db.collection('members').doc(req.body.id).get();
     const attendance_list = [];
     meetings.docs.forEach(doc => {
-      console.log(doc.data()['type']);
       if(member.data().hasOwnProperty(doc.id)){
-        console.log("works");
-        console.log([member.data()[doc.id],doc.data()['type']]);
         attendance_list.push([member.data()[doc.id],doc.data()['type']]);
-        console.log("does");
       }else{
         attendance_list.push(["Absent",doc.data()['type']]);
       }
     });
-    console.log(attendance_list);
     return res.json({ msg: "Success", data: attendance_list});
   } catch (error) {
     return res.status(400).send(`User does not exist`)
@@ -217,9 +212,9 @@ app.post('/update_attendance', async (req, res) => {
     const attendance_list = [];
     meetings.docs.forEach(doc => {
       if(result.data().hasOwnProperty(doc.id)){
-        attendance_list.push(result.data()[doc.id]);
+        attendance_list.push([result.data()[doc.id],doc.data()['type']]);
       }else{
-        attendance_list.push("Absent");
+        attendance_list.push(["Absent", doc.data()['type']]);
       }
     });
     return res.json({ msg: "Success", data: attendance_list});

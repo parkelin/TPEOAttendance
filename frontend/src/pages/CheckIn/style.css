@@ -1,4 +1,4 @@
-.generalButton {
+button.unavailable {
     display: flex;
     width: 619px;
     height: 80px;
@@ -7,7 +7,7 @@
     justify-content: center;
 
     background-color: #F2F2F2;
-    border-color: #F2F2F2;
+    border: none;
     border-radius: 46px;
     border-style: none;
 
@@ -17,9 +17,9 @@
     font-weight: normal;
     font-size: 38px;
     line-height: 65px;
+    box-shadow: none;
 }
-
-.generalButton:hover {
+button.available {
     display: flex;
     width: 619px;
     height: 80px;
@@ -27,17 +27,19 @@
 
     justify-content: center;
 
-    background-color: black;
+    background-color: white;
+    border-color: BLACK;
     border-radius: 46px;
     border-style: none;
 
     font-family: 'Poppins', sans-serif;
-    color: white;
+    color: BLACK;
     font-style: normal;
     font-weight: normal;
     font-size: 38px;
     line-height: 65px;
 }
+<<<<<<< HEAD
 
 .designButton {
     display: flex;
@@ -61,6 +63,9 @@
 }
 
 .designButton:hover {
+=======
+button.available:hover {
+>>>>>>> 1d76e6f3e3cd5950c4026ef166710147c08c9833
     display: flex;
     width: 619px;
     height: 80px;
@@ -80,6 +85,7 @@
     line-height: 65px;
 }
 
+<<<<<<< HEAD
 .productButton {
     display: flex;
     width: 619px;
@@ -162,3 +168,50 @@
     font-size: 38px;
     line-height: 65px;
 }
+=======
+.previous {
+    text-decoration: none;
+    font-size: 30px;
+    padding-right: 8px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    border-width: 0px;
+    float: left;
+  }
+  
+  .header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-style: bold;
+    float: left;
+  }
+  
+  #row {
+    flex-direction: row;
+  }
+  .header {
+    padding-top: 20px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  
+  .float-container {
+    padding: 20px;
+  }
+  
+  .float-child.left {
+    margin-right: 20px;
+  }
+  
+  .float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+  }
+  
+  .header-right {
+    float: right;
+  }
+>>>>>>> 1d76e6f3e3cd5950c4026ef166710147c08c9833

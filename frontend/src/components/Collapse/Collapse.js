@@ -1,12 +1,15 @@
 import React from 'react';
 import Collapsible from "@kunukn/react-collapse";
+import { useHistory } from "react-router-dom";
 import "./collapsible.scss";
 import "./style.css";
 import cx from "classnames";
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState, Fragment } from "react";
 import { alignProperty } from '@mui/material/styles/cssUtils';
+const { default: jwtDecode } = require("jwt-decode");
 export default function Collapse(props) {
+    const history = useHistory();
     useEffect(() => {
         async function getAttendance() {
             setMeetings(props.meetings);
@@ -21,16 +24,36 @@ export default function Collapse(props) {
             const attendance_list_result = await attendance_list.json();
             const temp = [];
             const tempMap = new Map();
+            let tempScore = 0;
+            let tempRoleScore = 0;
             for (let i = 0; i < props.meetings.length; i++) {
                 const attendance = attendance_list_result.data[i][0];
                 var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
                 tempJ["attendance"] = attendance;
-
+                const type = attendance_list_result.data[i][1];
+                if (attendance == 'Late') {
+                    if (type == props.type) {
+                        tempRoleScore += 0.5;
+                    } else if(type == "General") {
+                        tempScore += 0.5;
+                    }
+                } else if (attendance == 'Absent') {
+                    if (type == props.type) {
+                        tempRoleScore += 1;
+                    } else if(type == "General"){
+                        tempScore += 1;
+                    }
+                }
                 temp.push(tempJ);
                 tempMap.set(props.meetings[i], attendance);
             }
+
+            setGeneralScore(tempScore);
+            setRoleScore(tempRoleScore);
             setAttendance(tempMap);
             setMeetings(temp);
+            setAdmin(props.admin);
+            setLoaded(true);
         }
 
         getAttendance();
@@ -48,11 +71,28 @@ export default function Collapse(props) {
         const attendance_list_result = await res.json();
         const temp = [];
         const tempMap = new Map();
+        let tempRoleScore = 0;
+        let tempScore = 0;
         for (let i = 0; i < props.meetings.length; i++) {
-            const attendance = attendance_list_result.data[i];
+            const attendance = attendance_list_result.data[i][0];
             var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
             tempJ["attendance"] = attendance;
-
+            const type = attendance_list_result.data[i][1];
+            if (attendance == 'Late') {
+                if (type == props.type) {
+                    tempRoleScore += 0.5;
+                } else if(type == "General") {
+                    tempScore += 0.5;
+                }
+            } else if (attendance == 'Absent') {
+                if (type == props.type) {
+                    tempRoleScore += 1;
+                } else if(type == "General"){
+                    tempScore += 1;
+                }
+            }
+            setGeneralScore(tempScore);
+            setRoleScore(tempRoleScore);
             temp.push(tempJ);
             tempMap.set(props.meetings[i], attendance);
         }
@@ -93,6 +133,39 @@ export default function Collapse(props) {
         </select>;
     }
 
+    async function handleAdmin(){
+        if(!admin){
+            const res = await fetch("http://localhost:5500/admin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: "Bearer " + localStorage.getItem("@token"),
+                },
+                body: JSON.stringify({ member: {user_id: props.id} }),
+            });
+            setAdmin(true);
+        }else{
+            
+            const res = await fetch("http://localhost:5500/revokeAdmin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: "Bearer " + localStorage.getItem("@token"),
+                },
+                body: JSON.stringify({ member: {user_id: props.id} }),
+            });
+            
+            setAdmin(false);
+            if(jwtDecode(localStorage.getItem("@token")).user_id == props.id){
+                history.push("/");
+            }
+        }
+        
+    }
+    const [generalScore, setGeneralScore] = useState(0);
+    const [roleScore, setRoleScore] = useState(0);
+    const [loaded, setLoaded] = useState(false);
+    const [admin, setAdmin] = useState(false);
     const [meetings, setMeetings] = useState([]);
     const [attendance, setAttendance] = useState(new Map());
     const [isOpen, setIsOpen] = useState(false);
@@ -118,7 +191,7 @@ export default function Collapse(props) {
             })}
             onClick={() => setIsOpen(!isOpen)}
         >
-            <span className="collapsible__toggle-text">{props.name}</span>
+            <span className="collapsible__toggle-text">{props.name} | {props.type} {(!loaded && props.admin) || (loaded && admin) ?"Exec":""}</span>
             <div className="rotate90">
                 <svg
                     className={cx("icon", { "icon--expanded": isOpen })}
@@ -150,6 +223,9 @@ export default function Collapse(props) {
                             onSortModelChange={(model) => setSortModel(model)}
                             sx={{fontFamily:"Poppins,sans-serif", fontWeight: 200}}
                         />
+                        {admin ? <button onClick={handleAdmin} className="button">Remove Exec</button> : <button onClick={handleAdmin} className="button">Make Exec</button>}
+                        <button>General Score: {generalScore}</button>
+                        <button>Role Score: {roleScore}</button>
                     </div>
                 </div>
             </div>
