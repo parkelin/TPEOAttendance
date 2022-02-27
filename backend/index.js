@@ -155,8 +155,7 @@ app.delete('/delete_meetings', async (req, res) => {
   try {
     const snapshot = await db.collection('meetings');
     for (const meetingID of req.body.meetings) {
-      await snapshot.doc(meetingID.toString()).delete().then(() => { console.log("successfully deleted! ") })
-        .catch((error) => { console.log("Error removing document:", error) });
+      await snapshot.doc(meetingID.toString()).delete().catch((error) => { console.log("Error removing document:", error) });
     }
     return res.json({ msg: "Success", data: snapshot });
   } catch (error) {

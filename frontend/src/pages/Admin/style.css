@@ -41,6 +41,7 @@ h3 {
 
 .float-container {
   padding: 20px;
+  display: table;
 }
 
 .float-child.left {
@@ -49,10 +50,17 @@ h3 {
 
 .float-child {
   width: 50%;
-  float: left;
   padding: 20px;
+  flex-direction: column;
+  display: block;
+  margin: auto;
+  float: left;
 }
-
+@media screen and (max-width: 600px) {
+  .float-child {
+    width: 100%;
+  }
+}
 .header-right {
   float: right;
 }

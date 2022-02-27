@@ -188,7 +188,7 @@ export default function Home() {
                 <br></br><br></br>
 
                 <div className="float-container">
-                    <div className="float-child green">
+                    <div className="float-child">
                         <h3>Input meeting:</h3>
                         <FormControl
                             id="formControlsTextB"

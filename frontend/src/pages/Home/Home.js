@@ -278,19 +278,14 @@ export default function Home() {
             <div className="heading">
                 <h1 className="title-text"></h1>
             </div>
-            <button onClick={() => changeMemberType("General")} className="available">
-                General Meeting
-            </button>
             <button onClick={() => changeMemberType("Design")} className="available">
-                Design Meeting
+                Design
             </button>
-
             <button onClick={() => changeMemberType("Product")} className="available">
-                Product Meeting
+                Product
             </button>
-
             <button onClick={() => changeMemberType("Engineering")} className="available">
-                Engineering Meeting
+                Engineering
             </button>
         </Fragment> :
             <Fragment>
