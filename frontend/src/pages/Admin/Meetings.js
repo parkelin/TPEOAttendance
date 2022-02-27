@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
+import previousButton from './Arrow.png';
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
@@ -174,9 +175,11 @@ export default function Home() {
     if (admin && loaded) {
         return (
             <Fragment>
+            <style>
+              @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            </style>
                 <div className="header">
-                    <button onClick={mainPage} className="previous">&larr;
-                    </button>
+                    <button><img src={previousButton} onClick={mainPage} className="previousButton"/></button>
                     <h2>Create Meeting</h2>
                     <button onClick={logOut} className="header-right button">
                         Log Out

@@ -1,4 +1,24 @@
-button.unavailable {
+button {
+    display: flex;
+    width: 619px;
+    height: 80px;
+    margin: 5px;
+
+    justify-content: center;
+    border: none;
+    border-radius: 46px;
+    border-style: none;
+
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 65px;
+    box-shadow: none;
+}
+
+.button.available {
     display: flex;
     width: 619px;
     height: 80px;
@@ -7,36 +27,18 @@ button.unavailable {
     justify-content: center;
 
     background-color: #F2F2F2;
-    border: none;
-    border-radius: 46px;
-
-    font-family: 'Poppins', sans-serif;
     color: #CCCCCC;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-    box-shadow: none;
-}
-button.available {
-    display: flex;
-    width: 619px;
-    height: 80px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: white;
     border-color: BLACK;
     border-radius: 46px;
+    border-style: none;
 
     font-family: 'Poppins', sans-serif;
-    color: BLACK;
     font-style: normal;
     font-weight: normal;
     font-size: 38px;
     line-height: 65px;
 }
+
 button.available:hover {
     display: flex;
     width: 619px;
@@ -47,6 +49,7 @@ button.available:hover {
 
     background-color: black;
     border-radius: 46px;
+    border-style: none;
 
     font-family: 'Poppins', sans-serif;
     color: white;
@@ -83,7 +86,6 @@ button.available:hover {
     width: 100%;
   }
   
-  
   .float-container {
     padding: 20px;
   }
@@ -100,4 +102,14 @@ button.available:hover {
   
   .header-right {
     float: right;
+  }
+
+  /* Check-In Password Page */
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1000;
+  }
+
+  .passwordContinueButton {
+    
   }

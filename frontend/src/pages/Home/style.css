@@ -6,15 +6,6 @@
     border-radius: 5px;
   }
   
-  .done-button{
-    height: 32px;
-    padding: 0px 15px;
-    border-radius: 50px;
-    border: 1px solid black;
-    background-color: #ed7a11;
-    color: white;
-  }
-  
   .search-container {
     display: flex;
     flex-direction: row;
@@ -33,22 +24,10 @@
   box-sizing: border-box;
   border-radius: 50px;
   }
-  
-  #done-symbol{
-  position: relative;
-  left: 93.21%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  
-  background: #04CC00;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  border-radius: 50px;
-  }
 
+  /* Google Button */
   .button {
-    background: white;
+    background: #F2F2F2;
     width: 300px;
     height: 40px;
     size: 50px;
@@ -58,7 +37,7 @@
 
     display: flex;
   }
-  
+
   h1 {
     font-family: 'Poppins', sans-serif;
     font-style: bold;
@@ -74,4 +53,10 @@
     padding-top: 300px;
     font-size: 100px;
     color: #000000;
+  }
+
+  /* Attendance History */
+  .back {
+    background-color: white;
+    left: 0px;
   }

@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
+import back from './Arrow.png';
+
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
     const history = useHistory();
@@ -72,13 +74,13 @@ export default function Home() {
                     if (attendance == 'Late') {
                         if (type == resp.data.type) {
                             tempRoleScore += 0.5;
-                        } else if(type == "General") {
+                        } else if (type == "General") {
                             tempScore += 0.5;
                         }
                     } else if (attendance == 'Absent') {
                         if (type == resp.data.type) {
                             tempRoleScore += 1;
-                        } else if(type == "General"){
+                        } else if (type == "General") {
                             tempScore += 1;
                         }
                     }
@@ -126,7 +128,6 @@ export default function Home() {
         setMeetings(meetings_list_result.data);
     }
 
-
     async function changeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
         const res = await fetch("http://localhost:5500/admin", {
@@ -170,13 +171,13 @@ export default function Home() {
             if (attendance == 'Late') {
                 if (type == mType) {
                     tempRoleScore += 0.5;
-                } else if(type == "General"){
+                } else if (type == "General") {
                     tempScore += 0.5;
                 }
             } else if (attendance == 'Absent') {
                 if (type == mType) {
                     tempRoleScore += 1;
-                } else if(type == "General") {
+                } else if (type == "General") {
                     tempScore += 1;
                 }
             }
@@ -203,7 +204,7 @@ export default function Home() {
         setUserInfo(resp.data);
         getAttendance(memberType);
     }
-    
+
     async function changeMemberType(type) {
         setMemberType(type);
         const res = await fetch("http://localhost:5500/member_type", {
@@ -246,37 +247,65 @@ export default function Home() {
         },
     ]);
     return !loaded ? null : (
-        <Fragment>
-            <h2>Hey {name}</h2>
-            <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
-                <option defaultValue="Design">Design</option>
-                <option defaultValue="Engineering">Engineering</option>
-                <option defaultValue="Product">Product</option>
-            </select>
-            <h2>General Score: {generalScore}</h2>
-            {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
-            {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
-            {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
-            <div style={{ height: 600, width: "100%" }}>
-                <DataGrid
-                    rows={meetingsWithAttendance}
-                    columns={columns}
-                    checkboxSelection
-                    onSelectionModelChange={(newSelectionModel) => {
-                        setMeetingSelection(newSelectionModel);
-                    }}
-                    selectionModel={meetingSelection}
-                    sortModel={sortModel}
-                    onSortModelChange={(model) => setSortModel(model)}
-                />
+        memberType == "Member" ? <Fragment>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            </style>
+            <div className="heading">
+                <h1 className="title-text"></h1>
             </div>
-            <button onClick={changeAdminStatus} className="button">
-                Become Admin
+            <button onClick={() => changeMemberType("General")} className="available">
+                General Meeting
             </button>
-            <button onClick={logOut} className="button">
-                Log Out
+            <button onClick={() => changeMemberType("Design")} className="available">
+                Design Meeting
             </button>
-            <button onClick={checkInPage} className="button">Check In Page</button>
-        </Fragment>
+
+            <button onClick={() => changeMemberType("Product")} className="available">
+                Product Meeting
+            </button>
+
+            <button onClick={() => changeMemberType("Engineering")} className="available">
+                Engineering Meeting
+            </button>
+        </Fragment> :
+            <Fragment>
+                 <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+                 </style>
+                {/* Attendance History & Previous Button */}
+                <button><img src={back} onClick={Home} className="back"/></button>
+                <h2>Attendance History</h2>
+                <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
+                    <option defaultValue="Design">Design</option>
+                    <option defaultValue="Product">Product</option>
+                    <option defaultValue="Engineering">Engineering</option>
+                </select>
+                {/* <h2>General Score: {generalScore}</h2> */}
+                {/* {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+                {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
+                {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>} */}
+                <div style={{ height: 600, width: "100%" }}>
+                    <DataGrid
+                        rows={meetingsWithAttendance}
+                        columns={columns}
+                        checkboxSelection
+                        onSelectionModelChange={(newSelectionModel) => {
+                            setMeetingSelection(newSelectionModel);
+                        }}
+                        selectionModel={meetingSelection}
+                        sortModel={sortModel}
+                        onSortModelChange={(model) => setSortModel(model)}
+                    />
+                </div>
+                <button onClick={changeAdminStatus} className="button">
+                    Become Admin
+                </button>
+                <button onClick={logOut} className="button">
+                    Log Out
+                </button>
+                <button onClick={checkInPage} className="button">Check In Page</button>
+                <button onClick={() => setMemberType("Member")}>Press</button>
+            </Fragment>
     );
 }
