@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
+import back from './Arrow.png';
+
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
     const history = useHistory();
@@ -125,7 +127,6 @@ export default function Home() {
         const meetings_list_result = await meetings_list.json();
         setMeetings(meetings_list_result.data);
     }
-
 
     async function changeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
@@ -253,29 +254,37 @@ export default function Home() {
             <div className="heading">
                 <h1 className="title-text"></h1>
             </div>
+            <button onClick={() => changeMemberType("General")} className="available">
+                General Meeting
+            </button>
             <button onClick={() => changeMemberType("Design")} className="available">
-                Design
+                Design Meeting
             </button>
 
             <button onClick={() => changeMemberType("Product")} className="available">
-                Product
+                Product Meeting
             </button>
 
             <button onClick={() => changeMemberType("Engineering")} className="available">
-                Engineering
+                Engineering Meeting
             </button>
         </Fragment> :
             <Fragment>
-                <h2>Hey {name}</h2>
+                 <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+                 </style>
+                {/* Attendance History & Previous Button */}
+                <button><img src={back} onClick={Home} className="back"/></button>
+                <h2>Attendance History</h2>
                 <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
                     <option defaultValue="Design">Design</option>
                     <option defaultValue="Product">Product</option>
                     <option defaultValue="Engineering">Engineering</option>
                 </select>
-                <h2>General Score: {generalScore}</h2>
-                {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+                {/* <h2>General Score: {generalScore}</h2> */}
+                {/* {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
                 {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
-                {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+                {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>} */}
                 <div style={{ height: 600, width: "100%" }}>
                     <DataGrid
                         rows={meetingsWithAttendance}

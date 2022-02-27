@@ -49,6 +49,18 @@ export default function Password() {
   const [userInfo, setUserInfo] = useState(null);
 
   return !loaded ? null : (
-    <Fragment></Fragment>
+    <Fragment>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+      </style>
+      <h2>Check In</h2>
+      <p>Enter your passcode in the box below. This is a specialized key generated only for this meeting.</p>
+
+      
+      {/* Attendance History Page/Function? */}
+      <button className="passwordContinueButton">
+        CONTINUE
+      </button>
+    </Fragment>
   );
 }

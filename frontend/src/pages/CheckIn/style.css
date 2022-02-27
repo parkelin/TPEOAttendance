@@ -1,25 +1,24 @@
-button.unavailable {
+button {
     display: flex;
     width: 619px;
     height: 80px;
     margin: 5px;
 
     justify-content: center;
-
-    background-color: #F2F2F2;
     border: none;
     border-radius: 46px;
     border-style: none;
 
     font-family: 'Poppins', sans-serif;
-    color: #CCCCCC;
+    color: white;
     font-style: normal;
     font-weight: normal;
     font-size: 38px;
     line-height: 65px;
     box-shadow: none;
 }
-button.available {
+
+.button.available {
     display: flex;
     width: 619px;
     height: 80px;
@@ -27,45 +26,20 @@ button.available {
 
     justify-content: center;
 
-    background-color: white;
+    background-color: #F2F2F2;
+    color: #CCCCCC;
     border-color: BLACK;
     border-radius: 46px;
     border-style: none;
 
     font-family: 'Poppins', sans-serif;
-    color: BLACK;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-}
-<<<<<<< HEAD
-
-.designButton {
-    display: flex;
-    width: 619px;
-    height: 80px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: #F2F2F2;
-    border-color: #F2F2F2;
-    border-radius: 46px;
-    border-style: none;
-
-    font-family: 'Poppins', sans-serif;
-    color: #CCCCCC;
     font-style: normal;
     font-weight: normal;
     font-size: 38px;
     line-height: 65px;
 }
 
-.designButton:hover {
-=======
 button.available:hover {
->>>>>>> 1d76e6f3e3cd5950c4026ef166710147c08c9833
     display: flex;
     width: 619px;
     height: 80px;
@@ -85,90 +59,6 @@ button.available:hover {
     line-height: 65px;
 }
 
-<<<<<<< HEAD
-.productButton {
-    display: flex;
-    width: 619px;
-    height: 80px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: #F2F2F2;
-    border-color: #F2F2F2;
-    border-radius: 46px;
-    border-style: none;
-    border-style: none;
-
-    font-family: 'Poppins', sans-serif;
-    color: #CCCCCC;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-}
-
-.productButton:hover {
-    display: flex;
-    width: 619px;
-    height: 80px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: black;
-    border-radius: 46px;
-    border-style: none;
-
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-}
-
-.engineeringButton {
-    display: flex;
-    width: 619px;
-    height: 80px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: #F2F2F2;
-    border-color: #F2F2F2;
-    border-radius: 46px;
-    border-style: none;
-
-    font-family: 'Poppins', sans-serif;
-    color: #CCCCCC;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-}
-
-.engineeringButton:hover {
-    display: flex;
-    width: 619px;
-    height: 80px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: black;
-    border-radius: 46px;
-    border-style: none;
-
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-}
-=======
 .previous {
     text-decoration: none;
     font-size: 30px;
@@ -196,7 +86,6 @@ button.available:hover {
     width: 100%;
   }
   
-  
   .float-container {
     padding: 20px;
   }
@@ -214,4 +103,13 @@ button.available:hover {
   .header-right {
     float: right;
   }
->>>>>>> 1d76e6f3e3cd5950c4026ef166710147c08c9833
+
+  /* Check-In Password Page */
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1000;
+  }
+
+  .passwordContinueButton {
+    
+  }

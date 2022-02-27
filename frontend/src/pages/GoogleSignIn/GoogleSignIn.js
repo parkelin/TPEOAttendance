@@ -14,7 +14,7 @@ export default function GoogleSignIn() {
         <img src={image1} className="leftImg"></img>
         <img src={image2} className="rightImg"></img>
 
-        <h1>Log-In</h1>
+        <h1>Log In</h1>
          <LoginLink></LoginLink>
         </div>
     );

@@ -105,7 +105,8 @@ export default function Home() {
     if (admin && loaded) {
         return (
             <Fragment>
-                <h2>Welcome {name}</h2>
+                {/* Changed Welcome [name] -> Member Roster */}
+                <h2>Member Roster</h2>
                 <br></br><br></br>
                 <h3>List of TPEO Members</h3>
                 <br></br>
