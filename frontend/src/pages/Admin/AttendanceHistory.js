@@ -3,10 +3,7 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
-import welcome from './welcome.png';
-import rightAccent from './rightAccent.png';
-import DatePicker from 'sassy-datepicker';
-import Calendar from 'react-calendar';
+import back from './Arrow.png';
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
@@ -100,7 +97,7 @@ export default function Home() {
 
         loadCredentials();
     }, []);
-    
+
     function renderAttendance(params) {
         let color = 'black';
         let backgroundColor = 'black';
@@ -129,17 +126,6 @@ export default function Home() {
         });
         const meetings_list_result = await meetings_list.json();
         setMeetings(meetings_list_result.data);
-    }
-
-    function Example() {
-        const [date, setDate] = useState(new Date());
-      
-        const onChange = newDate => {
-          console.log(`New date selected - ${newDate.toString()}`);
-          setDate(newDate);
-        };
-      
-        return <DatePicker onChange={onChange} selected={date} />;
     }
 
     async function changeAdminStatus() {
@@ -236,10 +222,6 @@ export default function Home() {
         history.push("/checkin")
     }
 
-    async function attendanceHistory() {
-        history.push("/admin/attendanceHistory")
-    }
-
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const [name, setName] = useState("");
@@ -252,11 +234,6 @@ export default function Home() {
     const [memberType, setMemberType] = useState("Member");
     const [loaded, setLoaded] = useState(false);
 
-    const [visible, setVisible] = useState(false);
-
-    // handling event
-    const togglePicker = () => setVisible((v) => !v);
-
     const columns = [
         { field: 'name', headerName: 'Meeting Name', width: 130 },
         { field: 'day', headerName: 'Day', width: 130 },
@@ -268,8 +245,7 @@ export default function Home() {
             field: 'day',
             sort: 'desc',
         },
-    ]
-    );
+    ]);
     return !loaded ? null : (
         memberType == "Member" ? <Fragment>
             <style>
@@ -297,21 +273,39 @@ export default function Home() {
                  <style>
                     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
                  </style>
-                 <img src={welcome} className="welcomeImg"></img>
-                 <img src={rightAccent} className="rightAccent"></img>
-                 
-                {/* Calender */}
-                {/* <div className="cal">
-                    <DatePicker />
-                </div> */}
-
-                {/* Attendance & History Buttons */}
-                <button onClick={() => checkInPage()} className="attendanceButton">
-                    Attendance
+                {/* Attendance History & Previous Button */}
+                <button><img src={back} onClick={Home} className="back"/></button>
+                <h2>Attendance History</h2>
+                <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
+                    <option defaultValue="Design">Design</option>
+                    <option defaultValue="Product">Product</option>
+                    <option defaultValue="Engineering">Engineering</option>
+                </select>
+                {/* <h2>General Score: {generalScore}</h2> */}
+                {/* {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+                {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
+                {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>} */}
+                <div style={{ height: 600, width: "100%" }}>
+                    <DataGrid
+                        rows={meetingsWithAttendance}
+                        columns={columns}
+                        checkboxSelection
+                        onSelectionModelChange={(newSelectionModel) => {
+                            setMeetingSelection(newSelectionModel);
+                        }}
+                        selectionModel={meetingSelection}
+                        sortModel={sortModel}
+                        onSortModelChange={(model) => setSortModel(model)}
+                    />
+                </div>
+                <button onClick={changeAdminStatus} className="button">
+                    Become Admin
                 </button>
-                <button onClick={() => attendanceHistory()} className="historyButton">
-                    History
+                <button onClick={logOut} className="button">
+                    Log Out
                 </button>
+                <button onClick={checkInPage} className="button">Check In Page</button>
+                <button onClick={() => setMemberType("Member")}>Press</button>
             </Fragment>
     );
 }

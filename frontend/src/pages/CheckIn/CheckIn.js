@@ -1,6 +1,7 @@
 import "./style.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+
 const { default: jwtDecode } = require("jwt-decode");
 export default function CheckIn() {
   const history = useHistory();
@@ -103,7 +104,6 @@ export default function CheckIn() {
   }
 
 
-
   useInterval(() => {
     // Your custom logic here
     setDate(Math.round(Date.now() / 1000));
@@ -166,7 +166,8 @@ export default function CheckIn() {
       <div className="heading">
         <h1 className="title-text"></h1>
       </div>
-
+      
+      <div className="grouping">
       <button onClick={() => signIn("General")} className={(general != null && !userInfo.hasOwnProperty(general.id) && date >= Math.round(Date.parse(general.start) / 1000) && date < Math.round(Date.parse(general.end) / 1000))?"available":"unavailable"}>
         General Meeting
       </button>
@@ -186,6 +187,7 @@ export default function CheckIn() {
         {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
       </ul>
       <button onClick={() => history.push("checkin/password")}>Password Screen</button>
+      </div>
     </Fragment></><div>
       </div></>
   );

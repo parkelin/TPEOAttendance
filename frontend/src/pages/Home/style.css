@@ -38,25 +38,59 @@
     display: flex;
   }
 
-  h1 {
-    font-family: 'Poppins', sans-serif;
-    font-style: bold;
-    font-weight: 520;
-    line-height: 164px;
-    font-size: 100px;
-
-    display: flex;
-    align-items: center;
-    text-align: center;
-    padding-left: 700px;
-    padding-right: 100px;
-    padding-top: 300px;
-    font-size: 100px;
-    color: #000000;
+/* Welcome Home Page */
+  .welcomeImg {
+    position: relative;
+    left: -550px;
+    top: 100px;
+    height: 100px;
   }
 
-  /* Attendance History */
-  .back {
-    background-color: white;
-    left: 0px;
+  .rightAccent {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: auto;
+    width: 865px;
+  }
+
+  .attendanceButton {
+    display: block;
+
+    height: 250px;
+    width: 650px;
+
+    text-align: left;
+    border-style: none;
+    padding-top: 130px;
+    padding-left: 25px;
+
+    background-color: black;
+    color: white;
+    border-radius: 27.23px;
+
+    margin-left: -530px;
+    margin-top: 200px;
+  }
+
+  .historyButton {
+    display: block;
+
+    height: 250px;
+    width: 650px;
+
+    text-align: left;
+    font-size: 40px;
+    font-weight: 1000;
+
+    border-style: none;
+    padding-top: 130px;
+    padding-left: 25px;
+    border-radius: 27.23px;
+
+    background-color: #F2F2F2;
+    color: black;
+
+    margin-left: -530px;
+    margin-top: 30px;
   }

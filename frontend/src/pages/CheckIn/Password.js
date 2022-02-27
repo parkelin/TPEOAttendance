@@ -2,6 +2,7 @@ import "./style.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 const { default: jwtDecode } = require("jwt-decode");
+
 export default function Password() {
   const history = useHistory();
   useEffect(() => {
@@ -42,6 +43,11 @@ export default function Password() {
       }
     }
     loadCredentials();
+
+    // async function donePage() {
+      
+    // }
+
   }, []);
 
   const [loaded, setLoaded] = useState(false);
@@ -54,11 +60,11 @@ export default function Password() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
       </style>
       <h2>Check In</h2>
-      <p>Enter your passcode in the box below. This is a specialized key generated only for this meeting.</p>
 
+      <p>Enter your passcode in the box below. This is a specialized key generated only for this meeting.</p>
+      <input type="text" name="name" onFocus={togglePicker} />
       
-      {/* Attendance History Page/Function? */}
-      <button className="passwordContinueButton">
+      <button onClick={donePage()} className="passwordContinueButton">
         CONTINUE
       </button>
     </Fragment>

@@ -8,6 +8,7 @@ import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
 import Password from "./pages/CheckIn/Password.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
+import AttendanceHistory from "./pages/Admin/AttendanceHistory.js";
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
         <Switch>
           {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path="/">
-            <Home />
+            <Home/>
           </Route>
           <Route exact path="/login">
               <Login/>
@@ -32,6 +33,9 @@ export default function App() {
           </Route>
           <Route exact path="/checkin/password">
               <Password/>
+          </Route>
+          <Route exact path="/admin/attendanceHistory">
+              <AttendanceHistory/>
           </Route>
         </Switch>
       </div>
