@@ -251,6 +251,7 @@ export default function Home() {
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
+            
             <div className="heading">
                 <h1 className="title-text"></h1>
             </div>
@@ -274,7 +275,7 @@ export default function Home() {
                     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
                  </style>
                 {/* Attendance History & Previous Button */}
-                <button><img src={back} onClick={Home} className="back"/></button>
+                <button onClick={Home} className="back"><img src={back} className="backImg"/></button>
                 <h2>Attendance History</h2>
                 <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
                     <option defaultValue="Design">Design</option>

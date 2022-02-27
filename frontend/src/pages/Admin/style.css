@@ -90,3 +90,13 @@ h3 {
   font-family: 'Poppins', sans-serif;
   color: black;
 }
+
+/* Attendance History */
+.back {
+  background-color: white;
+  left: -800px;
+}
+
+.backImg {
+  height: 40px;
+}

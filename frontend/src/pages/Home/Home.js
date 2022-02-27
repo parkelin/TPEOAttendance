@@ -6,7 +6,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import welcome from './welcome.png';
 import rightAccent from './rightAccent.png';
 import DatePicker from 'sassy-datepicker';
-import Calendar from 'react-calendar';
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
@@ -253,9 +252,6 @@ export default function Home() {
     const [loaded, setLoaded] = useState(false);
 
     const [visible, setVisible] = useState(false);
-
-    // handling event
-    const togglePicker = () => setVisible((v) => !v);
 
     const columns = [
         { field: 'name', headerName: 'Meeting Name', width: 130 },

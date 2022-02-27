@@ -44,9 +44,9 @@ export default function Password() {
     }
     loadCredentials();
 
-    // async function donePage() {
-      
-    // }
+    async function completeCheckInPg() {
+      history.push("/checkIn/password/checkinDone")
+    }
 
   }, []);
 
@@ -59,12 +59,18 @@ export default function Password() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
       </style>
-      <h2>Check In</h2>
+      <h2 className="checkIn">Check In</h2>
 
-      <p>Enter your passcode in the box below. This is a specialized key generated only for this meeting.</p>
-      <input type="text" name="name" onFocus={togglePicker} />
+      <p className="text1">Enter your passcode in the box below. This is a specialized key</p>
+      <p className="text2"> generated only for this meeting.</p>
+
+      <form>
+          <label>
+            <input className="passBox" type="text" name="Password" />
+          </label>
+      </form>
       
-      <button onClick={donePage()} className="passwordContinueButton">
+      <button onClick={() => completeCheckInPg()} className="passwordButton">
         CONTINUE
       </button>
     </Fragment>
