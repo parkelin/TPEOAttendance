@@ -223,7 +223,7 @@ export default function Collapse(props) {
                             onSortModelChange={(model) => setSortModel(model)}
                             sx={{fontFamily:"Poppins,sans-serif", fontWeight: 200}}
                         />
-                        {admin ? <button onClick={handleAdmin} className="button">Remove Exec</button> : <button onClick={handleAdmin} className="button">Make Exec</button>}
+                        {admin ? <button onClick={handleAdmin}>Remove Exec</button> : <button onClick={handleAdmin}>Make Exec</button>}
                         <button>General Score: {generalScore}</button>
                         <button>Role Score: {roleScore}</button>
                     </div>

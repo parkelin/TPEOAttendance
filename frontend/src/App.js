@@ -8,7 +8,7 @@ import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
 import Password from "./pages/CheckIn/Password.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
-import AttendanceHistory from "./pages/Admin/AttendanceHistory.js";
+import AttendanceHistory from "./pages/Home/AttendanceHistory.js";
 
 export default function App() {
   return (
@@ -34,7 +34,7 @@ export default function App() {
           <Route exact path="/checkin/password">
               <Password/>
           </Route>
-          <Route exact path="/admin/attendanceHistory">
+          <Route exact path="/attendanceHistory">
               <AttendanceHistory/>
           </Route>
         </Switch>

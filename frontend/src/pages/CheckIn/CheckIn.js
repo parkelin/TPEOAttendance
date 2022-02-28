@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
 const { default: jwtDecode } = require("jwt-decode");
+
 export default function CheckIn() {
   const history = useHistory();
   useEffect(() => {
@@ -122,16 +123,7 @@ export default function CheckIn() {
     }
     if (meeting == null)
       return;
-    const decode = jwtDecode(localStorage.getItem("@token"));
-    const late = date - Math.round(Date.parse(meeting.start) / 1000) > 600;
-    const res = await fetch("http://localhost:5500/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("@token"),
-      },
-      body: JSON.stringify({ member: decode, late: late, meeting: meeting }),
-    });
+    localStorage.setItem("@meeting", meeting.id);
     user_info();
     if (type == "General") {
       setGeneral(null);
@@ -142,6 +134,7 @@ export default function CheckIn() {
     } else if (type == "Product") {
       setProduct(null);
     }
+    history.push("checkin/password");
   }
 
   const [general, setGeneral] = useState(null);
@@ -166,27 +159,23 @@ export default function CheckIn() {
       <div className="heading">
         <h1 className="title-text"></h1>
       </div>
-      
-      <div className="grouping">
-      <button onClick={() => signIn("General")} className={(general != null && !userInfo.hasOwnProperty(general.id) && date >= Math.round(Date.parse(general.start) / 1000) && date < Math.round(Date.parse(general.end) / 1000))?"available":"unavailable"}>
-        General Meeting
-      </button>
 
-      <button onClick={() => signIn("Design")} className={(design != null && !userInfo.hasOwnProperty(design.id) && date >= Math.round(Date.parse(design.start) / 1000) && date < Math.round(Date.parse(design.end) / 1000))?"available":"unavailable"}>
-        Design Meeting
-      </button>
+      <div id="grouping">
+        <button onClick={() => signIn("General")} className={(general != null && !userInfo.hasOwnProperty(general.id) && date >= Math.round(Date.parse(general.start) / 1000) && date < Math.round(Date.parse(general.end) / 1000)) ? "available" : "unavailable"}>
+          General Meeting
+        </button>
 
-      <button onClick={() => signIn("Product")} className={(product != null && !userInfo.hasOwnProperty(product.id) && date >= Math.round(Date.parse(product.start) / 1000) && date < Math.round(Date.parse(product.end) / 1000))?"available":"unavailable"}>
-        Product Meeting
-      </button>
+        <button onClick={() => signIn("Design")} className={(design != null && !userInfo.hasOwnProperty(design.id) && date >= Math.round(Date.parse(design.start) / 1000) && date < Math.round(Date.parse(design.end) / 1000)) ? "available" : "unavailable"}>
+          Design Meeting
+        </button>
 
-      <button onClick={() => signIn("Engineering")} className={(engineering != null && !userInfo.hasOwnProperty(engineering.id) && date >= Math.round(Date.parse(engineering.start) / 1000) && date < Math.round(Date.parse(engineering.end) / 1000))?"available":"unavailable"}>
-        Engineering Meeting
-      </button>
-      <ul>
-        {meetings.map((meeting, index) => (!userInfo.hasOwnProperty(meeting.id) && date >= Math.round(Date.parse(meeting.start) / 1000) && date < Math.round(Date.parse(meeting.end) / 1000)) ? <button key={index} className="button" onClick={() => signIn(meeting)}>{meeting.name} {Math.floor(((Date.parse(meeting.end) / 1000) - date) / 60)}m {Math.floor(((Date.parse(meeting.end) / 1000) - date) % 60)}s</button> : <area key={index}></area>)}
-      </ul>
-      <button onClick={() => history.push("checkin/password")}>Password Screen</button>
+        <button onClick={() => signIn("Product")} className={(product != null && !userInfo.hasOwnProperty(product.id) && date >= Math.round(Date.parse(product.start) / 1000) && date < Math.round(Date.parse(product.end) / 1000)) ? "available" : "unavailable"}>
+          Product Meeting
+        </button>
+
+        <button onClick={() => signIn("Engineering")} className={(engineering != null && !userInfo.hasOwnProperty(engineering.id) && date >= Math.round(Date.parse(engineering.start) / 1000) && date < Math.round(Date.parse(engineering.end) / 1000)) ? "available" : "unavailable"}>
+          Engineering Meeting
+        </button>
       </div>
     </Fragment></><div>
       </div></>

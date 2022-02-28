@@ -233,3 +233,10 @@ app.post('/member_type', async (req, res) => {
     return res.status(400).send(`User does not exist`)
   }
 });
+
+app.post('/password', async (req, res) => {
+    const id = req.body.meeting;
+    const snapshot = await db.collection('meetings');
+    const result = await snapshot.doc(id).get();
+    return res.json({ msg: "Success", data: result.data()});
+});

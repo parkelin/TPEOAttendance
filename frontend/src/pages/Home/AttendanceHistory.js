@@ -6,7 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import back from './Arrow.png';
 
 const { default: jwtDecode } = require("jwt-decode");
-export default function Home() {
+export default function AttendanceHistory() {
     const history = useHistory();
     useEffect(() => {
         async function loadCredentials() {
@@ -230,7 +230,6 @@ export default function Home() {
     const [generalScore, setGeneralScore] = useState(0);
     const [roleScore, setRoleScore] = useState(0);
     const [attendance, setAttendance] = useState([]);
-    const [meetingSelection, setMeetingSelection] = useState([]);
     const [memberType, setMemberType] = useState("Member");
     const [loaded, setLoaded] = useState(false);
 
@@ -247,35 +246,12 @@ export default function Home() {
         },
     ]);
     return !loaded ? null : (
-        memberType == "Member" ? <Fragment>
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-            </style>
-            
-            <div className="heading">
-                <h1 className="title-text"></h1>
-            </div>
-            <button onClick={() => changeMemberType("General")} className="available">
-                General Meeting
-            </button>
-            <button onClick={() => changeMemberType("Design")} className="available">
-                Design Meeting
-            </button>
-
-            <button onClick={() => changeMemberType("Product")} className="available">
-                Product Meeting
-            </button>
-
-            <button onClick={() => changeMemberType("Engineering")} className="available">
-                Engineering Meeting
-            </button>
-        </Fragment> :
             <Fragment>
                  <style>
                     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
                  </style>
                 {/* Attendance History & Previous Button */}
-                <button onClick={Home} className="back"><img src={back} className="backImg"/></button>
+                <button onClick={() => history.push("/")} className="back"><img src={back} className="backImg"/></button>
                 <h2>Attendance History</h2>
                 <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
                     <option defaultValue="Design">Design</option>
@@ -290,11 +266,6 @@ export default function Home() {
                     <DataGrid
                         rows={meetingsWithAttendance}
                         columns={columns}
-                        checkboxSelection
-                        onSelectionModelChange={(newSelectionModel) => {
-                            setMeetingSelection(newSelectionModel);
-                        }}
-                        selectionModel={meetingSelection}
                         sortModel={sortModel}
                         onSortModelChange={(model) => setSortModel(model)}
                     />
@@ -306,7 +277,6 @@ export default function Home() {
                     Log Out
                 </button>
                 <button onClick={checkInPage} className="button">Check In Page</button>
-                <button onClick={() => setMemberType("Member")}>Press</button>
             </Fragment>
     );
 }

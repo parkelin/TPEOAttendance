@@ -233,7 +233,7 @@ export default function Home() {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                         />
-                        <button onClick={submitMeeting} className="button">
+                        <button onClick={submitMeeting}>
                             Submit Meeting
                         </button>
                     </div>
