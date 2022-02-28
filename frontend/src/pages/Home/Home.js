@@ -138,7 +138,7 @@ export default function Home() {
                     <button onClick={() => attendanceHistory()} className="attendanceButton">
                         History
                     </button>
-                    <button onClick={() => setMemberType("Member")}>Press</button>
+                    <button onClick={() => setMemberType("Member")}>Onboarding</button>
                 </div>
             </Fragment>
     );
