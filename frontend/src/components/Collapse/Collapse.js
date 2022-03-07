@@ -26,6 +26,12 @@ export default function Collapse(props) {
             const tempMap = new Map();
             let tempScore = 0;
             let tempRoleScore = 0;
+            let tempTardies = 0;
+            let tempExcused = 0;
+            let tempUnexcused = 0;
+            let tempRoleTardies = 0;
+            let tempRoleUnexcused = 0;
+            let tempRoleExcused = 0;
             for (let i = 0; i < props.meetings.length; i++) {
                 const attendance = attendance_list_result.data[i][0];
                 var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
@@ -34,22 +40,37 @@ export default function Collapse(props) {
                 if (attendance == 'Late') {
                     if (type == props.type) {
                         tempRoleScore += 0.5;
-                    } else if(type == "General") {
+                        tempRoleTardies++;
+                    } else if (type == "General") {
                         tempScore += 0.5;
+                        tempTardies++;
                     }
                 } else if (attendance == 'Absent') {
                     if (type == props.type) {
                         tempRoleScore += 1;
-                    } else if(type == "General"){
+                        tempRoleUnexcused++;
+                    } else if (type == "General") {
                         tempScore += 1;
+                        tempUnexcused++;
+                    }
+                } else if (attendance == "Excused") {
+                    if (type == props.type) {
+                        tempRoleExcused++;
+                    } else {
+                        tempExcused++;
                     }
                 }
                 temp.push(tempJ);
                 tempMap.set(props.meetings[i], attendance);
             }
-
             setGeneralScore(tempScore);
             setRoleScore(tempRoleScore);
+            setRoleTardy(tempRoleTardies);
+            setTardy(tempTardies);
+            setExcused(tempExcused);
+            setRoleExcused(tempRoleExcused);
+            setUnexcused(tempUnexcused);
+            setRoleUnexcused(tempRoleUnexcused);
             setAttendance(tempMap);
             setMeetings(temp);
             setAdmin(props.admin);
@@ -71,8 +92,14 @@ export default function Collapse(props) {
         const attendance_list_result = await res.json();
         const temp = [];
         const tempMap = new Map();
-        let tempRoleScore = 0;
         let tempScore = 0;
+        let tempRoleScore = 0;
+        let tempTardies = 0;
+        let tempExcused = 0;
+        let tempUnexcused = 0;
+        let tempRoleTardies = 0;
+        let tempRoleUnexcused = 0;
+        let tempRoleExcused = 0;
         for (let i = 0; i < props.meetings.length; i++) {
             const attendance = attendance_list_result.data[i][0];
             var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
@@ -81,18 +108,26 @@ export default function Collapse(props) {
             if (attendance == 'Late') {
                 if (type == props.type) {
                     tempRoleScore += 0.5;
-                } else if(type == "General") {
+                    tempRoleTardies++;
+                } else if (type == "General") {
                     tempScore += 0.5;
+                    tempTardies++;
                 }
             } else if (attendance == 'Absent') {
                 if (type == props.type) {
                     tempRoleScore += 1;
-                } else if(type == "General"){
+                    tempRoleUnexcused++;
+                } else if (type == "General") {
                     tempScore += 1;
+                    tempUnexcused++;
+                }
+            } else if (attendance == "Excused") {
+                if (type == props.type) {
+                    tempRoleExcused++;
+                } else {
+                    tempExcused++;
                 }
             }
-            setGeneralScore(tempScore);
-            setRoleScore(tempRoleScore);
             temp.push(tempJ);
             tempMap.set(props.meetings[i], attendance);
         }
@@ -100,26 +135,35 @@ export default function Collapse(props) {
         if (isValid) {
             api.setCellMode(id, field, 'view');
         }
+        setGeneralScore(tempScore);
+        setRoleScore(tempRoleScore);
+        setRoleTardy(tempRoleTardies);
+        setTardy(tempTardies);
+        setExcused(tempExcused);
+        setRoleExcused(tempRoleExcused);
+        setUnexcused(tempUnexcused);
+        setRoleUnexcused(tempRoleUnexcused);
+
         setAttendance(tempMap);
         setMeetings(temp);
     }
     function renderAttendance(params) {
         let color = 'black';
         let backgroundColor = 'black';
-        if(params.value=="Present"){
+        if (params.value == "Present") {
             color = "#6EC47F";
             backgroundColor = "#CBE9D1";
-        }else if(params.value=="Absent"){
+        } else if (params.value == "Absent") {
             color = "#EF7357";
             backgroundColor = "#FDEAE5";
-        }else if(params.value=="Excused"){
+        } else if (params.value == "Excused") {
             color = "#64A9F7";
             backgroundColor = "#C5E0FF";
-        }else{
+        } else {
             color = "#D39800";
             backgroundColor = "#FCEFCC";
         }
-        return <button id="button" style={{fontFamily: "Poppins,sans-serif", fontWeight: 600, color: color, backgroundColor: backgroundColor, border: "none", padding: "3px", borderRadius: "10px"}}>{params.value}</button>;
+        return <button id="button" style={{ fontFamily: "Poppins,sans-serif", fontWeight: 600, fontSize: "18px",color: color, backgroundColor: backgroundColor, height:"40px", border: "none",paddingLeft:"15px",paddingRight:"15px"}}>{params.value}</button>;
     }
 
     function editAttendance(props) {
@@ -133,37 +177,43 @@ export default function Collapse(props) {
         </select>;
     }
 
-    async function handleAdmin(){
-        if(!admin){
+    async function handleAdmin() {
+        if (!admin) {
             const res = await fetch("http://localhost:5500/admin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     authorization: "Bearer " + localStorage.getItem("@token"),
                 },
-                body: JSON.stringify({ member: {user_id: props.id} }),
+                body: JSON.stringify({ member: { user_id: props.id } }),
             });
             setAdmin(true);
-        }else{
-            
+        } else {
+
             const res = await fetch("http://localhost:5500/revokeAdmin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     authorization: "Bearer " + localStorage.getItem("@token"),
                 },
-                body: JSON.stringify({ member: {user_id: props.id} }),
+                body: JSON.stringify({ member: { user_id: props.id } }),
             });
-            
+
             setAdmin(false);
-            if(jwtDecode(localStorage.getItem("@token")).user_id == props.id){
+            if (jwtDecode(localStorage.getItem("@token")).user_id == props.id) {
                 history.push("/");
             }
         }
-        
+
     }
     const [generalScore, setGeneralScore] = useState(0);
     const [roleScore, setRoleScore] = useState(0);
+    const [roleExcused, setRoleExcused] = useState(0);
+    const [roleUnexcused, setRoleUnexcused] = useState(0);
+    const [roleTardy, setRoleTardy] = useState(0);
+    const [excused, setExcused] = useState(0);
+    const [unexcused, setUnexcused] = useState(0);
+    const [tardy, setTardy] = useState(0);
     const [loaded, setLoaded] = useState(false);
     const [admin, setAdmin] = useState(false);
     const [meetings, setMeetings] = useState([]);
@@ -171,10 +221,10 @@ export default function Collapse(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [meetingSelection, setMeetingSelection] = useState([]);
     const columns = [
-        { field: 'name', headerName: 'Meeting Name', width: 130 },
-        { field: 'day', headerName: 'Day', width: 130 },
-        { field: 'type', headerName: 'Meeting Type', width: 130 },
-        { field: 'attendance', headerName: 'Attendance', width: 130, renderEditCell: editAttendance, renderCell: renderAttendance, editable: true },
+        { field: 'name', headerName: 'Meeting Name', minWidth: 130, flex: 1 },
+        { field: 'day', headerName: 'Day', minWidth: 130, flex: 1 },
+        { field: 'type', headerName: 'Meeting Type', minWidth: 130, flex: 1 },
+        { field: 'attendance', headerName: 'Attendance', minWidth: 130, flex: 1, renderEditCell: editAttendance, renderCell: renderAttendance, editable: true },
     ];
     const [sortModel, setSortModel] = useState([
         {
@@ -185,13 +235,16 @@ export default function Collapse(props) {
 
 
     return <div className="collapsible">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
         <button
             className={cx("collapsible__toggle", {
                 "collapsible__toggle--active": isOpen
             })}
             onClick={() => setIsOpen(!isOpen)}
         >
-            <span className="collapsible__toggle-text">{props.name} | {props.type} {(!loaded && props.admin) || (loaded && admin) ?"Exec":""}</span>
+            <span className="collapsible__toggle-text">{props.name} | {props.type} {(!loaded && props.admin) || (loaded && admin) ? "Exec" : ""}</span>
             <div className="rotate90">
                 <svg
                     className={cx("icon", { "icon--expanded": isOpen })}
@@ -209,9 +262,56 @@ export default function Collapse(props) {
             }
         >
             <div className="collapsible__content">
-                <div style={{ display: 'flex', height: '100%' }}>
+                <div style={{ height: '100%' }}>
                     <div style={{ flexGrow: 1 }}>
-                        <DataGrid
+                        <div id="head" className="row">
+                            <div id="head" className="column">
+                                <h4 className="title">General Meeting</h4>
+                            </div>
+                            <div id="head" className="column">
+                                {generalScore >= 4 ? <h4 className="absent">{generalScore} of 5 absences used</h4>
+                                    : <h4 className="score">{generalScore} of 5 absences used</h4>}
+                            </div>
+                        </div>
+
+                        <div id="scores" className="row">
+                            <div id="scores" className="column">
+                                <h4>{tardy}</h4>
+                                <h5>Tardies</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{unexcused}</h4>
+                                <h5>Unexcused</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{excused}</h4>
+                                <h5>Excused</h5>
+                            </div>
+                        </div>
+                        <div id="head" className="row">
+                            <div id="head" className="column">
+                                <h4 className="title">{props.type} Meeting</h4>
+                            </div>
+                            <div id="head" className="column">
+                                {roleScore >= 4 ? <h4 className="absent">{roleScore} of 5 absences used</h4>
+                                    : <h4 className="score">{roleScore} of 5 absences used</h4>}
+                            </div>
+                        </div>
+                        <div id="scores" className="row">
+                            <div id="scores" className="column">
+                                <h4>{roleTardy}</h4>
+                                <h5>Tardies</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{roleUnexcused}</h4>
+                                <h5>Unexcused</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{roleExcused}</h4>
+                                <h5>Excused</h5>
+                            </div>
+                        </div>
+                        <DataGrid className="grid"
                             autoHeight
                             rows={meetings}
                             columns={columns}
@@ -221,14 +321,12 @@ export default function Collapse(props) {
                             selectionModel={meetingSelection}
                             sortModel={sortModel}
                             onSortModelChange={(model) => setSortModel(model)}
-                            sx={{fontFamily:"Poppins,sans-serif", fontWeight: 200}}
+                            sx={{ fontFamily: "Poppins,sans-serif", fontWeight: 200, fontSize: "20px"}}
                         />
-                        {admin ? <button onClick={handleAdmin}>Remove Exec</button> : <button onClick={handleAdmin}>Make Exec</button>}
-                        <button>General Score: {generalScore}</button>
-                        <button>Role Score: {roleScore}</button>
+                        {admin ? <button className="exec" onClick={handleAdmin}>Remove Exec</button> : <button className="exec" onClick={handleAdmin}>Make Exec</button>}
                     </div>
                 </div>
-            </div>
-        </Collapsible>
-    </div>;
+            </div >
+        </Collapsible >
+    </div >;
 }

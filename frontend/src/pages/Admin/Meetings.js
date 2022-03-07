@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import previousButton from './Arrow.png';
+import previousButton from './Arrow.svg';
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");

@@ -35,9 +35,6 @@ export default function CheckIn() {
         });
         // Get Name from JWT Token
         const resp = await res.json();
-        if (resp.data.admin) {
-          history.push("/admin");
-        }
         setUser(jwtDecode(localStorage.getItem("@token")));
         setUserInfo(resp.data);
         const meetings_list = await fetch("http://localhost:5500/meetings_list", {

@@ -1,11 +1,10 @@
 .collapsible {
     margin: 0 auto;
     font-size: 1.6rem;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 500px;
+    width: 95%;
     padding: 0;
   
     &__text {
@@ -49,7 +48,6 @@
   
     &__content {
       border: 1px solid transparent;
-      padding: 1rem 0;
       margin-bottom: 3rem;
       position: relative;
       transition: 300ms;
@@ -57,7 +55,6 @@
   
     &__toggle {
       width: 100%;
-      margin: 1rem 0;
       border: 1px solid transparent;
       padding: 1rem;
       display: flex;
@@ -73,7 +70,8 @@
     }
   
     &__toggle-text {
-      font-size: inherit;
+      font-size: 20px;
+      font-family: 'Poppins', sans-serif;
     }
   
     &__button {
@@ -106,3 +104,11 @@
     transform: rotateZ(90deg);
   }
   
+  @media screen and (max-width: 750px) {
+    .collapsible {
+      width: 90%;
+    }
+    .collapsible__toggle-text{
+      font-size: 15px;
+    }
+  }

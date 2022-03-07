@@ -1,0 +1,73 @@
+#scores .row{
+    grid-column-end: auto;
+}
+#scores .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+  }
+#head .score {
+    color: #AAAAAA;
+}
+
+#head .absent {
+    background-color: rgba(225, 108, 82, 0.15);
+    color: #EF7357;
+}
+#head .row{
+    grid-column-end: auto;
+}
+#head .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+#head .title {
+    color: #515151;
+}
+.grid {
+    width: 100%;
+}
+
+.general{
+    margin-top: 10px;
+}
+h4{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+h3{
+    font-family: 'Poppins', sans-serif;
+}
+#scores h4 {
+    color: #7A7A7A;
+}
+
+#scores h5 {
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    background: #F7F7F7;
+    color: #7A7A7A;
+    border-radius: 12px;
+}
+
+.exec {
+    margin-top: 10px;
+    background: rgba(236, 236, 236, 0.71);
+    border-radius: 2px;
+    color: black;
+    justify-content: center;
+    border-style: none;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    box-shadow: none;
+}
+.exec:hover{
+    background: lightgrey;
+
+}

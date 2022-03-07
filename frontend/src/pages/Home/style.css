@@ -41,18 +41,20 @@
 /* Welcome Home Page */
   .welcomeImg {
     position: relative;
-    left: -550px;
     top: 100px;
     height: 100px;
     margin-bottom: 100px;
+    margin-left: 50px;
   }
 
   .rightAccent {
     position: absolute;
     right: 0px;
     top: 0px;
-    height: auto;
-    width: 865px;
+    margin-bottom: -100px;
+    height:100%;
+    width:50%;
+    z-index:-1;
   }
 
   .attendanceButton {
@@ -70,7 +72,7 @@
     font-family: 'Poppins', sans-serif;
     border-radius: 27.23px;
     margin-top: 50px;
-    margin-left: -530px;
+    margin-left: 25px;
   }
 
   .attendanceButton:hover {
@@ -87,11 +89,13 @@
   }
 
   .rightImage {
-    transform: rotate(248.67deg);
+    transform: rotate(270.67deg);
     position: absolute;
-    right: -300px;
-    bottom: -100px;
-    width: auto;
+    bottom: -50px;
+    right: -100px;
+    width: 60%;
+    height: auto;
+    z-index: -1;
   }
 
   #group {
@@ -104,8 +108,7 @@
   }
 
   button.available {
-    display: flex;
-    width: 319px;
+    width: 300px;
     height: 70px;
     margin: 5px;
 
@@ -127,10 +130,21 @@ button.available:hover {
     color: white;
 }
 #onboarding {
-  font-size: 80px;
+  margin-left: 6%;
+  font-size: 400%;
 }
 
 #role {
-  padding-top: 20px;
-  font-size: 40px;
+  white-space: nowrap;
+  padding-top: 6px;
+  margin-left: 6%;
+  font-size: 180%;
+}
+
+@media screen and (max-width: 750px) {
+  #group {
+    flex-direction: column;
+    margin-left: 0%;
+    align-items: center;
+  }
 }

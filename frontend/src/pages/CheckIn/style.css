@@ -1,15 +1,14 @@
 #grouping {
-  display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  margin-top: -120px;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 #grouping button {
-    display: relative;
-    width: 619px;
-    height: 80px;
+    width: 819px;
+    height: 100px;
     margin: 8px;
 
     justify-content: center;
@@ -29,8 +28,6 @@
     background-color: #F2F2F2;
     color: black;
     border-color: BLACK;
-    border-radius: 46px;
-    border-width: 3px;
     border-style: solid;
 }
 
@@ -87,30 +84,30 @@
     float: right;
   }
 
+  .password-group {
+    flex-direction: column;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  }
   /* Password Page */
   .checkIn {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 80px;
-    position: relative;
-    top: 30%;
-    left: 34%;
+    text-align: center;
   }
 
   .text1 {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    position: relative;
-    top: 36%;
-    left: 22%;
   }
 
   .text2 {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    position: relative;
-    top: 36%;
-    left: 35%;
   }
 
   .passBox {
@@ -120,20 +117,15 @@
     height: 50px;
     width: 550px;
 
-    position: relative;
-    left: 25%;
-    top: 440px;
   }
 
   .passwordButton {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 300;
-    position: relative;
-    top: 52%;
-    left: 38%;
-    width: 20%;
-    height: 6.5%;
+    margin-top: 50px;
+    height: 15%;
+    width: 40%;
     color: white;
     background-color: black;
     border-radius: 46px;
@@ -168,4 +160,12 @@
 .closebtn:hover {
   font-family: 'Poppins', sans-serif;
   color: black;
+}
+
+
+@media screen and (max-width: 750px) {
+  #grouping button{
+    width: 350px;
+    font-size: 30px;
+  }
 }

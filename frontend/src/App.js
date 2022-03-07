@@ -8,6 +8,7 @@ import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
 import Password from "./pages/CheckIn/Password.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
+import MemberRoster from "./pages/Admin/MemberRoster.js";
 import AttendanceHistory from "./pages/Home/AttendanceHistory.js";
 
 export default function App() {
@@ -36,6 +37,9 @@ export default function App() {
           </Route>
           <Route exact path="/attendanceHistory">
               <AttendanceHistory/>
+          </Route>
+          <Route exact path="/admin/member-roster">
+              <MemberRoster/>
           </Route>
         </Switch>
       </div>

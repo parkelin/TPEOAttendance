@@ -10,9 +10,9 @@ export default function Password() {
       // If the token doesn't exist, do not log in
       if (!localStorage.getItem("@token")) {
         history.push("/login");
-      } else if(!localStorage.getItem("@meeting")){
+      } else if (!localStorage.getItem("@meeting")) {
         history.push("/");
-      }else{
+      } else {
         const request = await fetch("http://localhost:5500/auth", {
           headers: {
             authorization: "Bearer " + localStorage.getItem("@token"),
@@ -36,9 +36,6 @@ export default function Password() {
         });
         // Get Name from JWT Token
         const resp = await res.json();
-        if (resp.data.admin) {
-          history.push("/admin");
-        }
         const id = localStorage.getItem("@meeting");
         const passwd = await fetch("http://localhost:5500/password", {
           method: "POST",
@@ -46,7 +43,7 @@ export default function Password() {
             "Content-Type": "application/json",
             authorization: "Bearer " + localStorage.getItem("@token"),
           },
-          body: JSON.stringify({meeting: id}),
+          body: JSON.stringify({ meeting: id }),
         });
         const passwrd = await passwd.json();
         setMeetingPassword(passwrd.data.password);
@@ -62,7 +59,7 @@ export default function Password() {
   async function completeCheckInPg() {
     console.log(password);
     console.log(meetingPassword);
-    if(Math.round(Date.parse(meeting.end) / 1000) < Math.round(Date.now() / 1000)){
+    if (Math.round(Date.parse(meeting.end) / 1000) < Math.round(Date.now() / 1000)) {
       history.push("/");
       return;
     }
@@ -80,7 +77,7 @@ export default function Password() {
       localStorage.removeItem("@meeting");
       setDone(true);
       setSubmissionError(false);
-    }else{
+    } else {
       setSubmissionError(true);
     }
 
@@ -98,24 +95,25 @@ export default function Password() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
       </style>
-      <h2 className="checkIn">Check In</h2>
+      <div className="password-group">
+        <h2 className="checkIn">Check In</h2>
+        <p className="text1">Enter your passcode in the box below. This is a specialized key</p>
+        <p className="text2"> generated only for this meeting.</p>
 
-      <p className="text1">Enter your passcode in the box below. This is a specialized key</p>
-      <p className="text2"> generated only for this meeting.</p>
+        <form>
+          <label>
+            <input className="passBox" type="text" name="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+          </label>
+        </form>
+        <button onClick={completeCheckInPg} className="passwordButton">
+          CONTINUE
+        </button>
+      </div>
 
-      <form>
-        <label>
-          <input className="passBox" type="text" name="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
-        </label>
-      </form>
-
-      <button onClick={completeCheckInPg} className="passwordButton">
-        CONTINUE
-      </button>
       {submissionError && <div className="alert">
-                    <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
-                    Incorrect Password!
-                </div>}
+        <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
+        Incorrect Password!
+      </div>}
     </Fragment>
   ) : <Fragment><h3>You're All Set!</h3></Fragment>;
 }
