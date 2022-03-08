@@ -13,9 +13,10 @@ export default function GoogleSignIn() {
 
         <img src={image1} className="leftImg"></img>
         <img src={image2} className="rightImg"></img>
-
+        <div id="signGroup">
         <h1>Log In</h1>
          <LoginLink></LoginLink>
+         </div>
         </div>
     );
 }

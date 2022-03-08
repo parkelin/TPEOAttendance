@@ -85,7 +85,12 @@ export default function Home() {
     async function attendanceHistory() {
         history.push("/attendanceHistory")
     }
-
+    async function logOut() {
+        localStorage.clear();
+        setUser(null);
+        setName("");
+        history.push("/login");
+    }
     const [memberType, setMemberType] = useState("");
     const [user, setUser] = useState(null);
     const [name, setName] = useState("");
@@ -124,7 +129,7 @@ export default function Home() {
                     <img src={welcome} className="welcomeImg"></img>
                 </div>
                 <img src={rightAccent} className="rightAccent"></img>
-
+                <button className="log-out" onClick={logOut}>Log Out</button>
                 {/* Calender */}
                 {/* <div className="cal">
                     <DatePicker />

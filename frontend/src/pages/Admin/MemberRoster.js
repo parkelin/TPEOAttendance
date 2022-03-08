@@ -97,9 +97,9 @@ export default function MemberRoster() {
         history.push("/admin/meetings");
     }
     function changeFilter(type) {
-        if(type==filter){
+        if (type == filter) {
             setFilter("");
-        }else{
+        } else {
             setFilter(type);
         }
     }
@@ -112,7 +112,11 @@ export default function MemberRoster() {
     const [loaded, setLoaded] = useState(false);
     if (admin && loaded) {
         return (
+
             <Fragment>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+                </style>
                 {/* Changed Welcome [name] -> Member Roster */}
                 <div id="wrapper">
                     <div id="heading">
@@ -121,13 +125,13 @@ export default function MemberRoster() {
                     </div>
                     <div id="filter">
                         <button className="unclickable">Sort by: </button>
-                        <button onClick={() => changeFilter("Engineering")}>Engineering</button>
-                        <button onClick={() => changeFilter("Product")}>Product</button>
-                        <button onClick={() => changeFilter("Design")}>Design</button>
-                        <button onClick={() => changeFilter("Executive")}>Exec Team</button>
+                        <button style={(filter == "Engineering" ? { backgroundColor: "rgba(218, 233, 251, 0.45)", color: "#8BBEF9" } : {})} onClick={() => changeFilter("Engineering")}>Engineering</button>
+                        <button style={(filter == "Product" ? { backgroundColor: "#F9F2FF", color: "#C175FF" } : {})} onClick={() => changeFilter("Product")}>Product</button>
+                        <button style={(filter == "Design" ? { backgroundColor: "rgba(203, 233, 233, 0.47)", color: "#75D0D0" } : {})} onClick={() => changeFilter("Design")}>Design</button>
+                        <button style={(filter == "Executive" ? { backgroundColor: "#FFF2E1", color: "#EBA23B" } : {})} onClick={() => changeFilter("Executive")}>Exec Team</button>
                     </div>
                     {meetings.length > 0 && <ul>
-                        {members.map((member, index) => (filter==""||filter==member.type||(filter=="Executive"&&member.admin))?<Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings}/>:null)}
+                        {members.map((member, index) => (filter == "" || filter == member.type || (filter == "Executive" && member.admin)) ? <Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings} /> : null)}
                     </ul>}
                     <button onClick={logOut} className="button">
                         Log Out

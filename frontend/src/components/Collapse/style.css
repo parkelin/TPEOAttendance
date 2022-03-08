@@ -7,6 +7,7 @@
     padding: 10px;
   }
 #head .score {
+    font-size:90%;
     color: #AAAAAA;
 }
 
@@ -15,7 +16,7 @@
     color: #EF7357;
 }
 #head .row{
-    grid-column-end: auto;
+    grid-column-end: span;
 }
 #head .column {
     float: left;
@@ -23,6 +24,7 @@
     padding: 10px;
   }
 #head .title {
+    font-size:90%;
     color: #515151;
 }
 .grid {
@@ -45,7 +47,7 @@ h3{
 }
 
 #scores h5 {
-    font-size: 20px;
+    font-size: 90%;
     padding: 5px;
     text-align: center;
     background: #F7F7F7;

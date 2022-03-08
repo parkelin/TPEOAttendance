@@ -13,7 +13,7 @@ ul {
     position: relative;
     width: 300px;
     height: 40px;
-    left: 530px;
+    left: 50px;
     top: 50px;
     size: 50px;
     border-radius: 10px;
@@ -153,4 +153,22 @@ h3 {
 }
 #filter .unclickable {
   margin-right: 20px;
+}
+
+.log-out {
+  font-family: 'Poppins', sans-serif;
+  background-color:#F6F6F6;
+  color: #7D7D7D;
+  position: absolute;
+  width: 5vw;
+  height: 2vw;
+  right: 10vw;
+  top: 98.76px;
+  border-color:white;
+  box-shadow: none;
+  border-style: none;
+}
+.log-out:hover {
+  font-family: 'Poppins', sans-serif;
+  background: lightgrey;
 }

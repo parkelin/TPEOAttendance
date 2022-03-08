@@ -86,6 +86,7 @@
     left: -704px;
     top: -300px;
     width: auto;
+    z-index: -1;
   }
 
   .rightImage {
@@ -93,8 +94,8 @@
     position: absolute;
     bottom: -50px;
     right: -100px;
-    width: 60%;
-    height: auto;
+    height: 70%;
+    width: auto;
     z-index: -1;
   }
 
@@ -130,6 +131,7 @@ button.available:hover {
     color: white;
 }
 #onboarding {
+  margin-top: 25%;
   margin-left: 6%;
   font-size: 400%;
 }
@@ -140,7 +142,22 @@ button.available:hover {
   margin-left: 6%;
   font-size: 180%;
 }
-
+.log-out {
+  font-family: 'Poppins', sans-serif;
+  background-color:#F6F6F6;
+  color: #7D7D7D;
+  position: absolute;
+  width: 5vw;
+  height: 2vw;
+  right: 10vw;
+  top: 4vw;
+  border-color:white;
+  box-shadow: none;
+  border-style: none;
+}
+.log-out:hover {
+  background: lightgrey;
+}
 @media screen and (max-width: 750px) {
   #group {
     flex-direction: column;

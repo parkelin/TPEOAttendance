@@ -2,14 +2,16 @@
     position: absolute;
     left: -94px;
     bottom: 0px;
-    width: auto;
+    width: 60%;
+    height: auto;
   }
 
   .rightImg {
     position: absolute;
     right: 0px;
     top: 0px;
-    width: auto;
+    width: 60%;
+    height: auto;
   }
 
   .button {
@@ -17,8 +19,6 @@
     position: relative;
     width: 300px;
     height: 40px;
-    left: 530px;
-    top: 50px;
     size: 50px;
     border-radius: 10px;
     border-color: white;
@@ -35,9 +35,13 @@
     display: flex;
     align-items: center;
     text-align: center;
-    padding-left: 500px;
-    padding-right: 100px;
-    padding-top: 400px;
     font-size: 100px;
     color: #000000;
+    white-space: nowrap;
+  }
+
+  #signGroup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }

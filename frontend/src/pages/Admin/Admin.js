@@ -71,7 +71,12 @@ export default function Admin() {
             body: JSON.stringify({ member: user, type: type }),
         });
     }
-
+    async function logOut() {
+        localStorage.clear();
+        setUser(null);
+        setName("");
+        history.push("/login");
+    }
     const [memberType, setMemberType] = useState("");
     const [user, setUser] = useState(null);
     const [name, setName] = useState("");
@@ -104,6 +109,7 @@ export default function Admin() {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         </style>
+        <button className="log-out" onClick={logOut}>Log Out</button>
         <div>
             <img src={welcome} className="welcomeImg"></img>
         </div>

@@ -12,6 +12,7 @@ export default function Collapse(props) {
     const history = useHistory();
     useEffect(() => {
         async function getAttendance() {
+            
             setMeetings(props.meetings);
             const attendance_list = await fetch("http://localhost:5500/attendance_list", {
                 method: "POST",
@@ -32,6 +33,7 @@ export default function Collapse(props) {
             let tempRoleTardies = 0;
             let tempRoleUnexcused = 0;
             let tempRoleExcused = 0;
+            
             for (let i = 0; i < props.meetings.length; i++) {
                 const attendance = attendance_list_result.data[i][0];
                 var tempJ = JSON.parse(JSON.stringify(props.meetings[i]));
@@ -220,6 +222,22 @@ export default function Collapse(props) {
     const [attendance, setAttendance] = useState(new Map());
     const [isOpen, setIsOpen] = useState(false);
     const [meetingSelection, setMeetingSelection] = useState([]);
+    let typeBackgroundColor = "#EFEFEF";
+    let typeColor = "#676767";
+    if(props.type=="Engineering"){
+        typeBackgroundColor = "rgba(218, 233, 251, 0.45)";
+        typeColor ="#8BBEF9";
+    }else if(props.type=="Product"){
+        typeBackgroundColor = "#F9F2FF";
+        typeColor ="#C175FF";
+    }else if(props.type=="Design"){
+        typeBackgroundColor = "rgba(203, 233, 233, 0.47)";
+        typeColor ="#75D0D0";
+    }
+    if(props.admin){
+        typeBackgroundColor = "#FFF2E1";
+        typeColor ="#EBA23B";
+    }
     const columns = [
         { field: 'name', headerName: 'Meeting Name', minWidth: 130, flex: 1 },
         { field: 'day', headerName: 'Day', minWidth: 130, flex: 1 },
@@ -244,7 +262,8 @@ export default function Collapse(props) {
             })}
             onClick={() => setIsOpen(!isOpen)}
         >
-            <span className="collapsible__toggle-text">{props.name} | {props.type} {(!loaded && props.admin) || (loaded && admin) ? "Exec" : ""}</span>
+            <span className="collapsible__toggle-text">{props.name}</span>
+            <span style={{backgroundColor:typeBackgroundColor, color: typeColor, paddingLeft: "10px", paddingRight: "10px", marginLeft: "-100px"}} className="collapsible__toggle-text">{props.type|| "Member"} {(!loaded && props.admin) || (loaded && admin) ? "Exec" : ""}</span>
             <div className="rotate90">
                 <svg
                     className={cx("icon", { "icon--expanded": isOpen })}
