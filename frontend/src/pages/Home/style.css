@@ -73,6 +73,7 @@
     border-radius: 27.23px;
     margin-top: 50px;
     margin-left: 25px;
+    cursor: pointer;
   }
 
   .attendanceButton:hover {
@@ -125,6 +126,7 @@
     font-weight: normal;
     font-size: 38px;
     line-height: 65px;
+    cursor: pointer;
 }
 button.available:hover {
     background-color: black;

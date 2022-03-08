@@ -165,7 +165,7 @@ export default function Collapse(props) {
             color = "#D39800";
             backgroundColor = "#FCEFCC";
         }
-        return <button id="button" style={{ fontFamily: "Poppins,sans-serif", fontWeight: 600, fontSize: "18px",color: color, backgroundColor: backgroundColor, height:"40px", border: "none",paddingLeft:"15px",paddingRight:"15px"}}>{params.value}</button>;
+        return <button id="button" style={{ fontFamily: "Poppins,sans-serif", fontWeight: 600, fontSize: "18px",color: color, cursor: "pointer", backgroundColor: backgroundColor, height:"40px", border: "none",paddingLeft:"15px",paddingRight:"15px"}}>{params.value}</button>;
     }
 
     function editAttendance(props) {

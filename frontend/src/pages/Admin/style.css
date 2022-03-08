@@ -19,6 +19,7 @@ ul {
     border-radius: 10px;
     border-color: white;
     box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
+    cursor: pointer;
 }
 
 .previousButton {
@@ -170,6 +171,7 @@ h3 {
   border-color:white;
   box-shadow: none;
   border-style: none;
+  cursor: pointer;
 }
 .log-out:hover {
   font-family: 'Poppins', sans-serif;

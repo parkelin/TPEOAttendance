@@ -30,6 +30,7 @@
     color: black;
     border-color: BLACK;
     border-style: solid;
+    cursor: pointer;
 }
 
 #grouping button.available:hover {
