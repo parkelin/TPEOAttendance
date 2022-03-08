@@ -340,7 +340,7 @@ export default function Collapse(props) {
                             selectionModel={meetingSelection}
                             sortModel={sortModel}
                             onSortModelChange={(model) => setSortModel(model)}
-                            sx={{ fontFamily: "Poppins,sans-serif", fontWeight: 200, fontSize: "20px"}}
+                            sx={{ fontFamily: "Poppins,sans-serif", fontWeight: 200, fontSize: "70%"}}
                         />
                         {admin ? <button className="exec" onClick={handleAdmin}>Remove Exec</button> : <button className="exec" onClick={handleAdmin}>Make Exec</button>}
                     </div>

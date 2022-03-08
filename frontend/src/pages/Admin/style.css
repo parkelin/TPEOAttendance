@@ -132,6 +132,7 @@ h3 {
     width: 8%;
     padding: 10px;
     margin-top: 10px;
+    cursor:pointer;
 }
 
 #filter {
@@ -150,9 +151,11 @@ h3 {
   border-color: white;
   color: #959595;
   border-radius: 5px;
+  cursor:pointer;
 }
 #filter .unclickable {
   margin-right: 20px;
+  cursor:default;
 }
 
 .log-out {
