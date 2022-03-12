@@ -68,6 +68,7 @@ h3{
     font-weight: normal;
     font-size: 20px;
     box-shadow: none;
+    cursor: pointer;
 }
 .exec:hover{
     background: lightgrey;
