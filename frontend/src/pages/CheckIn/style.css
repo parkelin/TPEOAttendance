@@ -119,7 +119,9 @@
     border-radius: 32px;
     height: 50px;
     width: 550px;
-
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 140%;
   }
 
   .passwordButton {
