@@ -57,8 +57,6 @@ export default function Password() {
 
   }, []);
   async function completeCheckInPg() {
-    console.log(password);
-    console.log(meetingPassword);
     if (Math.round(Date.parse(meeting.end) / 1000) < Math.round(Date.now() / 1000)) {
       history.push("/");
       return;
@@ -99,12 +97,7 @@ export default function Password() {
         <h2 className="checkIn">Check In</h2>
         <p className="text1">Enter your passcode in the box below. This is a specialized key</p>
         <p className="text2"> generated only for this meeting.</p>
-
-        <form>
-          <label>
-            <input className="passBox" type="text" name="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
-          </label>
-        </form>
+        <input className="passBox" type="password" name="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
         <button onClick={completeCheckInPg} className="passwordButton">
           CONTINUE
         </button>

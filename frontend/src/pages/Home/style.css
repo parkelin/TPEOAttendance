@@ -152,10 +152,11 @@ button.available:hover {
   width: 5vw;
   height: 2vw;
   right: 10vw;
-  top: 4vw;
+  top: 98.76px;
   border-color:white;
   box-shadow: none;
   border-style: none;
+  cursor: pointer;
 }
 .log-out:hover {
   background: lightgrey;
@@ -165,5 +166,14 @@ button.available:hover {
     flex-direction: column;
     margin-left: 0%;
     align-items: center;
+  }
+
+  .homeButtons{
+    width: 90%;
+    height: 40%;
+  }
+  .attendanceButton{
+    height: 80%;
+    width: 95%;
   }
 }

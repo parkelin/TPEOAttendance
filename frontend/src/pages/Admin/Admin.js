@@ -13,6 +13,7 @@ import moment from "moment";
 import image1 from './accent1.png';
 import welcome from './welcome.png';
 import rightAccent from './rightAccent.png';
+import rightAccent2 from './tpeoaccent-04.svg';
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
@@ -110,12 +111,13 @@ export default function Admin() {
             @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         </style>
         <button className="log-out" onClick={logOut}>Log Out</button>
-        <div>
-            <img src={welcome} className="welcomeImg"></img>
-        </div>
-        <img src={rightAccent} className="rightAccent"></img>
-
-        <div>
+        <h3 className="welcome">Welcome</h3>
+        
+        <picture>
+            <source media="(min-width: 750px)" srcSet={rightAccent}/>
+            <img src={rightAccent2} className="rightAccent"></img>
+        </picture>
+        <div className="adminButtons">
             <button onClick={() => history.push("/admin/member-roster")} className="attendanceButton">
                 Member Roster
             </button>
@@ -123,9 +125,11 @@ export default function Admin() {
                 Meetings
             </button>
             <button onClick={() => history.push("/checkin")} className="attendanceButton">
-                Check In
+                Attendance
             </button>
-            <button onClick={() => setMemberType("Member")}>Onboarding</button>
+            <button onClick={() => history.push("/history")} className="attendanceButton">
+                History
+            </button>
         </div>
     </Fragment> : null;
 }

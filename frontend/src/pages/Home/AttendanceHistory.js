@@ -37,9 +37,6 @@ export default function AttendanceHistory() {
                 });
                 // Get Name from JWT Token
                 const resp = await res.json();
-                if (resp.data.admin) {
-                    history.push("/admin");
-                }
                 setName(decode.name);
                 setUser(jwtDecode(localStorage.getItem("@token")));
                 setUserInfo(resp.data);

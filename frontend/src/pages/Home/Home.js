@@ -7,7 +7,7 @@ import welcome from './welcome.png';
 import rightAccent from './rightAccent.png';
 import DatePicker from 'sassy-datepicker';
 import image1 from './accent1.png';
-
+import rightAccent2 from './tpeoaccent-04.svg';
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
     const history = useHistory();
@@ -83,7 +83,7 @@ export default function Home() {
     }
 
     async function attendanceHistory() {
-        history.push("/attendanceHistory")
+        history.push("/history")
     }
     async function logOut() {
         localStorage.clear();
@@ -109,34 +109,36 @@ export default function Home() {
             <h2 id="onboarding">Welcome,</h2>
             <h2 id="role">Please select your role:</h2>
             <div id="group">
-            <button onClick={() => changeMemberType("Design")} className="available">
-                Design
-            </button>
-            <button onClick={() => changeMemberType("Product")} className="available">
-                Product
-            </button>
-            <button onClick={() => changeMemberType("Engineering")} className="available">
-                Engineering
-            </button>
+                <button onClick={() => changeMemberType("Design")} className="available">
+                    Design
+                </button>
+                <button onClick={() => changeMemberType("Product")} className="available">
+                    Product
+                </button>
+                <button onClick={() => changeMemberType("Engineering")} className="available">
+                    Engineering
+                </button>
             </div>
-            
+
         </Fragment> :
             <Fragment>
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
                 </style>
-                <div>
-                    <img src={welcome} className="welcomeImg"></img>
-                </div>
-                <img src={rightAccent} className="rightAccent"></img>
                 <button className="log-out" onClick={logOut}>Log Out</button>
+                <h3 className="welcome">Welcome</h3>
+
+                <picture>
+                    <source media="(min-width: 750px)" srcSet={rightAccent} />
+                    <img src={rightAccent2} className="rightAccent"></img>
+                </picture>
                 {/* Calender */}
                 {/* <div className="cal">
                     <DatePicker />
                 </div> */}
 
                 {/* Attendance & History Buttons */}
-                <div>
+                <div className="homeButtons">
                     <button onClick={() => checkInPage()} className="attendanceButton">
                         Attendance
                     </button>

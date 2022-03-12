@@ -110,18 +110,17 @@ export default function MemberRoster() {
     const [user, setUser] = useState(null);
     const [admin, setAdmin] = useState(false);
     const [loaded, setLoaded] = useState(false);
+    const [search, setSearch] = useState("");
     if (admin && loaded) {
         return (
 
             <Fragment>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-                </style>
                 {/* Changed Welcome [name] -> Member Roster */}
                 <div id="wrapper">
                     <div id="heading">
                         <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
                         <h2>Member Roster</h2>
+                        <input className="searchBox" type="text" name="Password" placeholder="Search names here" value={search} onChange={(event) => setSearch(event.target.value)} />
                     </div>
                     <div id="filter">
                         <button className="unclickable">Sort by: </button>
@@ -131,14 +130,8 @@ export default function MemberRoster() {
                         <button style={(filter == "Executive" ? { backgroundColor: "#FFF2E1", color: "#EBA23B" } : {})} onClick={() => changeFilter("Executive")}>Exec Team</button>
                     </div>
                     {meetings.length > 0 && <ul>
-                        {members.map((member, index) => (filter == "" || filter == member.type || (filter == "Executive" && member.admin)) ? <Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings} /> : null)}
+                        {members.map((member, index) => (filter == "" || filter == member.type || (filter == "Executive" && member.admin)) && (search == "" || member.name.toLowerCase().includes(search.toLowerCase())) ? <Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings} /> : null)}
                     </ul>}
-                    <button onClick={logOut} className="button">
-                        Log Out
-                    </button>
-                    <button onClick={meetingsPage} className="button">
-                        Meetings Page
-                    </button>
                 </div>
             </Fragment>
 

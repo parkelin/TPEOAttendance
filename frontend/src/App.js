@@ -18,28 +18,28 @@ export default function App() {
         <Switch>
           {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path="/">
-            <Home/>
+            <Home />
           </Route>
           <Route exact path="/login">
-              <Login/>
+            <Login />
           </Route>
           <Route exact path="/admin">
-              <Admin/>
+            <Admin />
           </Route>
           <Route exact path="/admin/meetings">
-              <AdminMeetings/>
+            <AdminMeetings />
           </Route>
           <Route exact path="/checkin">
-              <CheckIn/>
+            <CheckIn />
           </Route>
           <Route exact path="/checkin/password">
-              <Password/>
+            <Password />
           </Route>
-          <Route exact path="/attendanceHistory">
-              <AttendanceHistory/>
+          <Route exact path="/history">
+            <AttendanceHistory />
           </Route>
           <Route exact path="/admin/member-roster">
-              <MemberRoster/>
+            <MemberRoster />
           </Route>
         </Switch>
       </div>

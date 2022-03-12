@@ -263,7 +263,7 @@ export default function Collapse(props) {
             onClick={() => setIsOpen(!isOpen)}
         >
             <span className="collapsible__toggle-text">{props.name}</span>
-            <span style={{backgroundColor:typeBackgroundColor, color: typeColor, paddingLeft: "10px", paddingRight: "10px", marginLeft: "-100px"}} className="collapsible__toggle-text">{props.type|| "Member"} {(!loaded && props.admin) || (loaded && admin) ? "Exec" : ""}</span>
+            <span style={{backgroundColor:typeBackgroundColor, color: typeColor, paddingLeft: "10px", paddingRight: "10px", display: "inline-block", whiteSpace: "nowrap"}} className="collapsible__toggle-text">{props.type|| "Member"} {(!loaded && props.admin) || (loaded && admin) ? "Exec" : ""}</span>
             <div className="rotate90">
                 <svg
                     className={cx("icon", { "icon--expanded": isOpen })}

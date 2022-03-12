@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 #wrapper {
   width: 100%;
 }
@@ -70,14 +72,7 @@ h3 {
   margin: auto;
   float: left;
 }
-@media screen and (max-width: 750px) {
-  ul {
-    grid-template-columns: 1fr;
-  }
-  h2 {
-    text-align: center;
-  }
-}
+
 .header-right {
   float: right;
 }
@@ -176,4 +171,97 @@ h3 {
 .log-out:hover {
   font-family: 'Poppins', sans-serif;
   background: lightgrey;
+}
+
+.searchBox {
+  font-family: 'Poppins', sans-serif;
+  float: right;
+  border-color: transparent;
+  box-shadow: none;
+  background-color: #EFEFEF;
+  border-radius: 32px;
+  height: 50px;
+  width: 30%;
+  margin-right: 5%;
+  margin-top: -2%;
+  padding: 20px;
+  background-image: url('./search.svg');
+  padding-left: 55px;
+  background-repeat: no-repeat;
+  background-position: 2% center;
+  outline: 0;
+  font-size: 120%;
+  color: #777777;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #B3B3B3;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #B3B3B3;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #B3B3B3;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #B3B3B3;
+}
+
+.adminButtons {
+  display:grid;
+  width: 60%;
+  grid-template-columns: 1fr 1fr;
+}
+.attendanceButton {
+  display: block;
+}
+
+.welcome{
+  text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+  font-size: 1000%;
+  margin-left: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 164px;
+  color: white;
+}
+@media screen and (max-width: 750px) {
+  ul {
+    grid-template-columns: 1fr;
+  }
+  h2 {
+    text-align: center;
+  }
+  .searchBox {
+    display: inline-block;
+    width: 80%;
+    float: none;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 20px;
+  }
+  .adminButtons{
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+  .attendanceButton{
+    height: 80%;
+    width: 95%;
+  }
+  .welcome{
+    margin-top: 20px;
+    font-size: 450%;
+  }
+  .log-out {
+    width: 40%;
+    height: 40px;
+    top: 10px;
+    right: 20px;
+    margin-bottom: 40px;
+  }
+  .rightAccent{
+    top: -200px;
+    right: -20px;
+    width: 100%;
+  }
 }
