@@ -167,7 +167,6 @@
   color: black;
 }
 
-
 @media screen and (max-width: 750px) {
   #grouping button{
     width: 350px;
@@ -179,7 +178,6 @@
     width: 60%;
   }
 
-
   .passBox {
     width: 100%;
     padding: 20px;
@@ -188,16 +186,20 @@
   .password-group{
     width: 100%;
   }
+}
 
-  .doneImg {
-    width: 50px;
-    height: 50px;
-  }
+.done {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  width: 25%;
+  height: 35%;
+}
 
-  .setText {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 80px;
-    text-align: center;
-  }
+.setText {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  text-align: center;
 }

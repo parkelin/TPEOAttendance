@@ -110,7 +110,7 @@ export default function Password() {
       </div>}
     </Fragment>
   ) : <Fragment>
-        <img src={doneImg} className="doneImg"></img>
+        <img src={doneImg} className="done"></img>
         <h3 className="setText">You're All Set!</h3>
       </Fragment>;
 }
