@@ -1,6 +1,7 @@
 import "./style.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import doneImg from './doneImg.png';
 const { default: jwtDecode } = require("jwt-decode");
 
 export default function Password() {
@@ -108,5 +109,8 @@ export default function Password() {
         Incorrect Password!
       </div>}
     </Fragment>
-  ) : <Fragment><h3>You're All Set!</h3></Fragment>;
+  ) : <Fragment>
+        <img src={doneImg} className="doneImg"></img>
+        <h3 className="setText">You're All Set!</h3>
+      </Fragment>;
 }
