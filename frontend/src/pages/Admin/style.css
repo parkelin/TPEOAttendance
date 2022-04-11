@@ -38,6 +38,19 @@ h2 {
   line-height: 63px;
 }
 
+.createMeeting {
+  font-family: 'Poppins', sans-serif;
+  margin-right: 70%;
+}
+
+.floatRight {
+  width: 73%;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  top: 0px;
+}
+
 h3 {
   font-family: 'Poppins', sans-serif;
   font-style: bold;
@@ -49,19 +62,19 @@ h3 {
 }
 
 .header {
-  padding-top: 20px;
+  padding-top: 25px;
   text-align: center;
   overflow: hidden;
   width: 100%;
 }
 
 .float-container {
-  padding: 20px;
+  padding: 10px;
   display: table;
 }
 
 .float-child.left {
-  margin-right: 20px;
+  margin-right: 0px;
 }
 
 .float-child {
@@ -119,6 +132,12 @@ h3 {
   flex-direction: column;
 }
 
+#heading {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  flex-direction: column;
+}
+
 .backArrow {
   border-style: none;
   box-shadow: none;
@@ -147,7 +166,7 @@ h3 {
   border-color: white;
   color: #959595;
   border-radius: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }
 #filter .unclickable {
   margin-right: 20px;
@@ -228,9 +247,6 @@ h3 {
 @media screen and (max-width: 750px) {
   ul {
     grid-template-columns: 1fr;
-  }
-  h2 {
-    text-align: center;
   }
   .searchBox {
     display: inline-block;

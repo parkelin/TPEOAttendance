@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Collapse from "../../components/Collapse/Collapse.js";
 import previousButton from './Arrow.svg';
 import Login from "../../components/Login/Login.js";
-import DateTime from "../../components/DateTime/DateTime.js";
+import DateTime from "../../components/DateTime/DateTime.js"; 
 import DateTimePicker from 'react-datetime-picker';
 import DurationPicker from 'react-duration-picker';
 import { FormControl } from 'react-bootstrap';
@@ -115,7 +115,6 @@ export default function MemberRoster() {
         return (
 
             <Fragment>
-                {/* Changed Welcome [name] -> Member Roster */}
                 <div id="wrapper">
                     <div id="heading">
                         <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>

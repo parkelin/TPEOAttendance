@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
-import back from './Arrow.png';
+import previousButton from './Arrow.svg';
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function AttendanceHistory() {
@@ -230,12 +230,17 @@ export default function AttendanceHistory() {
     const [memberType, setMemberType] = useState("Member");
     const [loaded, setLoaded] = useState(false);
 
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+</style>
+
     const columns = [
-        { field: 'name', headerName: 'Meeting Name', width: 130 },
-        { field: 'day', headerName: 'Day', width: 130 },
-        { field: 'type', headerName: 'Meeting Type', width: 130 },
-        { field: 'attendance', headerName: 'Attendance', width: 130, renderCell: renderAttendance },
+        { field: 'name', headerName: 'Meeting', width: "600", fontFamily: "Poppins"},
+        { field: 'day', headerName: 'Day', width: "300", fontFamily: 'Poppins,sans-serif'  },
+        { field: 'type', headerName: 'Meeting Type', width: "400", fontFamily: 'Poppins,sans-serif' },
+        { field: 'attendance', headerName: 'Attendance', width: "300", fontFamily: 'Poppins,sans-serif', renderCell: renderAttendance },
     ];
+
     const [sortModel, setSortModel] = useState([
         {
             field: 'day',
@@ -248,8 +253,11 @@ export default function AttendanceHistory() {
                     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
                  </style>
                 {/* Attendance History & Previous Button */}
-                <button onClick={() => history.push("/")} className="back"><img src={back} className="backImg"/></button>
-                <h2>Attendance History</h2>
+                <div id="heading">
+                    <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
+                    <h2>Attendance History</h2>
+                </div>
+
                 <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
                     <option defaultValue="Design">Design</option>
                     <option defaultValue="Product">Product</option>
@@ -259,7 +267,7 @@ export default function AttendanceHistory() {
                 {/* {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
                 {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
                 {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>} */}
-                <div style={{ height: 600, width: "100%" }}>
+                <div style={{ height: 600, width: "100%", fontFamily: "Poppins,sans-serif" }}>
                     <DataGrid
                         rows={meetingsWithAttendance}
                         columns={columns}

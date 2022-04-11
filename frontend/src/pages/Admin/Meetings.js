@@ -13,6 +13,8 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import previousButton from './Arrow.svg';
+import rightImg from './rightImg.png';
+import Dropdown from 'react-bootstrap/DropdownButton'
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
@@ -178,68 +180,42 @@ export default function Home() {
             <style>
               @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
-                <div className="header">
-                    <button><img src={previousButton} onClick={mainPage} className="previousButton"/></button>
-                    <h2>Create Meeting</h2>
-                    <button onClick={logOut} className="header-right button">
-                        Log Out
-                    </button>
-                </div>
+
+            <div className="header">
+                    <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
+                    <h2 className="createMeeting"> Create Meeting </h2>
+                    <button onClick={logOut} className="header-right button"> Log Out </button>
+            </div>
                 <br></br><br></br>
 
-                <div className="float-container">
-                    <div className="float-child">
-                        <h3>Input meeting:</h3>
-                        <FormControl
-                            id="formControlsTextB"
-                            type="text"
-                            label="Text"
-                            placeholder="Meeting name"
-                            value={meetingName}
-                            onChange={e => setMeetingName(e.target.value)}
+            <div className="float-container">
+                <div className="float-child">
+                    <h3>Input Meeting</h3>
+                    <FormControl
+                        id="formControlsTextB"
+                        type="text"
+                        label="Text"
+                        placeholder="Select..."
+                        value={meetingName}
+                        onChange={e => setMeetingName(e.target.value)}
+                    />
+                    <br></br>
+                    <br></br>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DateTimePicker
+                            renderInput={(props) => <TextField {...props} />}
+                            label="Date and Time"
+                            value={meetingTime}
+                            onChange={(newMeetingTime) => {
+                                setMeetingTime(newMeetingTime);
+                            }}
                         />
-                        <br></br>
-                        <br></br>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DateTimePicker
-                                renderInput={(props) => <TextField {...props} />}
-                                label="Date and Time"
-                                value={meetingTime}
-                                onChange={(newMeetingTime) => {
-                                    setMeetingTime(newMeetingTime);
-                                }}
-                            />
-                        </LocalizationProvider>
-                        <br></br>
-                        <h3>Input duration:</h3>
-                        {<DurationPicker
+                    </LocalizationProvider>
+                    <br></br>
 
-                            onChange={e => setMeetingDuration(e)}
-                            initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
-                            maxHours={24}
-
-                        />}
-                        <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
-                            <option defaultValue="General">General</option>
-                            <option defaultValue="Design">Design</option>
-                            <option defaultValue="Engineering">Engineering</option>
-                            <option defaultValue="Product">Product</option>
-                        </select>
-                        <FormControl
-                            id="formControlsTextB"
-                            type="text"
-                            label="Text"
-                            placeholder="Password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                        <button onClick={submitMeeting}>
-                            Submit Meeting
-                        </button>
-                    </div>
                     <div className="float-child">
-                        <h3>List of TPEO Meetings</h3>
-                        <div style={{ height: 400, width: "100%" }}>
+                    <h3>Date/Time</h3>
+                        <div style={{ height: 400, width: 800, fontFamily: "Poppins" }}>
                             <DataGrid
                                 rows={meetings}
                                 columns={columns}
@@ -256,7 +232,39 @@ export default function Home() {
                                 Delete Meetings
                             </button>}
                         </div>
+                    
+                        <h3>Duration</h3>
+                    {<DurationPicker
+                        onChange={e => setMeetingDuration(e)}
+                        initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
+                        maxHours={24}
+                    />}
+                     <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
+                        <option defaultValue="General">General</option>
+                        <option defaultValue="Design">Design</option>
+                        <option defaultValue="Engineering">Engineering</option>
+                        <option defaultValue="Product">Product</option>
+                    </select>
+                    <FormControl
+                        id="formControlsTextB"
+                        type="text"
+                        label="Text"
+                        placeholder="Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+
+                    <button onClick={submitMeeting}>
+                        Submit Meeting
+                    </button>
+
                     </div>
+                </div>
+                
+                <div className="floatRight">
+                    <img src={rightImg} class="floatRight"></img>
+                </div>
+
                 </div>
                 {submissionError && <div className="alert">
                     <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
