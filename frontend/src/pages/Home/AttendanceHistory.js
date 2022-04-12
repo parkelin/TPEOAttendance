@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
-import previousButton from './Arrow.svg';
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function AttendanceHistory() {
@@ -254,7 +253,7 @@ export default function AttendanceHistory() {
                  </style>
                 {/* Attendance History & Previous Button */}
                 <div id="heading">
-                    <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
+                    <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
                     <h2>Attendance History</h2>
                 </div>
 

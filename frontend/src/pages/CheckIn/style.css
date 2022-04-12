@@ -203,3 +203,10 @@
   font-size: 50px;
   text-align: center;
 }
+
+.previousButton {
+  width: 20%;
+  height: 25%;
+  padding-left: 5px;
+  background-color: white;
+}

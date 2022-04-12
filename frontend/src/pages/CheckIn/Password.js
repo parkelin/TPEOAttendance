@@ -110,6 +110,7 @@ export default function Password() {
       </div>}
     </Fragment>
   ) : <Fragment>
+        <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
         <img src={doneImg} className="done"></img>
         <h3 className="setText">You're All Set!</h3>
       </Fragment>;

@@ -4,19 +4,23 @@ import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import DateTime from "../../components/DateTime/DateTime.js";
 import DurationPicker from 'react-duration-picker';
-import { FormControl } from 'react-bootstrap';
+import FormControl from '@mui/material/FormControl';
 import Modal from 'react-modal';
 import moment from "moment";
 import { DataGrid } from '@mui/x-data-grid';
+import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import previousButton from './Arrow.svg';
 import rightImg from './rightImg.png';
+import { Select, MenuItem } from '@mui/material';
+import Box from '@mui/material/Box';
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
+
 export default function Home() {
 
     const history = useHistory();
@@ -88,7 +92,15 @@ export default function Home() {
         });
         const meetings_list_result = await meetings_list.json();
         setMeetings(meetings_list_result.data);
-    }
+    };
+
+    // async function BasicSelect() {
+    //     const [age, setAge] = React.useState('');
+
+    //     const handleChange = (event) => {
+    //     setAge(event.target.value);
+    // };
+
     async function revokeAdminStatus() {
         const decode = jwtDecode(localStorage.getItem("@token"));
         const res = await fetch("http://localhost:5500/revokeAdmin", {
@@ -101,6 +113,13 @@ export default function Home() {
         });
         history.push("/");
     }
+
+    // function BasicSelect() {
+    //     const [age, setAge] = React.useState('');
+
+    //     const handleChange = (event) => {
+    //     setAge(event.target.value);
+    // };
 
     async function logOut() {
         localStorage.clear();
@@ -175,101 +194,119 @@ export default function Home() {
     ]);
     if (admin && loaded) {
         return (
-            <Fragment>
-            <style>
-              @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-            </style>
+            <>
+                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={10}
+                    label="Age"
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </>
 
-            <div className="header">
-                    <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
-                    <h2 className="createMeeting"> Create Meeting </h2>
-                    <button onClick={logOut} className="header-right button"> Log Out </button>
-            </div>
-                <br></br><br></br>
+            // <Fragment>
+            //     <style>
+            //         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            //     </style>
 
-            <div className="float-container">
-                <div className="float-child">
-                    <h3>Input Meeting</h3>
-                    <FormControl
-                        id="formControlsTextB"
-                        type="text"
-                        label="Text"
-                        placeholder="Select..."
-                        value={meetingName}
-                        onChange={e => setMeetingName(e.target.value)}
-                    />
-                    <br></br>
-                    <br></br>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
-                            renderInput={(props) => <TextField {...props} />}
-                            label="Date and Time"
-                            value={meetingTime}
-                            onChange={(newMeetingTime) => {
-                                setMeetingTime(newMeetingTime);
-                            }}
-                        />
-                    </LocalizationProvider>
-                    <br></br>
+            //     <div className="header">
+            //         <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
+            //         <h2 className="createMeeting"> Create Meeting </h2>
+            //         <button onClick={logOut} className="header-right button"> Log Out </button>
+            //     </div>
+            //     <br></br><br></br>
 
-                    <div className="float-child">
-                    <h3>Date/Time</h3>
-                        <div style={{ height: 400, width: 800, fontFamily: "Poppins" }}>
-                            <DataGrid
-                                rows={meetings}
-                                columns={columns}
-                                checkboxSelection
-                                onSelectionModelChange={(newSelectionModel) => {
-                                    setMeetingSelection(newSelectionModel);
-                                }}
-                                selectionModel={meetingSelection}
-                                sortModel={sortModel}
-                                onSortModelChange={(model) => setSortModel(model)}
+            //     <div className="float-container">
+            //         <div className="float-child">
+            //             <h3>Input Meeting</h3>
+            //                     <FormControl>
+            //                     <Select
+            //                         label="Age"
+            //                         autoWidth={true}
+            //                         native={true}
+            //                     >
+            //                         <MenuItem>General</MenuItem>
+            //                         {/* <MenuItem>Engineering</MenuItem>
+            //                         <MenuItem>Design</MenuItem>
+            //                         <MenuItem>Product</MenuItem> */}
+            //                     </Select>
+            //                     </FormControl>
+            //                     {/* <InputLabel>Select...</InputLabel> */}
 
-                            />
-                            {meetingSelection.length != 0 && <button onClick={deleteMeetings} className="button">
-                                Delete Meetings
-                            </button>}
-                        </div>
-                    
-                        <h3>Duration</h3>
-                    {<DurationPicker
-                        onChange={e => setMeetingDuration(e)}
-                        initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
-                        maxHours={24}
-                    />}
-                     <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
-                        <option defaultValue="General">General</option>
-                        <option defaultValue="Design">Design</option>
-                        <option defaultValue="Engineering">Engineering</option>
-                        <option defaultValue="Product">Product</option>
-                    </select>
-                    <FormControl
-                        id="formControlsTextB"
-                        type="text"
-                        label="Text"
-                        placeholder="Password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
 
-                    <button onClick={submitMeeting}>
-                        Submit Meeting
-                    </button>
+            //             <br></br>
+            //             <br></br>
+            //             <br></br>
+            //                 <h3>Date/Time</h3>
+            //                 <LocalizationProvider dateAdapter={AdapterDateFns}>
+            //                 <DateTimePicker
+            //                     renderInput={(props) => <TextField {...props} />}
+            //                     label="Date and Time"
+            //                     value={meetingTime}
+            //                     onChange={(newMeetingTime) => {
+            //                         setMeetingTime(newMeetingTime);
+            //                     }}
+            //                 />
+            //             </LocalizationProvider>
+            //                 {/* <div>
+            //                     <DataGrid
+            //                         rows={meetings}
+            //                         columns={columns}
+            //                         sx={{ fontFamily: "Poppins,sans-serif", fontWeight: 200, fontSize: "70%" }}
+            //                         checkboxSelection
+            //                         onSelectionModelChange={(newSelectionModel) => {
+            //                             setMeetingSelection(newSelectionModel);
+            //                         }}
+            //                         selectionModel={meetingSelection}
+            //                         sortModel={sortModel}
+            //                         onSortModelChange={(model) => setSortModel(model)}
 
-                    </div>
-                </div>
-                
-                <div className="floatRight">
-                    <img src={rightImg} class="floatRight"></img>
-                </div>
+            //                     />
+            //                     {meetingSelection.length != 0 && <button onClick={deleteMeetings} className="button">
+            //                         Delete Meetings
+            //                     </button>}
+            //                 </div> */}
 
-                </div>
-                {submissionError && <div className="alert">
-                    <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
-                    Meeting name and Password can't be blank
-                </div>}
-            </Fragment>
+            //                 <h3>Duration</h3>
+            //                 {<DurationPicker
+            //                     onChange={e => setMeetingDuration(e)}
+            //                     initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
+            //                     maxHours={24}
+            //                 />}
+            //                 <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
+            //                     <option defaultValue="General">General</option>
+            //                     <option defaultValue="Design">Design</option>
+            //                     <option defaultValue="Engineering">Engineering</option>
+            //                     <option defaultValue="Product">Product</option>
+            //                 </select>
+            //                 <FormControl
+            //                     id="formControlsTextB"
+            //                     type="text"
+            //                     label="Text"
+            //                     placeholder="Password"
+            //                     value={password}
+            //                     onChange={e => setPassword(e.target.value)}
+            //                 />
+
+            //                 <button onClick={submitMeeting}>
+            //                     Submit Meeting
+            //                 </button>
+            //         </div>
+
+            //         <div className="floatRight">
+            //             <img src={rightImg} class="floatRight"></img>
+            //         </div>
+
+            //     </div>
+            //     {submissionError && <div className="alert">
+            //         <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
+            //         Meeting name and Password can't be blank
+            //     </div>}
+            // </Fragment>
 
         );
     } else {
