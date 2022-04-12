@@ -81,6 +81,7 @@ export default function Password() {
     }
 
   }
+  const today = new Date();
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
@@ -112,5 +113,6 @@ export default function Password() {
   ) : <Fragment>
         <img src={doneImg} className="done"></img>
         <h3 className="setText">You're All Set!</h3>
+        <h5 className="bottomText">{user.name} has been checked in to {meeting.type} Meeting "{meeting.name}" at {(today.getMonth()+1)+'/'+(today.getDay())+'/'+today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()}</h5>
       </Fragment>;
 }
