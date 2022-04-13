@@ -3,11 +3,11 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
-import welcome from './welcome.png';
-import rightAccent from './rightAccent.png';
+// import welcome from './welcome.png';
+// import rightAccent from './rightAccent.png';
 import DatePicker from 'sassy-datepicker';
-import image1 from './accent1.png';
-import rightAccent2 from './tpeoaccent-04.svg';
+// import accent1 from './accent1.png';
+// import rightAccent2 from './tpeoaccent-04.svg';
 const { default: jwtDecode } = require("jwt-decode");
 export default function Home() {
     const history = useHistory();
@@ -102,6 +102,7 @@ export default function Home() {
                 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
             <img src={image1} className="leftImage"></img>
+            <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
             <img src={image1} className="rightImage"></img>
             <div className="heading">
                 <h1 className="title-text"></h1>
@@ -129,13 +130,9 @@ export default function Home() {
                 <h3 className="welcome">Welcome</h3>
 
                 <picture>
-                    <source media="(min-width: 750px)" srcSet={rightAccent} />
-                    <img src={rightAccent2} className="rightAccent"></img>
+                    <source media="(min-width: 750px)" srcSet="/images/rightAccent.png" />
+                    <img src='/images/tpeoaccent-04.svg' className="rightAccent"></img>
                 </picture>
-                {/* Calender */}
-                {/* <div className="cal">
-                    <DatePicker />
-                </div> */}
 
                 {/* Attendance & History Buttons */}
                 <div className="homeButtons">

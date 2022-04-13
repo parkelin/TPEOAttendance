@@ -1,6 +1,4 @@
 import "./style.css";
-import image1 from './accent1.png';
-import image2 from './accent2.png';
 import LoginLink from "../../components/Login/Login.js";
 const { default: jwtDecode } = require("jwt-decode");
 export default function GoogleSignIn() {
@@ -11,8 +9,8 @@ export default function GoogleSignIn() {
         </style>
         </head>
 
-        <img src={image1} className="leftImg"></img>
-        <img src={image2} className="rightImg"></img>
+        <img src="/images/accent1.png" className="leftImg"></img>
+        <img src="/images/accent2.png" className="rightImg"></img>
         <div id="signGroup">
         <h1>Log In</h1>
          <LoginLink></LoginLink>

@@ -9,6 +9,7 @@ import CheckIn from "./pages/CheckIn/CheckIn.js";
 import Password from "./pages/CheckIn/Password.js";
 import AdminMeetings from "./pages/Admin/Meetings.js";
 import MemberRoster from "./pages/Admin/MemberRoster.js";
+// import MemberRoster from "./pages/MemberRoster.js";
 import AttendanceHistory from "./pages/Home/AttendanceHistory.js";
 
 export default function App() {

@@ -2,7 +2,6 @@ import "./style.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Collapse from "../../components/Collapse/Collapse.js";
-import previousButton from './Arrow.svg';
 import Login from "../../components/Login/Login.js";
 import DateTime from "../../components/DateTime/DateTime.js"; 
 import DateTimePicker from 'react-datetime-picker';
@@ -117,7 +116,9 @@ export default function MemberRoster() {
             <Fragment>
                 <div id="wrapper">
                     <div id="heading">
-                        <button className="backArrow"><img src={previousButton} onClick={() => history.push("/admin")} /></button>
+                        {/* BACK ARROW */}
+                        <button className="backArrow"><img src="/images/Arrow.svg" onClick={() => history.push("/admin")} /></button>
+                        
                         <h2>Member Roster</h2>
                         <input className="searchBox" type="text" name="Password" placeholder="Search names here" value={search} onChange={(event) => setSearch(event.target.value)} />
                     </div>

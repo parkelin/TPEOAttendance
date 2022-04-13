@@ -1,8 +1,8 @@
 import "./style.css";
+// import "admin.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Collapse from "../../components/Collapse/Collapse.js";
-import previousButton from './Arrow.svg';
 import Login from "../../components/Login/Login.js";
 import DateTime from "../../components/DateTime/DateTime.js";
 import DateTimePicker from 'react-datetime-picker';
@@ -10,10 +10,7 @@ import DurationPicker from 'react-duration-picker';
 import { FormControl } from 'react-bootstrap';
 import Modal from 'react-modal';
 import moment from "moment";
-import image1 from './accent1.png';
-import welcome from './welcome.png';
-import rightAccent from './rightAccent.png';
-import rightAccent2 from './tpeoaccent-04.svg';
+// import rightAccent from './rightAccent.png';
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
@@ -87,8 +84,9 @@ export default function Admin() {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         </style>
-        <img src={image1} className="leftImage"></img>
-        <img src={image1} className="rightImage"></img>
+        {/* <img src="/images/accent1.png" className="leftImage"></img>
+        <img src='/images/rightAccent.png' className="rightImage"></img> */}
+        
         <div className="heading">
             <h1 className="title-text"></h1>
         </div>
@@ -112,11 +110,9 @@ export default function Admin() {
         </style>
         <button className="log-out" onClick={logOut}>Log Out</button>
         <h3 className="welcome">Welcome</h3>
-        
-        <picture>
-            <source media="(min-width: 750px)" srcSet={rightAccent}/>
-            <img src={rightAccent2} className="rightAccent"></img>
-        </picture>
+
+        <img src='/images/rightAccent.png' className="rightAccent"></img>
+
         <div className="adminButtons">
             <button onClick={() => history.push("/admin/member-roster")} className="attendanceButton">
                 Member Roster

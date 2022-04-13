@@ -1,7 +1,7 @@
 import "./style.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import doneImg from './doneImg.png';
+// import doneImg from './doneImg.png';
 const { default: jwtDecode } = require("jwt-decode");
 
 export default function Password() {
@@ -81,6 +81,7 @@ export default function Password() {
     }
 
   }
+  const today = new Date();
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
@@ -111,7 +112,8 @@ export default function Password() {
     </Fragment>
   ) : <Fragment>
         <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
-        <img src={doneImg} className="done"></img>
+        <img src="/images/doneImg.png" className="done"></img>
         <h3 className="setText">You're All Set!</h3>
+        <h5 className="bottomText">{user.name} has been checked in to {meeting.type} Meeting "{meeting.name}" at {(today.getMonth()+1)+'/'+(today.getDay())+'/'+today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()}</h5>
       </Fragment>;
 }
