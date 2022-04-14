@@ -6,11 +6,10 @@ import Home from "./pages/Home/Home.js";
 import Login from "./pages/GoogleSignIn/GoogleSignIn.js";
 import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
-import Password from "./pages/CheckIn/Password.js";
-import AdminMeetings from "./pages/Admin/Meetings.js";
-import MemberRoster from "./pages/Admin/MemberRoster.js";
-// import MemberRoster from "./pages/MemberRoster.js";
-import AttendanceHistory from "./pages/Home/AttendanceHistory.js";
+import Password from "./pages/Password/Password.js";
+import AdminMeetings from "./pages/Meetings/Meetings.js";
+import MemberRoster from "./pages/MemberRoster/MemberRoster.js";
+import AttendanceHistory from "./pages/AttendanceHistory/AttendanceHistory.js";
 
 export default function App() {
   return (

@@ -1,4 +1,4 @@
-import "./style.css";
+import "./password.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 // import doneImg from './doneImg.png';

@@ -1,4 +1,4 @@
-import "./style.css";
+import "./GoogleSignIn.css";
 import LoginLink from "../../components/Login/Login.js";
 const { default: jwtDecode } = require("jwt-decode");
 export default function GoogleSignIn() {

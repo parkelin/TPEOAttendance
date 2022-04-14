@@ -1,4 +1,4 @@
-import "./style.css";
+import "./meetings.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
