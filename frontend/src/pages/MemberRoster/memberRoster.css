@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+#wrapper {
+  width: 100%;
+}
+
+ul {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.button {
+  background: white;
+    position: relative;
+    width: 300px;
+    height: 40px;
+    left: 50px;
+    top: 50px;
+    size: 50px;
+    border-radius: 10px;
+    border-color: white;
+    box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
+    cursor: pointer;
+}
+
+.previousButton {
+  padding-left: 5px;
+  background-color: white;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-style: bold;
+  color: black;
+  font-weight: 500;
+  font-size: 41.89px;
+  line-height: 63px;
+}
+
+.createMeeting {
+  font-family: 'Poppins', sans-serif;
+  margin-right: 70%;
+}
+
+.floatRight {
+  width: 73%;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  top: 0px;
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-style: bold;
+  padding-left: 0px;
+}
+
+#row {
+  flex-direction: row;
+}
+
+.header {
+  padding-top: 25px;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.float-container {
+  padding: 10px;
+  display: table;
+}
+
+.float-child.left {
+  margin-right: 0px;
+}
+
+.float-child {
+  width: 50%;
+  padding: 20px;
+  flex-direction: column;
+  display: block;
+  margin: auto;
+  float: left;
+}
+
+.header-right {
+  float: right;
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+/* Attendance History */
+.back {
+  background-color: white;
+  left: -800px;
+}
+
+.backImg {
+  height: 40px;
+}
+
+#heading {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  flex-direction: column;
+}
+
+#heading {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  flex-direction: column;
+}
+
+.backArrow {
+    border-style: none;
+    box-shadow: none;
+    background: white;
+    border-color: white;
+    float: left;
+    width: 8%;
+    padding: 10px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+
+#filter {
+  padding-left: 40px;
+  flex-direction: column;
+  padding-bottom: 30px;
+  
+}
+
+#filter button {
+  padding: 10px;
+  margin-right: 10px;
+  background: #EFEFEF;
+  border-style: none;
+  box-shadow: none;
+  border-color: white;
+  color: #959595;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#filter .unclickable {
+  margin-right: 20px;
+  cursor:default;
+}
+
+.log-out {
+  font-family: 'Poppins', sans-serif;
+  background-color:#F6F6F6;
+  color: #7D7D7D;
+  position: absolute;
+  width: 5vw;
+  height: 2vw;
+  right: 10vw;
+  top: 98.76px;
+  border-color:white;
+  box-shadow: none;
+  border-style: none;
+  cursor: pointer;
+}
+.log-out:hover {
+  font-family: 'Poppins', sans-serif;
+  background: lightgrey;
+}
+
+.searchBox {
+  font-family: 'Poppins', sans-serif;
+  float: right;
+  border-color: transparent;
+  box-shadow: none;
+  background-color: #EFEFEF;
+  border-radius: 32px;
+  height: 50px;
+  width: 30%;
+  margin-right: 5%;
+  margin-top: -2%;
+  padding: 20px;
+  /* background-image: url("/images/search.svg"); */
+  padding-left: 55px;
+  background-repeat: no-repeat;
+  background-position: 2% center;
+  outline: 0;
+  font-size: 120%;
+  color: #777777;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #B3B3B3;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #B3B3B3;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #B3B3B3;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #B3B3B3;
+}
+
+.adminButtons {
+  display:grid;
+  width: 60%;
+  grid-template-columns: 1fr 1fr;
+}
+.attendanceButton {
+  display: block;
+}
+
+.welcome{
+  text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+  font-size: 1000%;
+  margin-left: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 164px;
+  color: white;
+}
+@media screen and (max-width: 750px) {
+  ul {
+    grid-template-columns: 1fr;
+  }
+  .searchBox {
+    display: inline-block;
+    width: 80%;
+    float: none;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 20px;
+  }
+  .adminButtons{
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+  .attendanceButton{
+    height: 80%;
+    width: 95%;
+  }
+  .welcome{
+    margin-top: 20px;
+    font-size: 450%;
+  }
+  .log-out {
+    width: 40%;
+    height: 40px;
+    top: 10px;
+    right: 20px;
+    margin-bottom: 40px;
+  }
+  .rightAccent{
+    top: -200px;
+    right: -20px;
+    width: 100%;
+  }
+}

@@ -1,4 +1,4 @@
-import "./style.css";
+import "./checkindone.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
