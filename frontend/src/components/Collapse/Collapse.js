@@ -254,7 +254,8 @@ export default function Collapse(props) {
 
 
     return (
-        <Accordion>
+        <div>
+<Accordion>
             <AccordionSummary
                 expandIcon={<MdArrowDropDown />}
             >
@@ -324,5 +325,7 @@ export default function Collapse(props) {
                 </div>
             </AccordionDetails>
         </Accordion >
+        </div>
+        
     )
 }
