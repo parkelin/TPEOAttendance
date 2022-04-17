@@ -204,7 +204,7 @@ h3 {
   margin-right: 5%;
   margin-top: -2%;
   padding: 20px;
-  /* background-image: url("/images/search.svg"); */
+  background-image: url('search.svg');
   padding-left: 55px;
   background-repeat: no-repeat;
   background-position: 2% center;

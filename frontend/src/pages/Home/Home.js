@@ -101,9 +101,9 @@ export default function Home() {
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
-            <img src={image1} className="leftImage"></img>
-            <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
-            <img src={image1} className="rightImage"></img>
+            <img src='/images/accent1.png' className="leftImage"></img>
+            <button className="backArrow"><img src='/images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
+            <img src='/images/accent1.png' className="rightImage"></img>
             <div className="heading">
                 <h1 className="title-text"></h1>
             </div>
