@@ -1,137 +1,137 @@
-#input-box{
-    height: 32px;
-    width: 300px;
-    margin-right: 10px;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  
-  .search-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  #todo-symbol{
+#input-box {
+  height: 32px;
+  width: 300px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#todo-symbol {
   position: relative;
   left: 93.21%;
   right: 0%;
   top: 0%;
   bottom: 0%;
-  
+
   background: #5b775a;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 50px;
-  }
+}
 
-  /* Google Button */
-  .button {
-    background: #F2F2F2;
-    width: 300px;
-    height: 40px;
-    size: 50px;
-    border-radius: 10px;
-    border-color: white;
-    box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
+/* Google Button */
+.button {
+  background: #F2F2F2;
+  width: 300px;
+  height: 40px;
+  size: 50px;
+  border-radius: 10px;
+  border-color: white;
+  box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
 
-    display: flex;
-  }
+  display: flex;
+}
 
 /* Welcome Home Page */
-  .welcomeImg {
-    position: relative;
-    top: 100px;
-    height: 100px;
-    margin-bottom: 100px;
-    margin-left: 50px;
-  }
-
-  .rightAccent {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    margin-bottom: -100px;
-    height:100%;
-    width:50%;
-    z-index:-1;
-  }
-
-  .attendanceButton {
-    display: block;
-    height: 250px;
-    width: 650px;
-
-    text-align: left;
-    border-style: none;
-    padding-top: 130px;
-    padding-left: 25px;
-    background-color: #F2F2F2;
-    color: black;
-    font-size: 38px;
-    font-family: 'Poppins', sans-serif;
-    border-radius: 27.23px;
-    margin-top: 50px;
-    margin-left: 25px;
-    cursor: pointer;
-  }
-
-  .attendanceButton:hover {
-    background-color: black;
-    color: white;
-  }
-
-  .leftImage {
-    transform: rotate(148.67deg);
-    position: absolute;
-    left: -704px;
-    top: -300px;
-    width: auto;
-    z-index: -1;
-  }
-
-  .rightImage {
-    transform: rotate(270.67deg);
-    position: absolute;
-    bottom: -50px;
-    right: -100px;
-    height: 70%;
-    width: auto;
-    z-index: -1;
-  }
-
-  #group {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 5%;
-    margin-left: -30%;
-  }
-
-  button.available {
-    width: 300px;
-    height: 70px;
-    margin: 5px;
-
-    justify-content: center;
-
-    background-color: white;
-    border-color: BLACK;
-    border-radius: 46px;
-
-    font-family: 'Poppins', sans-serif;
-    color: BLACK;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-    cursor: pointer;
+.welcomeImg {
+  position: relative;
+  top: 100px;
+  height: 100px;
+  margin-bottom: 100px;
+  margin-left: 50px;
 }
+
+.rightAccent {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-bottom: -100px;
+  height: 100%;
+  width: 50%;
+  z-index: -1;
+}
+
+.attendanceButton {
+  display: block;
+  height: 250px;
+  width: 650px;
+
+  text-align: left;
+  border-style: none;
+  padding-top: 130px;
+  padding-left: 25px;
+  background-color: #F2F2F2;
+  color: black;
+  font-size: 38px;
+  border-radius: 27.23px;
+  margin-top: 50px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.attendanceButton:hover {
+  background-color: black;
+  color: white;
+}
+
+.leftImage {
+  transform: rotate(148.67deg);
+  position: absolute;
+  left: -704px;
+  top: -300px;
+  width: auto;
+  z-index: -1;
+}
+
+.rightImage {
+  transform: rotate(270.67deg);
+  position: absolute;
+  bottom: -50px;
+  right: -100px;
+  height: 70%;
+  width: auto;
+  z-index: -1;
+}
+
+#group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 5%;
+  margin-left: -30%;
+}
+
+button.available {
+  width: 300px;
+  height: 70px;
+  margin: 5px;
+
+  justify-content: center;
+
+  background-color: white;
+  border-color: BLACK;
+  border-radius: 46px;
+
+  color: BLACK;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 65px;
+  cursor: pointer;
+}
+
 button.available:hover {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
+
 #onboarding {
   margin-top: 25%;
   margin-left: 6%;
@@ -144,23 +144,25 @@ button.available:hover {
   margin-left: 6%;
   font-size: 180%;
 }
+
 .log-out {
-  font-family: 'Poppins', sans-serif;
-  background-color:#F6F6F6;
+  background-color: #F6F6F6;
   color: #7D7D7D;
   position: absolute;
   width: 5vw;
   height: 2vw;
   right: 10vw;
   top: 98.76px;
-  border-color:white;
+  border-color: white;
   box-shadow: none;
   border-style: none;
   cursor: pointer;
 }
+
 .log-out:hover {
   background: lightgrey;
 }
+
 @media screen and (max-width: 750px) {
   #group {
     flex-direction: column;
@@ -168,11 +170,12 @@ button.available:hover {
     align-items: center;
   }
 
-  .homeButtons{
+  .homeButtons {
     width: 90%;
     height: 40%;
   }
-  .attendanceButton{
+
+  .attendanceButton {
     height: 80%;
     width: 95%;
   }
@@ -199,9 +202,9 @@ button.available:hover {
     background: white;
     border-color: white;
     float: left;
-      width: 8%;
-      padding: 10px;
-      margin-top: 10px;
-      cursor:pointer;
+    width: 8%;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
   }
 }

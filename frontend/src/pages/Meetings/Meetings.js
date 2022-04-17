@@ -3,11 +3,7 @@ import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../../components/Login/Login.js";
 import DateTime from "../../components/DateTime/DateTime.js";
-import DurationPicker from 'react-duration-picker';
 import FormControl from '@mui/material/FormControl';
-import Modal from 'react-modal';
-import moment from "moment";
-import { DataGrid } from '@mui/x-data-grid';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -255,11 +251,6 @@ export default function Home() {
                             </div> */}
 
                             <h3>Duration</h3>
-                            {<DurationPicker
-                                onChange={e => setMeetingDuration(e)}
-                                initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
-                                maxHours={24}
-                            />}
                             <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
                                 <option defaultValue="General">General</option>
                                 <option defaultValue="Design">Design</option>
