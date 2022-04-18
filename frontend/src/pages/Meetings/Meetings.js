@@ -190,8 +190,8 @@ export default function Home() {
         return (
             <Layout
                 headerTitle="Meetings"
-                background={<div className="floatRight">
-                    <img src="/images/rightImg.png" class="floatRight"></img>
+                background={<div className="floatRightMeetings">
+                    <img src="/images/rightImg.png" class="floatRightMeetings"></img>
                 </div>}
             >
                 <div className="float-container">
@@ -213,7 +213,7 @@ export default function Home() {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h3>Date/Time</h3>
+                        <h3 class="meetingsHeader">Date/Time</h3>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DateTimePicker
                                 renderInput={(props) => <TextField {...props} />}
@@ -224,8 +224,8 @@ export default function Home() {
                                 }}
                             />
                         </LocalizationProvider>
-                        {/* <div>
-                                <DataGrid
+                        <div>
+                                {/* <DataGrid
                                     rows={meetings}
                                     columns={columns}
                                     sx={{ fontFamily: "Poppins,sans-serif", fontWeight: 200, fontSize: "70%" }}
@@ -240,10 +240,10 @@ export default function Home() {
                                 />
                                 {meetingSelection.length != 0 && <button onClick={deleteMeetings} className="button">
                                     Delete Meetings
-                                </button>}
-                            </div> */}
+                                </button>} */}
+                            </div>
 
-                        <h3>Duration</h3>
+                        <h3 className="meetingsHeader">Duration</h3>
                         <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
                             <option defaultValue="General">General</option>
                             <option defaultValue="Design">Design</option>

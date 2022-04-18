@@ -1,3 +1,15 @@
+.meetingsHeader {
+  margin: 1%;
+}
+
+.floatRightMeetings {
+  width: 73%;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  top: -10px;
+}
+
 #grouping {
   flex-direction: column;
   justify-content: center;

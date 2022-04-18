@@ -247,34 +247,43 @@ export default function AttendanceHistory() {
         },
     ]);
     return !loaded ? null : (
-            <Layout
-                headerFixed
-                headerTitle="Attendance History"
-            >
-                <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
-                    <option defaultValue="Design">Design</option>
-                    <option defaultValue="Product">Product</option>
-                    <option defaultValue="Engineering">Engineering</option>
-                </select>
-                {/* <h2>General Score: {generalScore}</h2> */}
-                {/* {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
-                {memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
-                {memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>} */}
-                <div style={{ height: 600, width: "100%", fontFamily: "Poppins,sans-serif" }}>
-                    <DataGrid
-                        rows={meetingsWithAttendance}
-                        columns={columns}
-                        sortModel={sortModel}
-                        onSortModelChange={(model) => setSortModel(model)}
-                    />
-                </div>
-                <button onClick={changeAdminStatus} className="button">
+            <><Layout
+            headerFixed
+            headerTitle="Attendance History"
+            
+        >
+                        <img src='/images/dmCard.png' className="dmCard"></img>
+            {/* <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
+<option defaultValue="Design">Design</option>
+<option defaultValue="Product">Product</option>
+<option defaultValue="Engineering">Engineering</option>
+</select> */}
+            {/* <h2>General Score: {generalScore}</h2> */}
+            {/* {(generalScore >= 4) ? (generalScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>}
+{memberType != "Member" && <h2>{memberType} Score: {roleScore}</h2>}
+{memberType != "Member" && (roleScore >= 4) ? (roleScore >= 5) ? <h2>Terminated</h2> : <h2>Probation</h2> : <h2>Good Standing</h2>} */}
+
+            <div style={{ height: 600, width: "100%", fontFamily: "Poppins,sans-serif" }}>
+                <DataGrid
+                    rows={meetingsWithAttendance}
+                    columns={columns}
+                    sortModel={sortModel}
+                    onSortModelChange={(model) => setSortModel(model)} />
+            </div>
+
+            <div className="buttonGrouping">
+                <button onClick={changeAdminStatus} className="adminButton">
                     Become Admin
                 </button>
-                <button onClick={logOut} className="button">
-                    Log Out
-                </button>
-                <button onClick={checkInPage} className="button">Check In Page</button>
-            </Layout>
+                {/* <button onClick={logOut} className="button">
+Log Out
+</button> */}
+                {/* <button onClick={checkInPage} className="button">Check In Page</button> */}
+            </div>
+        </Layout>
+        
+        <Fragment>
+                <img src='/images/gmCard.png' className="gmCard"></img>
+        </Fragment></>
     );
 }

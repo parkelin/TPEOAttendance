@@ -2,18 +2,39 @@
   width: 100%;
 }
 
-.button {
+.dmCard {
+  position: relative;
+  width: 10%;
+  right: -1500px;
+  margin-bottom: 1%;
+  margin-top: 0%;
+}
+
+/* .gmCard {
+  position: relative;
+  left: -60px;
+} */
+
+.adminButton {
+  text-align: center;
   background: white;
   position: relative;
   width: 300px;
   height: 40px;
-  left: 50px;
+  left: -50px;
   top: 50px;
   size: 50px;
   border-radius: 10px;
   border-color: white;
   box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
   cursor: pointer;
+}
+
+.buttonGrouping {
+  text-align: center;
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-end;
 }
 
 .previousButton {

@@ -12,6 +12,7 @@
     "@mui/lab": "^5.0.0-alpha.65",
     "@mui/material": "^5.6.1",
     "@mui/x-data-grid": "^5.2.2",
+    "chart.js": "^3.7.1",
     "firebase": "^9.6.1",
     "googleapis": "^92.0.0",
     "jwt-decode": "^3.1.2",
@@ -26,7 +27,8 @@
     "react-router-dom": "5.3.0",
     "react-scripts": "4.0.0",
     "react-table": "^7.7.0",
-    "sass": "^1.49.0"
+    "sass": "^1.49.0",
+    "victory": "^36.3.2"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
