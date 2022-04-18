@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-#wrapper {
-  width: 100%;
-}
+/* #heading {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  flex-direction: column;
+} */
 
-ul {
-  display: grid;
-  justify-content: space-between;
-  grid-template-columns: 1fr 1fr 1fr;
-}
+/* #heading {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  flex-direction: column;
+} */
 
 .button {
   background: white;
@@ -24,54 +26,54 @@ ul {
     cursor: pointer;
 }
 
-.previousButton {
+/* .previousButton {
   padding-left: 5px;
   background-color: white;
-}
+} */
 
-h2 {
+/* h2 {
   font-family: 'Poppins', sans-serif;
   font-style: bold;
   color: black;
   font-weight: 500;
   font-size: 41.89px;
   line-height: 63px;
-}
+} */
 
-.createMeeting {
+/* .createMeeting {
   font-family: 'Poppins', sans-serif;
   margin-right: 70%;
-}
+} */
 
-.floatRight {
+/* .floatRight {
   width: 73%;
   position: absolute;
   right: 0px;
   height: 100%;
   top: 0px;
-}
+} */
 
-h3 {
+/* h3 {
   font-family: 'Poppins', sans-serif;
   font-style: bold;
   padding-left: 0px;
-}
+} */
 
-#row {
+/* #row {
   flex-direction: row;
-}
+} */
 
-.header {
+/* .header {
   padding-top: 25px;
   text-align: center;
   overflow: hidden;
   width: 100%;
-}
+} */
 
-.float-container {
+/* .float-container {
   padding: 10px;
   display: table;
-}
+} */
 
 .float-child.left {
   margin-right: 0px;
@@ -126,18 +128,6 @@ h3 {
   height: 40px;
 }
 
-#heading {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  flex-direction: column;
-}
-
-#heading {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  flex-direction: column;
-}
-
 .backArrow {
     border-style: none;
     box-shadow: none;
@@ -173,7 +163,7 @@ h3 {
   cursor:default;
 }
 
-.log-out {
+/* .log-out {
   font-family: 'Poppins', sans-serif;
   background-color:#F6F6F6;
   color: #7D7D7D;
@@ -186,7 +176,7 @@ h3 {
   box-shadow: none;
   border-style: none;
   cursor: pointer;
-}
+} */
 .log-out:hover {
   font-family: 'Poppins', sans-serif;
   background: lightgrey;
