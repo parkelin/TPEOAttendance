@@ -1,8 +1,8 @@
 import "./attendancehistory.css";
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
+import Layout from "../../components/Layout/Layout";
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function AttendanceHistory() {
@@ -247,16 +247,10 @@ export default function AttendanceHistory() {
         },
     ]);
     return !loaded ? null : (
-            <Fragment>
-                 <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-                 </style>
-                {/* Attendance History & Previous Button */}
-                <div id="heading">
-                    <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
-                    <h2>Attendance History</h2>
-                </div>
-
+            <Layout
+                headerFixed
+                headerTitle="Attendance History"
+            >
                 <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
                     <option defaultValue="Design">Design</option>
                     <option defaultValue="Product">Product</option>
@@ -281,6 +275,6 @@ export default function AttendanceHistory() {
                     Log Out
                 </button>
                 <button onClick={checkInPage} className="button">Check In Page</button>
-            </Fragment>
+            </Layout>
     );
 }

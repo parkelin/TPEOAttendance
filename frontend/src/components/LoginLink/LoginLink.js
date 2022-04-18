@@ -30,9 +30,7 @@
      );
    }
    return (
-     <div>
-       <GoogleButton type="light" onClick={googleLogin} className='button'/>
-     </div>
+       <GoogleButton type="light" onClick={googleLogin}/>
    );
  }
  

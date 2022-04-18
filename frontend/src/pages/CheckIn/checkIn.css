@@ -8,36 +8,35 @@
 }
 
 #grouping button {
-    width: 819px;
-    height: 100px;
-    margin: 8px;
+  width: 819px;
+  height: 100px;
+  margin: 8px;
 
-    justify-content: center;
-    border-radius: 46px;
-    border-style: none;
+  justify-content: center;
+  border-radius: 46px;
+  border-style: none;
 
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 38px;
-    line-height: 65px;
-    box-shadow: none;
+  color: white;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 65px;
+  box-shadow: none;
 }
 
 #grouping button.available {
-    background-color: #F2F2F2;
-    color: black;
-    border-color: BLACK;
-    border-style: solid;
-    cursor: pointer;
+  background-color: #F2F2F2;
+  color: black;
+  border-color: BLACK;
+  border-style: solid;
+  cursor: pointer;
 }
 
 #grouping button.available:hover {
 
-    background-color: black;
-    border-radius: 46px;
-    color: white;
+  background-color: black;
+  border-radius: 46px;
+  color: white;
 }
 
 /* .previous {
@@ -52,99 +51,95 @@
   } */
 /*   
   .header h2 {
-    font-family: 'Poppins', sans-serif;
-    font-style: bold;
+        font-style: bold;
     float: left;
   } */
-  
-  #row {
-    flex-direction: row;
-  }
 
-  /* .header {
+#row {
+  flex-direction: row;
+}
+
+/* .header {
     padding-top: 20px;
     text-align: center;
     overflow: hidden;
     width: 100%;
   } */
-  
-  .float-container {
-    padding: 20px;
-  }
-  
-  .float-child.left {
-    margin-right: 20px;
-  }
-  
-  .float-child {
-    width: 50%;
-    float: left;
-    padding: 20px;
-  }
-  
-  .header-right {
-    float: right;
-  }
 
-  .password-group {
-    flex-direction: column;
-    display: flex;
+.float-container {
+  padding: 20px;
+}
+
+.float-child.left {
+  margin-right: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+}
+
+/* .header-right {
+  float: right;
+} */
+
+.password-group {
+  flex-direction: column;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  }
-  /* Password Page */
-  .checkIn {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 80px;
-    text-align: center;
-  }
+}
 
-  .text1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-  }
+/* Password Page */
+.checkIn {
+  font-weight: 700;
+  font-size: 80px;
+  text-align: center;
+}
 
-  .text2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-  }
+.text1 {
+  font-size: 20px;
+}
 
-  .passBox {
-    margin-top: 10px;
-    border: 3px solid #000000;
-    box-sizing: border-box;
-    border-radius: 32px;
-    height: 50px;
-    width: 550px;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 140%;
-  }
+.text2 {
+  font-size: 20px;
+}
 
-  .passwordButton {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    margin-top: 50px;
-    height: 8%;
-    width: 15%;
-    color: white;
-    background-color: black;
-    border-radius: 46px;
-  }
+.passBox {
+  margin-top: 10px;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+  border-radius: 32px;
+  height: 50px;
+  width: 550px;
+  padding: 20px;
+  font-size: 140%;
+}
+
+.passwordButton {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 50px;
+  height: 8%;
+  width: 15%;
+  color: white;
+  background-color: black;
+  border-radius: 46px;
+}
 
 
-  /* The alert message box */
+/* The alert message box */
 .alert {
   margin: auto;
   width: 50%;
   position: absolute;
   bottom: 0;
   padding: 20px;
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
+  /* Red */
   color: white;
   margin-bottom: 15px;
 }
@@ -163,12 +158,11 @@
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
-  font-family: 'Poppins', sans-serif;
   color: black;
 }
 
 @media screen and (max-width: 750px) {
-  #grouping button{
+  #grouping button {
     width: 350px;
     font-size: 30px;
   }
@@ -181,9 +175,9 @@
   .passBox {
     width: 100%;
     padding: 20px;
-    font-family: 'Poppins', sans-serif;
   }
-  .password-group{
+
+  .password-group {
     width: 100%;
   }
 }
@@ -198,14 +192,12 @@
 }
 
 .setText {
-  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 50px;
   text-align: center;
 }
 
 .bottomText {
-  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 30px;
   text-align: center;

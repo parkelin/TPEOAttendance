@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* #heading {
   margin-top: 20px;
@@ -31,8 +30,12 @@
   background-color: white;
 } */
 
+<<<<<<< HEAD
 /* h2 {
   font-family: 'Poppins', sans-serif;
+=======
+h2 {
+>>>>>>> 9b8670144101db997ef569b3e03c1af157e8270e
   font-style: bold;
   color: black;
   font-weight: 500;
@@ -40,8 +43,12 @@
   line-height: 63px;
 } */
 
+<<<<<<< HEAD
 /* .createMeeting {
   font-family: 'Poppins', sans-serif;
+=======
+.createMeeting {
+>>>>>>> 9b8670144101db997ef569b3e03c1af157e8270e
   margin-right: 70%;
 } */
 
@@ -53,8 +60,12 @@
   top: 0px;
 } */
 
+<<<<<<< HEAD
 /* h3 {
   font-family: 'Poppins', sans-serif;
+=======
+h3 {
+>>>>>>> 9b8670144101db997ef569b3e03c1af157e8270e
   font-style: bold;
   padding-left: 0px;
 } */
@@ -88,9 +99,9 @@
   float: left;
 }
 
-.header-right {
+/* .header-right {
   float: right;
-}
+} */
 
 /* The alert message box */
 .alert {
@@ -114,8 +125,7 @@
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
-  font-family: 'Poppins', sans-serif;
-  color: black;
+    color: black;
 }
 
 /* Attendance History */
@@ -163,9 +173,14 @@
   cursor:default;
 }
 
+<<<<<<< HEAD
 /* .log-out {
   font-family: 'Poppins', sans-serif;
   background-color:#F6F6F6;
+=======
+.log-out {
+    background-color:#F6F6F6;
+>>>>>>> 9b8670144101db997ef569b3e03c1af157e8270e
   color: #7D7D7D;
   position: absolute;
   width: 5vw;
@@ -178,12 +193,10 @@
   cursor: pointer;
 } */
 .log-out:hover {
-  font-family: 'Poppins', sans-serif;
   background: lightgrey;
 }
 
 .searchBox {
-  font-family: 'Poppins', sans-serif;
   float: right;
   border-color: transparent;
   box-shadow: none;

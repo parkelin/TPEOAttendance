@@ -1,13 +1,7 @@
 import "./meetings.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import Login from "../../components/Login/Login.js";
-import DateTime from "../../components/DateTime/DateTime.js";
-import DurationPicker from 'react-duration-picker';
 import FormControl from '@mui/material/FormControl';
-import Modal from 'react-modal';
-import moment from "moment";
-import { DataGrid } from '@mui/x-data-grid';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -16,6 +10,7 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 // import rightImg from './rightImg.png';
 import { Select, MenuItem } from '@mui/material';
 import Box from '@mui/material/Box';
+import Layout from "../../components/Layout/Layout";
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
@@ -193,39 +188,33 @@ export default function Home() {
     ]);
     if (admin && loaded) {
         return (
-            <Fragment>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-                </style>
-
-                <div className="header">
-                    <button className="backArrow"><img src='/images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
-                    <h2 className="createMeeting"> Create Meeting </h2>
-                    <button onClick={logOut} className="header-right button"> Log Out </button>
-                </div>
-                <br></br><br></br>
-
+            <Layout
+                headerTitle="Meetings"
+                background={<div className="floatRight">
+                    <img src="/images/rightImg.png" class="floatRight"></img>
+                </div>}
+            >
                 <div className="float-container">
                     <div className="float-child">
                         <h3>Input Meeting</h3>
                         <InputLabel id="demo-simple-select-label">Select...</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={10}
-                                label="Select"
-                            >
-                                <MenuItem value={10}>General</MenuItem>
-                                <MenuItem value={20}>Engineering</MenuItem>
-                                <MenuItem value={30}>Design</MenuItem>
-                                <MenuItem value={30}>Product</MenuItem>
-                            </Select>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={10}
+                            label="Select"
+                        >
+                            <MenuItem value={10}>General</MenuItem>
+                            <MenuItem value={20}>Engineering</MenuItem>
+                            <MenuItem value={30}>Design</MenuItem>
+                            <MenuItem value={30}>Product</MenuItem>
+                        </Select>
 
                         <br></br>
                         <br></br>
                         <br></br>
-                            <h3>Date/Time</h3>
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <h3>Date/Time</h3>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DateTimePicker
                                 renderInput={(props) => <TextField {...props} />}
                                 label="Date and Time"
@@ -235,7 +224,7 @@ export default function Home() {
                                 }}
                             />
                         </LocalizationProvider>
-                            {/* <div>
+                        {/* <div>
                                 <DataGrid
                                     rows={meetings}
                                     columns={columns}
@@ -254,42 +243,35 @@ export default function Home() {
                                 </button>}
                             </div> */}
 
-                            <h3>Duration</h3>
-                            {<DurationPicker
-                                onChange={e => setMeetingDuration(e)}
-                                initialDuration={{ hours: 1, minutes: 0, seconds: 0 }}
-                                maxHours={24}
-                            />}
-                            <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
-                                <option defaultValue="General">General</option>
-                                <option defaultValue="Design">Design</option>
-                                <option defaultValue="Engineering">Engineering</option>
-                                <option defaultValue="Product">Product</option>
-                            </select>
-                            <FormControl
-                                id="formControlsTextB"
-                                type="text"
-                                label="Text"
-                                placeholder="Password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                            />
+                        <h3>Duration</h3>
+                        <select defaultValue={meetingType} onChange={e => setMeetingType(e.target.value)}>
+                            <option defaultValue="General">General</option>
+                            <option defaultValue="Design">Design</option>
+                            <option defaultValue="Engineering">Engineering</option>
+                            <option defaultValue="Product">Product</option>
+                        </select>
+                        <FormControl
+                            id="formControlsTextB"
+                            type="text"
+                            label="Text"
+                            placeholder="Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
 
-                            <button onClick={submitMeeting}>
-                                Submit Meeting
-                            </button>
+                        <button onClick={submitMeeting}>
+                            Submit Meeting
+                        </button>
                     </div>
 
-                    <div className="floatRight">
-                        <img src="/images/rightImg.png" class="floatRight"></img>
-                    </div>
+
 
                 </div>
                 {submissionError && <div className="alert">
                     <span className="closebtn" onClick={() => setSubmissionError(false)}>&times;</span>
                     Meeting name and Password can't be blank
                 </div>}
-            </Fragment>
+            </Layout>
 
         );
     } else {

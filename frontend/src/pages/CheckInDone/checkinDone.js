@@ -145,9 +145,7 @@ export default function CheckIn() {
   const [meetings, setMeetings] = useState([]);
   return !loaded ? null : (
     <><><Fragment>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-      </style>
+
       {/* <div className="header">
         <button onClick={() => history.push("")} className="previous">&larr;
         </button>

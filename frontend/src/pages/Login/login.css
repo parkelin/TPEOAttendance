@@ -1,27 +1,35 @@
-.main-container {
+.leftImg {
+  left: -94px;
+  bottom: 0px;
+  width: 60%;
+}
+
+.rightImg {
+  right: 0px;
+  top: 0px;
+  width: 60%;
+}
+
+h1 {
+  font-style: bold;
+  font-weight: 520;
+  line-height: 164px;
+  font-size: 100px;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  text-align: center;
+  font-size: 100px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.signInGroup {
+  height: 100%;
+  display: flex;
+  align-self: center;
   justify-content: center;
-}
-
-.input {
-  height: 54px;
-  width: min-content;
-  padding: 12px 80px 12px 12px;
-  margin-top: 24px;
-  border-radius: 5px;
-}
-
-.button {
-  color: grey;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500px;
-  font-size: 25px;
-  font-style: normal;
-  margin-top: 220px;
-}
-
-.signup-link {
-  color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

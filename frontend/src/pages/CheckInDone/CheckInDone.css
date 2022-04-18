@@ -12,16 +12,16 @@ ul {
 
 .button {
   background: white;
-    position: relative;
-    width: 300px;
-    height: 40px;
-    left: 50px;
-    top: 50px;
-    size: 50px;
-    border-radius: 10px;
-    border-color: white;
-    box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
-    cursor: pointer;
+  position: relative;
+  width: 300px;
+  height: 40px;
+  left: 50px;
+  top: 50px;
+  size: 50px;
+  border-radius: 10px;
+  border-color: white;
+  box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
+  cursor: pointer;
 }
 
 .previousButton {
@@ -30,7 +30,6 @@ ul {
 }
 
 h2 {
-  font-family: 'Poppins', sans-serif;
   font-style: bold;
   color: black;
   font-weight: 500;
@@ -39,7 +38,6 @@ h2 {
 }
 
 .createMeeting {
-  font-family: 'Poppins', sans-serif;
   margin-right: 70%;
 }
 
@@ -52,7 +50,6 @@ h2 {
 }
 
 h3 {
-  font-family: 'Poppins', sans-serif;
   font-style: bold;
   padding-left: 0px;
 }
@@ -86,14 +83,15 @@ h3 {
   float: left;
 }
 
-.header-right {
+/* .header-right {
   float: right;
-}
+} */
 
 /* The alert message box */
 .alert {
   padding: 20px;
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
+  /* Red */
   color: white;
   margin-bottom: 15px;
 }
@@ -112,7 +110,6 @@ h3 {
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
-  font-family: 'Poppins', sans-serif;
   color: black;
 }
 
@@ -139,22 +136,22 @@ h3 {
 }
 
 .backArrow {
-    border-style: none;
-    box-shadow: none;
-    background: white;
-    border-color: white;
-    float: left;
-    width: 8%;
-    padding: 10px;
-    margin-top: 10px;
-    cursor:pointer;
+  border-style: none;
+  box-shadow: none;
+  background: white;
+  border-color: white;
+  float: left;
+  width: 8%;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 #filter {
   padding-left: 40px;
   flex-direction: column;
   padding-bottom: 30px;
-  
+
 }
 
 #filter button {
@@ -168,32 +165,31 @@ h3 {
   border-radius: 5px;
   cursor: pointer;
 }
+
 #filter .unclickable {
   margin-right: 20px;
-  cursor:default;
+  cursor: default;
 }
 
 .log-out {
-  font-family: 'Poppins', sans-serif;
-  background-color:#F6F6F6;
+  background-color: #F6F6F6;
   color: #7D7D7D;
   position: absolute;
   width: 5vw;
   height: 2vw;
   right: 10vw;
   top: 98.76px;
-  border-color:white;
+  border-color: white;
   box-shadow: none;
   border-style: none;
   cursor: pointer;
 }
+
 .log-out:hover {
-  font-family: 'Poppins', sans-serif;
   background: lightgrey;
 }
 
 .searchBox {
-  font-family: 'Poppins', sans-serif;
   float: right;
   border-color: transparent;
   box-shadow: none;
@@ -213,29 +209,37 @@ h3 {
   color: #777777;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
   color: #B3B3B3;
 }
-::-moz-placeholder { /* Firefox 19+ */
+
+::-moz-placeholder {
+  /* Firefox 19+ */
   color: #B3B3B3;
 }
-:-ms-input-placeholder { /* IE 10+ */
+
+:-ms-input-placeholder {
+  /* IE 10+ */
   color: #B3B3B3;
 }
-:-moz-placeholder { /* Firefox 18- */
+
+:-moz-placeholder {
+  /* Firefox 18- */
   color: #B3B3B3;
 }
 
 .adminButtons {
-  display:grid;
+  display: grid;
   width: 60%;
   grid-template-columns: 1fr 1fr;
 }
+
 .attendanceButton {
   display: block;
 }
 
-.welcome{
+.welcome {
   text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
   font-size: 1000%;
   margin-left: 20px;
@@ -244,10 +248,12 @@ h3 {
   line-height: 164px;
   color: white;
 }
+
 @media screen and (max-width: 750px) {
   ul {
     grid-template-columns: 1fr;
   }
+
   .searchBox {
     display: inline-block;
     width: 80%;
@@ -256,18 +262,22 @@ h3 {
     margin-top: 5%;
     height: 20px;
   }
-  .adminButtons{
+
+  .adminButtons {
     grid-template-columns: 1fr;
     width: 90%;
   }
-  .attendanceButton{
+
+  .attendanceButton {
     height: 80%;
     width: 95%;
   }
-  .welcome{
+
+  .welcome {
     margin-top: 20px;
     font-size: 450%;
   }
+
   .log-out {
     width: 40%;
     height: 40px;
@@ -275,7 +285,8 @@ h3 {
     right: 20px;
     margin-bottom: 40px;
   }
-  .rightAccent{
+
+  .rightAccent {
     top: -200px;
     right: -20px;
     width: 100%;

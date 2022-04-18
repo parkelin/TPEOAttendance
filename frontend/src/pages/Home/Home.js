@@ -1,11 +1,9 @@
 import "./home.css";
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
 // import welcome from './welcome.png';
 // import rightAccent from './rightAccent.png';
-import DatePicker from 'sassy-datepicker';
 // import accent1 from './accent1.png';
 // import rightAccent2 from './tpeoaccent-04.svg';
 const { default: jwtDecode } = require("jwt-decode");
@@ -54,18 +52,6 @@ export default function Home() {
     }, []);
 
 
-    function Example() {
-        const [date, setDate] = useState(new Date());
-
-        const onChange = newDate => {
-            console.log(`New date selected - ${newDate.toString()}`);
-            setDate(newDate);
-        };
-
-        return <DatePicker onChange={onChange} selected={date} />;
-    }
-
-
     async function checkInPage() {
         history.push("/checkin")
     }
@@ -101,9 +87,9 @@ export default function Home() {
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
-            <img src={image1} className="leftImage"></img>
-            <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
-            <img src={image1} className="rightImage"></img>
+            <img src='/images/accent1.png' className="leftImage"></img>
+            <button className="backArrow"><img src='/images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
+            <img src='/images/accent1.png' className="rightImage"></img>
             <div className="heading">
                 <h1 className="title-text"></h1>
             </div>
@@ -123,9 +109,6 @@ export default function Home() {
 
         </Fragment> :
             <Fragment>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-                </style>
                 <button className="log-out" onClick={logOut}>Log Out</button>
                 <h3 className="welcome">Welcome</h3>
 
@@ -137,7 +120,7 @@ export default function Home() {
                 {/* Attendance & History Buttons */}
                 <div className="homeButtons">
                     <button onClick={() => checkInPage()} className="attendanceButton">
-                        Attendance
+                        Check In 
                     </button>
                     <button onClick={() => attendanceHistory()} className="attendanceButton">
                         History

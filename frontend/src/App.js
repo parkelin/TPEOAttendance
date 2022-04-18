@@ -1,9 +1,8 @@
-import "./style.css";
+import "./app.css";
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Home from "./pages/Home/Home.js";
-import Login from "./pages/GoogleSignIn/GoogleSignIn.js";
+import Login from "./pages/Login/Login.js";
 import Admin from "./pages/Admin/Admin.js";
 import CheckIn from "./pages/CheckIn/CheckIn.js";
 import Password from "./pages/Password/Password.js";

@@ -92,9 +92,7 @@ export default function Password() {
   const [submissionError, setSubmissionError] = useState(false);
   return !loaded ? null : !done ? (
     <Fragment>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-      </style>
+
       <div className="password-group">
         <h2 className="checkIn">Check In</h2>
         <p className="text1">Enter your passcode in the box below. This is a specialized key</p>
@@ -111,7 +109,7 @@ export default function Password() {
       </div>}
     </Fragment>
   ) : <Fragment>
-        <button className="backArrow"><img src='./images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
+        <button className="backArrow"><img src='/images/Arrow.svg' onClick={() => history.push("/admin")} /></button>
         <img src="/images/doneImg.png" className="done"></img>
         <h3 className="setText">You're All Set!</h3>
         <h5 className="bottomText">{user.name} has been checked in to {meeting.type} Meeting "{meeting.name}" at {(today.getMonth()+1)+'/'+(today.getDay())+'/'+today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()}</h5>
