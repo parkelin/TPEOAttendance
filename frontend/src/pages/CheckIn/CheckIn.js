@@ -1,6 +1,7 @@
 import "./checkIn.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import Layout from '../../components/Layout/Layout'
 
 const { default: jwtDecode } = require("jwt-decode");
 
@@ -101,12 +102,6 @@ export default function CheckIn() {
     }, [delay]);
   }
 
-
-  useInterval(() => {
-    // Your custom logic here
-    setDate(Math.round(Date.now() / 1000));
-  }, 1000);
-
   async function signIn(type) {
     let meeting = null;
     if (type == "General") {
@@ -144,19 +139,10 @@ export default function CheckIn() {
   const [loaded, setLoaded] = useState(false);
   const [meetings, setMeetings] = useState([]);
   return !loaded ? null : (
-    <><><Fragment>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-      </style>
-      {/* <div className="header">
-        <button onClick={() => history.push("")} className="previous">&larr;
-        </button>
-        <h2>Check In</h2>
-      </div> */}
-      <div className="heading">
-        <h1 className="title-text"></h1>
-      </div>
-
+    <Layout
+      headerTitle="Check In"
+      headerFixed
+    >
       <div id="grouping">
         <button onClick={() => signIn("General")} className={(general != null && !userInfo.hasOwnProperty(general.id) && date >= Math.round(Date.parse(general.start) / 1000) && date < Math.round(Date.parse(general.end) / 1000)) ? "available" : "unavailable"}>
           General Meeting
@@ -174,7 +160,6 @@ export default function CheckIn() {
           Engineering Meeting
         </button>
       </div>
-    </Fragment></><div>
-      </div></>
+    </Layout>
   );
 }

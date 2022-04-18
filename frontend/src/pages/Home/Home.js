@@ -5,7 +5,6 @@ import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
 // import welcome from './welcome.png';
 // import rightAccent from './rightAccent.png';
-import DatePicker from 'sassy-datepicker';
 // import accent1 from './accent1.png';
 // import rightAccent2 from './tpeoaccent-04.svg';
 const { default: jwtDecode } = require("jwt-decode");
@@ -52,18 +51,6 @@ export default function Home() {
 
         loadCredentials();
     }, []);
-
-
-    function Example() {
-        const [date, setDate] = useState(new Date());
-
-        const onChange = newDate => {
-            console.log(`New date selected - ${newDate.toString()}`);
-            setDate(newDate);
-        };
-
-        return <DatePicker onChange={onChange} selected={date} />;
-    }
 
 
     async function checkInPage() {
@@ -123,9 +110,6 @@ export default function Home() {
 
         </Fragment> :
             <Fragment>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-                </style>
                 <button className="log-out" onClick={logOut}>Log Out</button>
                 <h3 className="welcome">Welcome</h3>
 
@@ -137,7 +121,7 @@ export default function Home() {
                 {/* Attendance & History Buttons */}
                 <div className="homeButtons">
                     <button onClick={() => checkInPage()} className="attendanceButton">
-                        Attendance
+                        Check In 
                     </button>
                     <button onClick={() => attendanceHistory()} className="attendanceButton">
                         History

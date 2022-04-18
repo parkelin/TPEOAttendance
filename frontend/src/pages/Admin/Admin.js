@@ -3,9 +3,6 @@ import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Collapse from "../../components/Collapse/Collapse.js";
 import Login from "../../components/Login/Login.js";
-import DateTime from "../../components/DateTime/DateTime.js";
-import DateTimePicker from 'react-datetime-picker';
-import DurationPicker from 'react-duration-picker';
 import { FormControl } from 'react-bootstrap';
 import Modal from 'react-modal';
 import moment from "moment";
@@ -80,9 +77,6 @@ export default function Admin() {
     const [loaded, setLoaded] = useState(false);
 
     return loaded ? memberType == "Member" ? <Fragment>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-        </style>
         {/* <img src="/images/accent1.png" className="leftImage"></img>
         <img src='/images/rightAccent.png' className="rightImage"></img> */}
         
@@ -104,9 +98,6 @@ export default function Admin() {
         </div>
 
     </Fragment> : <Fragment>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-        </style>
         <button className="log-out" onClick={logOut}>Log Out</button>
         <h3 className="welcome">Welcome</h3>
 
@@ -120,7 +111,7 @@ export default function Admin() {
                 Meetings
             </button>
             <button onClick={() => history.push("/checkin")} className="attendanceButton">
-                Attendance
+                Check In
             </button>
             <button onClick={() => history.push("/history")} className="attendanceButton">
                 History

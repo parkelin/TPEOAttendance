@@ -56,12 +56,6 @@ h3 {
   flex-direction: row;
 }
 
-.header {
-  padding-top: 25px;
-  text-align: center;
-  overflow: hidden;
-  width: 100%;
-}
 
 .float-container {
   padding: 10px;
@@ -81,9 +75,9 @@ h3 {
   float: left;
 }
 
-.header-right {
+/* .header-right {
   float: right;
-}
+} */
 
 /* The alert message box */
 .alert {

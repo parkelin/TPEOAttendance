@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState, Fragment } from "react";
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import { MdArrowDropDown } from "react-icons/md";
+import { ArrowDropDown } from '@mui/icons-material'
 import './style.css'
-
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function Collapse(props) {
@@ -255,77 +254,77 @@ export default function Collapse(props) {
 
     return (
         <div>
-<Accordion>
-            <AccordionSummary
-                expandIcon={<MdArrowDropDown />}
-            >
-                {props.name}
-            </AccordionSummary>
-            <AccordionDetails>
-                <div style={{ flexGrow: 1 }}>
-                    <div id="head" className="row">
-                        <div id="head" className="column">
-                            <h4 className="title">General Meeting</h4>
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ArrowDropDown />}
+                >
+                    {props.name}
+                </AccordionSummary>
+                <AccordionDetails>
+                    <div style={{ flexGrow: 1 }}>
+                        <div id="head" className="row">
+                            <div id="head" className="column">
+                                <h4 className="title">General Meeting</h4>
+                            </div>
+                            <div id="head" className="column">
+                                {generalScore >= 4 ? <h4 className="absent">{generalScore} of 5 absences used</h4>
+                                    : <h4 className="score">{generalScore} of 5 absences used</h4>}
+                            </div>
                         </div>
-                        <div id="head" className="column">
-                            {generalScore >= 4 ? <h4 className="absent">{generalScore} of 5 absences used</h4>
-                                : <h4 className="score">{generalScore} of 5 absences used</h4>}
-                        </div>
-                    </div>
 
-                    <div id="scores" className="row">
-                        <div id="scores" className="column">
-                            <h4>{tardy}</h4>
-                            <h5>Tardies</h5>
+                        <div id="scores" className="row">
+                            <div id="scores" className="column">
+                                <h4>{tardy}</h4>
+                                <h5>Tardies</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{unexcused}</h4>
+                                <h5>Unexcused</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{excused}</h4>
+                                <h5>Excused</h5>
+                            </div>
                         </div>
-                        <div id="scores" className="column">
-                            <h4>{unexcused}</h4>
-                            <h5>Unexcused</h5>
+                        <div id="head" className="row">
+                            <div id="head" className="column">
+                                <h4 className="title">{props.type} Meeting</h4>
+                            </div>
+                            <div id="head" className="column">
+                                {roleScore >= 4 ? <h4 className="absent">{roleScore} of 5 absences used</h4>
+                                    : <h4 className="score">{roleScore} of 5 absences used</h4>}
+                            </div>
                         </div>
-                        <div id="scores" className="column">
-                            <h4>{excused}</h4>
-                            <h5>Excused</h5>
+                        <div id="scores" className="row">
+                            <div id="scores" className="column">
+                                <h4>{roleTardy}</h4>
+                                <h5>Tardies</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{roleUnexcused}</h4>
+                                <h5>Unexcused</h5>
+                            </div>
+                            <div id="scores" className="column">
+                                <h4>{roleExcused}</h4>
+                                <h5>Excused</h5>
+                            </div>
                         </div>
+                        <DataGrid className="grid"
+                            autoHeight
+                            rows={meetings}
+                            columns={columns}
+                            onSelectionModelChange={(newSelectionModel) => {
+                                setMeetingSelection(newSelectionModel);
+                            }}
+                            selectionModel={meetingSelection}
+                            sortModel={sortModel}
+                            onSortModelChange={(model) => setSortModel(model)}
+                        />
+                        {admin ? <button className="exec" onClick={handleAdmin}>Remove Exec</button> : <button className="exec" onClick={handleAdmin}>Make Exec</button>}
                     </div>
-                    <div id="head" className="row">
-                        <div id="head" className="column">
-                            <h4 className="title">{props.type} Meeting</h4>
-                        </div>
-                        <div id="head" className="column">
-                            {roleScore >= 4 ? <h4 className="absent">{roleScore} of 5 absences used</h4>
-                                : <h4 className="score">{roleScore} of 5 absences used</h4>}
-                        </div>
-                    </div>
-                    <div id="scores" className="row">
-                        <div id="scores" className="column">
-                            <h4>{roleTardy}</h4>
-                            <h5>Tardies</h5>
-                        </div>
-                        <div id="scores" className="column">
-                            <h4>{roleUnexcused}</h4>
-                            <h5>Unexcused</h5>
-                        </div>
-                        <div id="scores" className="column">
-                            <h4>{roleExcused}</h4>
-                            <h5>Excused</h5>
-                        </div>
-                    </div>
-                    <DataGrid className="grid"
-                        autoHeight
-                        rows={meetings}
-                        columns={columns}
-                        onSelectionModelChange={(newSelectionModel) => {
-                            setMeetingSelection(newSelectionModel);
-                        }}
-                        selectionModel={meetingSelection}
-                        sortModel={sortModel}
-                        onSortModelChange={(model) => setSortModel(model)}
-                    />
-                    {admin ? <button className="exec" onClick={handleAdmin}>Remove Exec</button> : <button className="exec" onClick={handleAdmin}>Make Exec</button>}
-                </div>
-            </AccordionDetails>
-        </Accordion >
+                </AccordionDetails>
+            </Accordion >
         </div>
-        
+
     )
 }

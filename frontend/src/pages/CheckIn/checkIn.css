@@ -80,9 +80,9 @@
   padding: 20px;
 }
 
-.header-right {
+/* .header-right {
   float: right;
-}
+} */
 
 .password-group {
   flex-direction: column;

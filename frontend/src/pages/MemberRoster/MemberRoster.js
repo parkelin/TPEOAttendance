@@ -3,9 +3,7 @@ import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Collapse from "../../components/Collapse/Collapse.js";
 import Login from "../../components/Login/Login.js";
-import DateTime from "../../components/DateTime/DateTime.js"; 
-import DateTimePicker from 'react-datetime-picker';
-import DurationPicker from 'react-duration-picker';
+import Layout from "../../components/Layout/Layout";
 //import ApiCalendar from 'react-google-calendar-api';
 //import calendarCredentials from "./apiGoogleconfig.json";
 const { default: jwtDecode } = require("jwt-decode");
@@ -109,16 +107,11 @@ export default function MemberRoster() {
     const [search, setSearch] = useState("");
     if (admin && loaded) {
         return (
-
-            <Fragment>
-                <div id="wrapper">
-                    <div id="heading">
-                        {/* BACK ARROW */}
-                        <button className="backArrow"><img src="/images/Arrow.svg" onClick={() => history.push("/admin")} /></button>
-                        
-                        <h2>Member Roster</h2>
-                        <input className="searchBox" type="text" name="Password" placeholder="Search names here" value={search} onChange={(event) => setSearch(event.target.value)} />
-                    </div>
+            <Layout
+                headerTitle="Member Roster"
+                headerRight={ <input className="searchBox" type="text" name="Password" placeholder="Search names here" value={search} onChange={(event) => setSearch(event.target.value)} />}
+                headerFixed
+            >
                     <div id="filter">
                         <button className="unclickable">Sort by: </button>
                         <button style={(filter == "Engineering" ? { backgroundColor: "rgba(218, 233, 251, 0.45)", color: "#8BBEF9" } : {})} onClick={() => changeFilter("Engineering")}>Engineering</button>
@@ -129,9 +122,7 @@ export default function MemberRoster() {
                     {meetings.length > 0 && <ul>
                         {members.map((member, index) => (filter == "" || filter == member.type || (filter == "Executive" && member.admin)) && (search == "" || member.name.toLowerCase().includes(search.toLowerCase())) ? <Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings} /> : null)}
                     </ul>}
-                </div>
-            </Fragment>
-
+            </Layout>
         );
     } else {
         return null;

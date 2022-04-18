@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
 #wrapper {
   width: 100%;
 }
@@ -58,12 +56,12 @@ h3 {
   flex-direction: row;
 }
 
-.header {
+/* .header {
   padding-top: 25px;
   text-align: center;
   overflow: hidden;
   width: 100%;
-}
+} */
 
 .float-container {
   padding: 10px;
@@ -83,9 +81,9 @@ h3 {
   float: left;
 }
 
-.header-right {
+/* .header-right {
   float: right;
-}
+} */
 
 /* The alert message box */
 .alert {
@@ -196,7 +194,8 @@ h3 {
   background-color: #EFEFEF;
   border-radius: 32px;
   height: 50px;
-  width: 30%;
+  width: max-content;
+  min-width: 275px;
   margin-right: 5%;
   margin-top: -2%;
   padding: 20px;

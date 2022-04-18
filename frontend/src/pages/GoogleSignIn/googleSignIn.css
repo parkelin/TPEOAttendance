@@ -1,29 +1,13 @@
 .leftImg {
-  position: absolute;
   left: -94px;
   bottom: 0px;
   width: 60%;
-  height: auto;
 }
 
 .rightImg {
-  position: absolute;
   right: 0px;
   top: 0px;
   width: 60%;
-  height: auto;
-}
-
-.button {
-  background: white;
-  position: relative;
-  width: 300px;
-  height: 40px;
-  size: 50px;
-  border-radius: 10px;
-  border-color: white;
-  box-shadow: 0px 3.10875px 13.2122px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
 }
 
 h1 {
@@ -40,8 +24,12 @@ h1 {
   white-space: nowrap;
 }
 
-#signGroup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.signInGroup {
+  height: 100%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

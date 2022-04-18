@@ -92,9 +92,7 @@ export default function Password() {
   const [submissionError, setSubmissionError] = useState(false);
   return !loaded ? null : !done ? (
     <Fragment>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-      </style>
+
       <div className="password-group">
         <h2 className="checkIn">Check In</h2>
         <p className="text1">Enter your passcode in the box below. This is a specialized key</p>
