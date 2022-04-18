@@ -1,7 +1,6 @@
 import "./meetings.css";
 import { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import Login from "../../components/Login/Login.js";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';

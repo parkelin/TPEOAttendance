@@ -1,7 +1,6 @@
 import "./home.css";
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import Login from "../../components/Login/Login.js";
 import { DataGrid } from '@mui/x-data-grid';
 // import welcome from './welcome.png';
 // import rightAccent from './rightAccent.png';
