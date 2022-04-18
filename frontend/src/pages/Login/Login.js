@@ -1,4 +1,4 @@
-import "./Login.css";
+import "./login.css";
 import LoginLink from "../../components/LoginLink/LoginLink.js";
 import Layout from "../../components/Layout/Layout";
 const { default: jwtDecode } = require("jwt-decode");
