@@ -118,7 +118,7 @@ export default function MemberRoster() {
                         <button style={(filter == "Design" ? { backgroundColor: "rgba(203, 233, 233, 0.47)", color: "#75D0D0" } : {})} onClick={() => changeFilter("Design")}>Design</button>
                         <button style={(filter == "Executive" ? { backgroundColor: "#FFF2E1", color: "#EBA23B" } : {})} onClick={() => changeFilter("Executive")}>Exec Team</button>
                     </div>
-                    {meetings.length > 0 && <ul>
+                    {meetings.length > 0 && <ul className="membersList">
                         {members.map((member, index) => (filter == "" || filter == member.type || (filter == "Executive" && member.admin)) && (search == "" || member.name.toLowerCase().includes(search.toLowerCase())) ? <Collapse key={index} name={member.name} type={member.type} id={member.id} admin={member.admin} meetings={meetings} /> : null)}
                     </ul>}
             </Layout>

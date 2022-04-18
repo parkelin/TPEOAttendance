@@ -2,12 +2,6 @@
   width: 100%;
 }
 
-ul {
-  display: grid;
-  justify-content: space-between;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
 .button {
   background: white;
   position: relative;

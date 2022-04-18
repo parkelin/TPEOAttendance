@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-ul {
+.membersList {
   display: grid;
   justify-content: space-between;
   grid-template-columns: 1fr 1fr 1fr;
