@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
 import Layout from "../../components/Layout/Layout";
+import { VictoryPie } from 'victory';
 
 const { default: jwtDecode } = require("jwt-decode");
 export default function AttendanceHistory() {
@@ -250,9 +251,17 @@ export default function AttendanceHistory() {
             <><Layout
             headerFixed
             headerTitle="Attendance History"
-            
         >
-                        <img src='/images/dmCard.png' className="dmCard"></img>
+            {/* <img src='/images/dmCard.png' className="dmCard"></img> */}
+            <VictoryPie
+                data={[{ y: 35 }]}
+                width={200}
+                height={120}
+                innerRadius={7}
+                // width={30}
+                // radius={1}
+            />
+
             {/* <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
 <option defaultValue="Design">Design</option>
 <option defaultValue="Product">Product</option>
@@ -283,7 +292,7 @@ Log Out
         </Layout>
         
         <Fragment>
-                <img src='/images/gmCard.png' className="gmCard"></img>
+                {/* <img src='/images/gmCard.png' className="gmCard"></img> */}
         </Fragment></>
     );
 }
