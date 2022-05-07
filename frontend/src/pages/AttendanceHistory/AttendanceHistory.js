@@ -253,8 +253,8 @@ export default function AttendanceHistory() {
             headerTitle="Attendance History"
         >
             {/* <img src='/images/dmCard.png' className="dmCard"></img> */}
-            <div id="shell">
-                <div id="shellChart">
+            <div className="shell">
+                <div className="shellChart">
                     <VictoryPie
                         data={[{ x: 1, y: 35 }]}
                         width={200}
@@ -264,7 +264,7 @@ export default function AttendanceHistory() {
                     />
                 </div>
 
-                <div id="shellText">TEXT HERE</div>
+                <div className="shellText">TEXT HERE</div>
             </div>
 
             {/* <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
