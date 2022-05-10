@@ -253,7 +253,7 @@ export default function AttendanceHistory() {
             headerTitle="Attendance History"
         >
             {/* <img src='/images/dmCard.png' className="dmCard"></img> */}
-            <div className="shell1">
+            <div className="shell1"> General Meetings
                 <div className="shellChart1">
                     <VictoryPie
                         data={[{ x: 1, y: 35 }]}
@@ -267,8 +267,6 @@ export default function AttendanceHistory() {
                         style={{ labels: { fontSize: 0} }}
                     />
                 </div>
-
-                {/* <div className="shellText1">TEXT HERE</div> */}
             </div>
 
             <div className="shell2">
@@ -284,9 +282,10 @@ export default function AttendanceHistory() {
                         innerRadius={8}
                         style={{ labels: { fontSize: 0} }}
                     />
+                        {/* <div className="shellText2"> specificMeeting + " Meeting"</div> */}
                 </div>
 
-                {/* <div className="shellText2">TEXT HERE</div> */}
+                {/* <div className="shellText2"> specificMeeting + " Meeting"</div> */}
             </div>
 
             {/* <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>

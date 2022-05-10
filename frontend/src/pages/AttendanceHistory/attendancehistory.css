@@ -1,40 +1,41 @@
 .shell1 {
   width: 250px;
-  height: 100px;
+  height: 90px;
   background: lightGrey;
   border-radius: 100px;
   margin-bottom: 10%;
-  margin-left: 50%;
+  margin-left: 63%;
 }
 
-/* .shellChart1 {
+.shellChart1 {
   width: 300px;
-  height: 100px;
+  height: 200px;
   position: relative;
-  left: 10%;
-} */
+  left: -40%;
+  top: -60%;
+}
 
-/* .shellText1 {
-  background: green;
-  padding: 5px;
-  border-radius: 6px 6px 0 0;
-} */
+.shellText1 {
+
+}
 
 .shell2 {
   width: 250px;
-  height: 100px;
+  height: 90px;
   background: lightgoldenrodyellow;
   border-radius: 100px;
+  margin-top: -15%;
   margin-bottom: 10%;
   margin-left: 80%;
 }
 
-/* .shellChart2 {
+.shellChart2 {
   width: 300px;
-  height: 100px;
+  height: 200px;
   position: relative;
-  left: 10%;
-} */
+  left: -40%;
+  top: -60%;
+}
 
 /* .shellText2 {
   background: green;
