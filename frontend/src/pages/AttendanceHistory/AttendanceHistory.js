@@ -253,18 +253,40 @@ export default function AttendanceHistory() {
             headerTitle="Attendance History"
         >
             {/* <img src='/images/dmCard.png' className="dmCard"></img> */}
-            <div className="shell">
-                <div className="shellChart">
+            <div className="shell1">
+                <div className="shellChart1">
                     <VictoryPie
                         data={[{ x: 1, y: 35 }]}
+                        /*data={[
+                            { x: 1, y: meetingsMissed, label: "a" }
+                            { x: 2, y: 5 - meetingsMissed, label: "b" }
+                        ]}*/
                         width={200}
                         height={120}
-                        innerRadius={7}
-                        style={{ labels: { fill: "white", fontSize: 20, fontWeight: "bold" } }}
+                        innerRadius={8}
+                        style={{ labels: { fontSize: 0} }}
                     />
                 </div>
 
-                <div className="shellText">TEXT HERE</div>
+                {/* <div className="shellText1">TEXT HERE</div> */}
+            </div>
+
+            <div className="shell2">
+                <div className="shellChart2">
+                    <VictoryPie
+                        data={[{ x: 1, y: 35 }]}
+                        /*data={[
+                            { x: 1, y: meetingsMissed, label: "a" }
+                            { x: 2, y: 5 - meetingsMissed, label: "b" }
+                        ]}*/
+                        width={200}
+                        height={120}
+                        innerRadius={8}
+                        style={{ labels: { fontSize: 0} }}
+                    />
+                </div>
+
+                {/* <div className="shellText2">TEXT HERE</div> */}
             </div>
 
             {/* <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>

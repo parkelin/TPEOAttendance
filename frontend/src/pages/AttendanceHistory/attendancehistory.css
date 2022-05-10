@@ -1,3 +1,47 @@
+.shell1 {
+  width: 250px;
+  height: 100px;
+  background: lightGrey;
+  border-radius: 100px;
+  margin-bottom: 10%;
+  margin-left: 50%;
+}
+
+/* .shellChart1 {
+  width: 300px;
+  height: 100px;
+  position: relative;
+  left: 10%;
+} */
+
+/* .shellText1 {
+  background: green;
+  padding: 5px;
+  border-radius: 6px 6px 0 0;
+} */
+
+.shell2 {
+  width: 250px;
+  height: 100px;
+  background: lightgoldenrodyellow;
+  border-radius: 100px;
+  margin-bottom: 10%;
+  margin-left: 80%;
+}
+
+/* .shellChart2 {
+  width: 300px;
+  height: 100px;
+  position: relative;
+  left: 10%;
+} */
+
+/* .shellText2 {
+  background: green;
+  padding: 5px;
+  border-radius: 6px 6px 0 0;
+} */
+
 #wrapper {
   width: 100%;
 }
@@ -297,25 +341,5 @@ h3 {
     top: -200px;
     right: -20px;
     width: 100%;
-  }
-
-  .shell {
-    width: 500px;
-    height: 300px;
-    background: purple;
-    border-radius: 6px;
-  }
-  
-  .shellChart {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    left: 10%;
-  }
-
-  .shellText {
-    background: violet;
-    padding: 5px;
-    border-radius: 6px 6px 0 0;
   }
 }
