@@ -253,39 +253,43 @@ export default function AttendanceHistory() {
             headerTitle="Attendance History"
         >
             {/* <img src='/images/dmCard.png' className="dmCard"></img> */}
-            <div className="shell1"> General Meetings
-                <div className="shellChart1">
-                    <VictoryPie
-                        data={[{ x: 1, y: 35 }]}
-                        /*data={[
-                            { x: 1, y: meetingsMissed, label: "a" }
-                            { x: 2, y: 5 - meetingsMissed, label: "b" }
-                        ]}*/
-                        width={200}
-                        height={120}
-                        innerRadius={8}
-                        style={{ labels: { fontSize: 0} }}
-                    />
-                </div>
-            </div>
 
-            <div className="shell2">
-                <div className="shellChart2">
-                    <VictoryPie
-                        data={[{ x: 1, y: 35 }]}
-                        /*data={[
-                            { x: 1, y: meetingsMissed, label: "a" }
-                            { x: 2, y: 5 - meetingsMissed, label: "b" }
-                        ]}*/
-                        width={200}
-                        height={120}
-                        innerRadius={8}
-                        style={{ labels: { fontSize: 0} }}
-                    />
-                        {/* <div className="shellText2"> specificMeeting + " Meeting"</div> */}
+            <div className="component">
+                <div className="shell1"> 
+                    <div className="shellChart1">
+                        <VictoryPie
+                            data={[{ x: 1, y: 35 }]}
+                            /*data={[
+                                { x: 1, y: meetingsMissed, label: "a" }
+                                { x: 2, y: 5 - meetingsMissed, label: "b" }
+                            ]}*/
+                            width={200}
+                            height={150}
+                            innerRadius={20}
+                            style={{ labels: { fontSize: 0} }}
+                        />
+                    </div>
                 </div>
 
-                {/* <div className="shellText2"> specificMeeting + " Meeting"</div> */}
+                <div className="shell2">
+                    <div className="shellChart2">
+                        <VictoryPie
+                            data={[{ x: 1, y: 35 }]}
+                            /*data={[
+                                { x: 1, y: meetingsMissed, label: "a" }
+                                { x: 2, y: 5 - meetingsMissed, label: "b" }
+                            ]}*/
+                            width={200}
+                            height={150}
+                            innerRadius={20}
+                            style={{ labels: { fontSize: 0} }}
+                        />
+                            {/* <div className="shellText2"> specificMeeting + " Meeting"</div> */}
+                    </div>
+
+                    {/* <div className="shellText2"> specificMeeting + " Meeting"</div> */}
+                </div>
+
             </div>
 
             {/* <select defaultValue={memberType} onChange={e => changeMemberType(e.target.value)}>
