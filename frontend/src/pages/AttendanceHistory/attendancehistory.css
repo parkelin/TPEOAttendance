@@ -1,5 +1,5 @@
 @media screen {
-  /* purple */
+  /* Role: purple */
   .shell1 {
     display: flex;
     justify-content: flex-start;
@@ -13,7 +13,7 @@
     margin-bottom: 5%;
   }
 
-  /* red */
+  /* General: red */
   .shell2 {
     display: flex;
     justify-content: flex-start;
@@ -33,13 +33,27 @@
     margin-top: 7%;
     margin-left: -13%;
   }
-  
+
+  .shell2 span {
+    color: #EC5432;
+    font-size: 10px;
+    margin-top: 19%;
+    width: 5%;
+  }
+
   .shell1:after {
     content: "Engineering Meetings";
     color: #C175FF;
     font-size: 13px;
-    margin-top: 9%;
-    margin-left: -13%;
+    margin-top: 8%;
+    margin-left: -12%;
+  }
+
+  .shell1 span {
+    color: #C175FF;
+    font-size: 10px;
+    margin-top: 19%;
+    margin-left: -10%;
   }
 }
 
